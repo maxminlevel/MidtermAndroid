@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewCategoryList.setLayoutManager(linearLayoutManager);
 
         ArrayList<CategoryDomain> categoryList = new ArrayList<>();
-        categoryList.add(new CategoryDomain("Cơm Sườn", "com_suon_cat"));
+        categoryList.add(new CategoryDomain("Cơm", "com_suon_cat"));
         categoryList.add(new CategoryDomain("Bún Phở", "bun_pho_cat"));
         categoryList.add(new CategoryDomain("Lẩu", "lau_cat"));
         categoryList.add(new CategoryDomain("Ăn Nhanh", "thuc_an_nhanh_cat"));
