@@ -58,9 +58,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewPopularList.setLayoutManager(linearLayoutManager);
 
         ArrayList<FoodDomain> foodlist = new ArrayList<>();
-        foodlist.add(new FoodDomain("Pepperoni pizza", "pizza1", "slices pepperoni ,mozzarella cheese, fresh oregano,  ground black pepper, pizza sauce", 9.76));
-        foodlist.add(new FoodDomain("Cheese Burger", "burger", "beef, Gouda Cheese, Special sauce, Lettuce, tomato ", 8.79));
-        foodlist.add(new FoodDomain("Vegetable pizza", "pizza2", " olive oil, Vegetable oil, pitted Kalamata, cherry tomatoes, fresh oregano, basil", 8.5));
+        foodlist.add(new FoodDomain("Pizza", "pizza", "slices pepperoni ,mozzarella cheese, fresh oregano,  ground black pepper, pizza sauce", 9.76));
+        foodlist.add(new FoodDomain("Hamburger", "burger", "beef, Gouda Cheese, Special sauce, Lettuce, tomato ", 8.79));
+        foodlist.add(new FoodDomain("Cơm sườn trứng", "com_suon_1", " Cơm sườn bì Ngô Quyền", 8.5));
+        foodlist.add(new FoodDomain("Lẩu Thái", "lau_thai", "Lẩu thái chua cay ", 10.0));
+        foodlist.add(new FoodDomain("Lẩu thập cẩm", "lau_thap_cam", "Lẩu thập cẩm hải sản, bò viên", 9.5));
 
         adapter2 = new PopularAdapter(foodlist);
         recyclerViewPopularList.setAdapter(adapter2);
@@ -73,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewCategoryList.setLayoutManager(linearLayoutManager);
 
         ArrayList<CategoryDomain> categoryList = new ArrayList<>();
-        categoryList.add(new CategoryDomain("Pizza", "cat_1"));
-        categoryList.add(new CategoryDomain("Burger", "cat_2"));
-        categoryList.add(new CategoryDomain("Hotdog", "cat_3"));
-        categoryList.add(new CategoryDomain("Drink", "cat_4"));
-        categoryList.add(new CategoryDomain("Dount", "cat_5"));
+        categoryList.add(new CategoryDomain("Cơm Sườn", "com_suon_cat"));
+        categoryList.add(new CategoryDomain("Bún Phở", "bun_pho_cat"));
+        categoryList.add(new CategoryDomain("Lẩu", "lau_cat"));
+        categoryList.add(new CategoryDomain("Ăn Nhanh", "thuc_an_nhanh_cat"));
+        categoryList.add(new CategoryDomain("Bún Chả", "bun_cha_cat"));
 
         adapter = new CategoryAdapter(categoryList);
         recyclerViewCategoryList.setAdapter(adapter);

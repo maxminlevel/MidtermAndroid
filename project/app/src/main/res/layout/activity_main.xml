@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="16dp"
-                    android:text="Popular"
+                    android:text="Phổ biến"
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="32dp"
-                    android:text="Hi Rechard"
+                    android:text="Xin chào User"
                     android:textColor="#ff3d00"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -70,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Order &amp; Eat"
+                    android:text="Hãy chọn món ăn"
                     android:textColor="#000000"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="@+id/textView4"
@@ -80,13 +80,14 @@
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="78dp"
+                    android:layout_height="58dp"
                     android:layout_marginEnd="32dp"
-                    android:src="@drawable/profile"
+                    android:src="@drawable/user"
                     app:layout_constraintBottom_toBottomOf="@+id/textView5"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView4" />
+                    app:layout_constraintTop_toTopOf="@+id/textView4"
+                    app:srcCompat="@drawable/user" />
 
                 <EditText
                     android:id="@+id/editTextTextPersonName"
@@ -99,7 +100,7 @@
                     android:drawableStart="@drawable/search"
                     android:drawablePadding="10dp"
                     android:ems="10"
-                    android:hint="Find Your Food"
+                    android:hint="Tìm món ăn"
                     android:inputType="textPersonName"
                     android:paddingStart="20dp"
                     android:textSize="14sp"
@@ -125,19 +126,22 @@
 
                     <ImageView
                         android:id="@+id/imageView4"
-                        android:layout_width="192dp"
-                        android:layout_height="123dp"
-                        android:src="@drawable/image_banner"
+                        android:layout_width="114dp"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:src="@drawable/suggest"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/suggest" />
 
                     <TextView
                         android:id="@+id/textView6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:text="Free Delivery"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="4dp"
+                        android:text="Không biết nên ăn gì ?"
                         android:textColor="#000000"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -149,7 +153,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="2dp"
-                        android:text="Nov 22 - Dec 22"
+                        android:text="Hãy để chúng tôi giúp bạn"
                         android:textColor="#000000"
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="@+id/textView6"
@@ -174,7 +178,7 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="8dp"
-                            android:text="Order Now"
+                            android:text="Chọn món liền nào"
                             android:textColor="#ffffff"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -189,7 +193,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="16dp"
-                    android:text="Categories"
+                    android:text="Phân loại"
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -241,17 +245,17 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageView5"
+                        android:id="@+id/imageView_Home"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/bottom_btn1" />
 
                     <TextView
-                        android:id="@+id/textView11"
+                        android:id="@+id/textView_Home"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Home"
+                        android:text="Trang chủ"
                         android:textAlignment="center"
                         android:textColor="#676767"
                         android:textSize="12sp" />
@@ -264,16 +268,16 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageView5"
+                        android:id="@+id/imageView_Profile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:srcCompat="@drawable/bottom_btn2" />
 
                     <TextView
-                        android:id="@+id/textView11"
+                        android:id="@+id/textView_Profile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Profile"
+                        android:text="Cá nhân"
                         android:textAlignment="center"
                         android:textColor="#676767"
                         android:textSize="12sp" />
@@ -287,13 +291,13 @@
                     android:visibility="invisible">
 
                     <ImageView
-                        android:id="@+id/imageView5"
+                        android:id="@+id/imageView_Blank"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:srcCompat="@drawable/bottom_btn1" />
 
                     <TextView
-                        android:id="@+id/textView11"
+                        android:id="@+id/textView_Blank"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Home"
@@ -309,16 +313,16 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageView5"
+                        android:id="@+id/imageView_Support"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:srcCompat="@drawable/bottom_btn3" />
 
                     <TextView
-                        android:id="@+id/textView11"
+                        android:id="@+id/textView_Support"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Support"
+                        android:text="Hỗ trợ"
                         android:textAlignment="center"
                         android:textColor="#676767"
                         android:textSize="12sp" />
@@ -331,16 +335,16 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageView5"
+                        android:id="@+id/imageView_Setting"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:srcCompat="@drawable/bottom_btn4" />
 
                     <TextView
-                        android:id="@+id/textView11"
+                        android:id="@+id/textView_Setting"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Settings"
+                        android:text="Cài đặt"
                         android:textAlignment="center"
                         android:textColor="#676767"
                         android:textSize="12sp" />
@@ -353,10 +357,10 @@
             android:id="@+id/card_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#ff5e00"
+            android:backgroundTint="@color/f_hot"
             android:elevation="3dp"
-            android:src="@drawable/shopping_cart"
-            app:backgroundTint="#ff5e00"
+            android:src="@drawable/search_location"
+            app:backgroundTint="@color/f_red"
             app:layout_anchor="@id/app_bar"
             app:maxImageSize="30dp"
             app:tint="#ffffff" />

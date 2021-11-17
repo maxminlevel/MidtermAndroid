@@ -35,7 +35,6 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(foodDomains.get(position).getTitle());
-        holder.fee.setText(String.valueOf(foodDomains.get(position).getFee()));
 
         int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(foodDomains.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
 
@@ -61,7 +60,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title, fee;
+        TextView title;
         ImageView pic;
         TextView addBtn;
 
@@ -69,7 +68,6 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
-            fee = itemView.findViewById(R.id.fee);
             pic = itemView.findViewById(R.id.pic);
             addBtn = itemView.findViewById(R.id.addBtn);
         }
