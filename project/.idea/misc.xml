@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/drawable/card_background.xml" value="0.2755208333333333" />
+        <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/drawable/category_background1.xml" value="0.2755208333333333" />
+        <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/drawable/category_background5.xml" value="0.2755208333333333" />
+        <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/drawable/light_orange_back.xml" value="0.2755208333333333" />
+        <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/drawable/orange_button_background.xml" value="0.2755208333333333" />
+        <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/activity_card_list.xml" value="0.259375" />
+        <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/activity_intro.xml" value="0.259375" />
+        <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/activity_main.xml" value="0.259375" />
+        <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/activity_show_detail.xml" value="0.259375" />
+        <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/viewholder_card.xml" value="0.259375" />
+        <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/viewholder_cat.xml" value="0.259375" />
+        <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/viewholder_popular.xml" value="0.259375" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/project/app/src/main/res/drawable/category_background3.xml" value="0.1" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/project/app/src/main/res/drawable/category_background4.xml" value="0.1" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
