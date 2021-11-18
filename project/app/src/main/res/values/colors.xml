@@ -10,6 +10,7 @@
     <color name="f_white">#EDECEA</color>
     <color name="f_yellow">#FDDC73</color>
     <color name="f_orange">#F29633</color>
+    <color name="f_orange_50">#80F29633</color>
     <color name="f_red">#D44234</color>
     <color name="f_hot">#EA4A34</color>
     <color name="f_dark_red">#90231C</color>
