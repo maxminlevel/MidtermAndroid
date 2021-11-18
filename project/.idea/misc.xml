@@ -28,13 +28,23 @@
         <entry key="..\:/Nam_3/Android/Giua_Ky/project/app/src/main/res/layout/viewholder_popular.xml" value="0.16824324324324325" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/project/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable-hdpi/ic_baseline_attach_money_24.xml" value="0.2703125" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable/button_background_blue.xml" value="0.2703125" />
+        <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable/card_background_restaurant.xml" value="0.2703125" />
+        <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable/category_background1.xml" value="0.2703125" />
+        <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable/category_background2.xml" value="0.2703125" />
+        <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable/category_background4.xml" value="0.2703125" />
+        <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable/category_background5.xml" value="0.2703125" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable/ic_add_img.xml" value="0.26615384615384613" />
+        <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable/ic_back_img.xml" value="0.2703125" />
+        <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable/ic_facebook.xml" value="0.2703125" />
+        <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable/ic_google_plus.xml" value="0.2703125" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable/ic_login_hero.xml" value="0.2703125" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable/ic_register_hero.xml" value="0.2703125" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable/ic_side_bg.xml" value="0.2703125" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_card_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_detail_food.xml" value="0.264" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_intro.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_login2.xml" value="0.25416666666666665" />
@@ -43,6 +53,7 @@
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_register.xml" value="0.2171875" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_register2.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_show_detail.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14635416666666667" />
       </map>
     </option>
   </component>
