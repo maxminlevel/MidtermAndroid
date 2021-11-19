@@ -33,10 +33,7 @@
 
                 <TextView
                     style="@style/viewParent.headerText.NoMode"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="81dp"
-                    android:text="Already have an \nAccount?" />
+                    android:text="\nBạn đã \ncó tài khoản chưa?" />
 
                 <ImageView
                     android:layout_width="184dp"
@@ -57,7 +54,7 @@
                     style="@style/modifiedEditText"
                     android:backgroundTint="@color/f_white"
 
-                    android:hint="Username"
+                    android:hint="Email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -71,7 +68,7 @@
                     android:id="@+id/editTextPassword"
                     style="@style/modifiedEditText"
                     android:backgroundTint="@color/f_white"
-                    android:hint="Password"
+                    android:hint="Mật khẩu"
                     android:inputType="textPassword"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -80,7 +77,7 @@
                 style="@style/viewParent"
                 android:layout_gravity="end"
                 android:layout_marginTop="10dp"
-                android:text="Forgot Password?"
+                android:text="Quên mật khẩu?"
                 android:textColor="@color/darkTextColor"
                 android:textSize="@dimen/newsMoreTextSize" />x
 
@@ -89,17 +86,18 @@
                 style="@style/loginButton"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/loginViewsMargin"
-                android:text="Login"
+                android:text="Đăng nhập"
                 app:initialCornerAngle="27dp"
                 app:spinning_bar_color="#FFF"
                 app:spinning_bar_padding="6dp"
                 app:spinning_bar_width="4dp" />
 
             <TextView
+                android:id="@+id/registerBtn"
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:onClick="onLoginClick"
-                android:text="Register for a new account"
+                android:text="Chưa có? Đăng ký tài khoản mới"
                 android:textAlignment="center"
                 android:textColor="@color/themeColor"
                 android:textSize="17sp"
@@ -124,7 +122,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
-                    android:text="Or sign in with"
+                    android:text="Hoặc đăng nhập bằng"
                     android:textAlignment="center"
                     android:textSize="16dp" />
 

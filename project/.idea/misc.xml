@@ -44,7 +44,7 @@
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable/ic_register_hero.xml" value="0.2703125" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/drawable/ic_side_bg.xml" value="0.2703125" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_card_list.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_detail_food.xml" value="0.264" />
+        <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_detail_food.xml" value="0.4" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_intro.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_login2.xml" value="0.25416666666666665" />
@@ -53,6 +53,7 @@
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_register.xml" value="0.2171875" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_register2.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_show_detail.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/layout/activity_show_food_detail.xml" value="0.1" />
         <entry key="..\:/Users/Admin/Desktop/Documentation/HK1-Nam3/Android/Midterm/MidtermAndroid/project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14635416666666667" />
       </map>
     </option>
