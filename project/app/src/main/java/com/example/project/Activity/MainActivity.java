@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.project.Adapter.CategoryAdapter;
@@ -30,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewCategory();
         recyclerViewPopular();
         bottomNavigation();
+        ImageView accountBtn= findViewById(R.id.viewAccount);
+        accountBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
     }
 
     private void bottomNavigation() {
