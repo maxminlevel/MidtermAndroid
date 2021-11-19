@@ -6,23 +6,17 @@ public class FoodDomain implements Serializable {
     private String title;
     private String pic;
     private String description;
-    private Double fee;
-    private int numberInCart;
+    private String ingredient;
+    private double averageRating;
 
-    public FoodDomain(String title, String pic, String description, Double fee) {
+    public FoodDomain(String title, String pic, String description, String ingredient, double averageRating) {
         this.title = title;
         this.pic = pic;
         this.description = description;
-        this.fee = fee;
+        this.ingredient = ingredient;
+        this.averageRating = averageRating;
     }
 
-    public FoodDomain(String title, String pic, String description, Double fee, int numberInCart) {
-        this.title = title;
-        this.pic = pic;
-        this.description = description;
-        this.fee = fee;
-        this.numberInCart = numberInCart;
-    }
 
     public String getTitle() {
         return title;
@@ -48,19 +42,19 @@ public class FoodDomain implements Serializable {
         this.description = description;
     }
 
-    public Double getFee() {
-        return fee;
+    public void setIngredient(String ingredient) {
+        this.ingredient = ingredient;
     }
 
-    public void setFee(Double fee) {
-        this.fee = fee;
+    public String getIngredient() {
+        return ingredient;
     }
 
-    public int getNumberInCart() {
-        return numberInCart;
+    public void setAverageRating(double averageRating) {
+        this.averageRating = averageRating;
     }
 
-    public void setNumberInCart(int numberInCart) {
-        this.numberInCart = numberInCart;
+    public double getAverageRating() {
+        return averageRating;
     }
 }

@@ -41,9 +41,9 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(foodDomains.get(position).getTitle());
-        holder.feeEachItem.setText(String.valueOf(foodDomains.get(position).getFee()));
-        holder.totalEachItem.setText(String.valueOf(Math.round((foodDomains.get(position).getNumberInCart() * foodDomains.get(position).getFee()) * 100.0) / 100.0));
-        holder.num.setText(String.valueOf(foodDomains.get(position).getNumberInCart()));
+//        holder.feeEachItem.setText(String.valueOf(foodDomains.get(position).getFee()));
+//        holder.totalEachItem.setText(String.valueOf(Math.round((foodDomains.get(position).getNumberInCart() * foodDomains.get(position).getFee()) * 100.0) / 100.0));
+//        holder.num.setText(String.valueOf(foodDomains.get(position).getNumberInCart()));
 
         int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(foodDomains.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
 
@@ -52,31 +52,31 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
                 .into(holder.pic);
 
 
-        holder.plusItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                managementCart.plusNumberFood(foodDomains, position, new ChangeNumberItemsListener() {
-                    @Override
-                    public void changed() {
-                        notifyDataSetChanged();
-                        changeNumberItemsListener.changed();
-                    }
-                });
-            }
-        });
-
-        holder.minusItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                managementCart.MinusNumerFood(foodDomains, position, new ChangeNumberItemsListener() {
-                    @Override
-                    public void changed() {
-                        notifyDataSetChanged();
-                        changeNumberItemsListener.changed();
-                    }
-                });
-            }
-        });
+//        holder.plusItem.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                managementCart.plusNumberFood(foodDomains, position, new ChangeNumberItemsListener() {
+//                    @Override
+//                    public void changed() {
+//                        notifyDataSetChanged();
+//                        changeNumberItemsListener.changed();
+//                    }
+//                });
+//            }
+//        });
+//
+//        holder.minusItem.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                managementCart.MinusNumerFood(foodDomains, position, new ChangeNumberItemsListener() {
+//                    @Override
+//                    public void changed() {
+//                        notifyDataSetChanged();
+//                        changeNumberItemsListener.changed();
+//                    }
+//                });
+//            }
+//        });
 
     }
 

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.project.Activity.FoodStoreActivity;
 import com.example.project.Activity.ShowDetailActivity;
 import com.example.project.Domain.FoodDomain;
 import com.example.project.R;
@@ -45,7 +46,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(), ShowDetailActivity.class);
+                Intent intent = new Intent(holder.itemView.getContext(), FoodStoreActivity.class);
                 intent.putExtra("object", foodDomains.get(position));
                 holder.itemView.getContext().startActivity(intent);
             }
