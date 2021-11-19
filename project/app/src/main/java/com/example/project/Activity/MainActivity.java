@@ -35,11 +35,14 @@ public class MainActivity extends AppCompatActivity {
     private void bottomNavigation() {
         FloatingActionButton floatingActionButton = findViewById(R.id.card_btn);
         LinearLayout homeBtn = findViewById(R.id.homeBtn);
+        LinearLayout profileBtn = findViewById(R.id.profileBtn);
+        LinearLayout friendBtn = findViewById(R.id.friendBtn);
+        LinearLayout settingBtn = findViewById(R.id.settingBtn);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, CartListActivity.class));
+                startActivity(new Intent(MainActivity.this, AdvancedSearchActivity.class));
             }
         });
 
@@ -47,6 +50,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, MainActivity.class));
+            }
+        });
+
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+            }
+        });
+
+        friendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,FriendActivity.class));
+            }
+        });
+
+        settingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,SettingActivity.class));
             }
         });
     }
@@ -57,14 +81,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewPopularList = findViewById(R.id.recyclerView2);
         recyclerViewPopularList.setLayoutManager(linearLayoutManager);
 
-        ArrayList<FoodDomain> foodlist = new ArrayList<>();
-        foodlist.add(new FoodDomain("Pizza", "pizza", "slices pepperoni ,mozzarella cheese, fresh oregano,  ground black pepper, pizza sauce", 9.76));
-        foodlist.add(new FoodDomain("Hamburger", "burger", "beef, Gouda Cheese, Special sauce, Lettuce, tomato ", 8.79));
-        foodlist.add(new FoodDomain("Cơm sườn trứng", "com_suon_1", " Cơm sườn bì Ngô Quyền", 8.5));
-        foodlist.add(new FoodDomain("Lẩu Thái", "lau_thai", "Lẩu thái chua cay ", 10.0));
-        foodlist.add(new FoodDomain("Lẩu thập cẩm", "lau_thap_cam", "Lẩu thập cẩm hải sản, bò viên", 9.5));
+        ArrayList<FoodDomain> foodList = new ArrayList<>();
 
-        adapter2 = new PopularAdapter(foodlist);
+        foodList.add(new FoodDomain("Pizza", "pizza", "slices pepperoni ,mozzarella cheese, fresh oregano,  ground black pepper, pizza sauce", "thành phần món ăn", 8.7));
+        foodList.add(new FoodDomain("Hamburger", "burger", "beef, Gouda Cheese, Special sauce, Lettuce, tomato ", "thành phần món ăn", 9.4));
+        foodList.add(new FoodDomain("Cơm sườn trứng", "com_suon_1", " Cơm sườn bì Ngô Quyền", "thành phần món ăn", 8.4));
+        foodList.add(new FoodDomain("Lẩu Thái", "lau_thai", "Lẩu thái chua cay ", "thành phần món ăn", 7.5));
+        foodList.add(new FoodDomain("Lẩu thập cẩm", "lau_thap_cam", "Lẩu thập cẩm hải sản, bò viên", "thành phần món ăn", 8.9));
+
+        adapter2 = new PopularAdapter(foodList);
         recyclerViewPopularList.setAdapter(adapter2);
 
     }

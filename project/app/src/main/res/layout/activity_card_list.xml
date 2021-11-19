@@ -220,13 +220,14 @@
                         android:id="@+id/textView11"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Home"
+                        android:text="Trang chủ"
                         android:textAlignment="center"
                         android:textColor="#676767"
                         android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/profileBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -242,7 +243,7 @@
                         android:id="@+id/textView12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Profile"
+                        android:text="Cá nhân"
                         android:textAlignment="center"
                         android:textColor="#676767"
                         android:textSize="12sp" />
@@ -265,13 +266,14 @@
                         android:id="@+id/textView13"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Home"
+                        android:text=""
                         android:textAlignment="center"
                         android:textColor="#676767"
                         android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/friendBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -287,13 +289,14 @@
                         android:id="@+id/textView14"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Support"
+                        android:text="Bạn bè"
                         android:textAlignment="center"
                         android:textColor="#676767"
                         android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/settingBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -309,7 +312,7 @@
                         android:id="@+id/textView15"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Settings"
+                        android:text="Cài đặt"
                         android:textAlignment="center"
                         android:textColor="#676767"
                         android:textSize="12sp" />
@@ -322,9 +325,9 @@
             android:id="@+id/card_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#ff5e00"
+            android:backgroundTint="@color/f_hot"
             android:elevation="3dp"
-            android:src="@drawable/shopping_cart"
+            android:src="@drawable/search_location"
             app:backgroundTint="#ff5e00"
             app:layout_anchor="@id/app_bar"
             app:maxImageSize="30dp"
