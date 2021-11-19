@@ -33,8 +33,8 @@ public class CartListActivity extends AppCompatActivity {
         managementCart = new ManagementCart(this);
 
         initView();
-        initList();
-        calculateCard();
+//        initList();
+//        calculateCard();
         bottomNavigation();
     }
     private void bottomNavigation() {
@@ -55,39 +55,39 @@ public class CartListActivity extends AppCompatActivity {
             }
         });
     }
-    private void initList() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerViewList.setLayoutManager(linearLayoutManager);
-        adapter = new CartListAdapter(managementCart.getListCard(), this, new ChangeNumberItemsListener() {
-            @Override
-            public void changed() {
-                calculateCard();
-            }
-        });
-
-        recyclerViewList.setAdapter(adapter);
-        if (managementCart.getListCard().isEmpty()) {
-            emptyTxt.setVisibility(View.VISIBLE);
-            scrollView.setVisibility(View.GONE);
-        } else {
-            emptyTxt.setVisibility(View.GONE);
-            scrollView.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private void calculateCard() {
-        double percentTax = 0.02;
-        double delivery = 10;
-
-        tax = Math.round((managementCart.getTotalFee() * percentTax) * 100.0) / 100.0;
-        double total = Math.round((managementCart.getTotalFee() + tax + delivery) * 100.0) / 100.0;
-        double itemTotal = Math.round(managementCart.getTotalFee() * 100.0) / 100.0;
-
-        totalFeeTxt.setText("$" + itemTotal);
-        taxTxt.setText("$" + tax);
-        deliveryTxt.setText("$" + delivery);
-        totalTxt.setText("$" + total);
-    }
+//    private void initList() {
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+//        recyclerViewList.setLayoutManager(linearLayoutManager);
+//        adapter = new CartListAdapter(managementCart.getListCard(), this, new ChangeNumberItemsListener() {
+//            @Override
+//            public void changed() {
+//                calculateCard();
+//            }
+//        });
+//
+//        recyclerViewList.setAdapter(adapter);
+//        if (managementCart.getListCard().isEmpty()) {
+//            emptyTxt.setVisibility(View.VISIBLE);
+//            scrollView.setVisibility(View.GONE);
+//        } else {
+//            emptyTxt.setVisibility(View.GONE);
+//            scrollView.setVisibility(View.VISIBLE);
+//        }
+//    }
+//
+//    private void calculateCard() {
+//        double percentTax = 0.02;
+//        double delivery = 10;
+//
+//        tax = Math.round((managementCart.getTotalFee() * percentTax) * 100.0) / 100.0;
+//        double total = Math.round((managementCart.getTotalFee() + tax + delivery) * 100.0) / 100.0;
+//        double itemTotal = Math.round(managementCart.getTotalFee() * 100.0) / 100.0;
+//
+//        totalFeeTxt.setText("$" + itemTotal);
+//        taxTxt.setText("$" + tax);
+//        deliveryTxt.setText("$" + delivery);
+//        totalTxt.setText("$" + total);
+//    }
 
     private void initView() {
         recyclerViewList = findViewById(R.id.recyclerview);

@@ -18,17 +18,17 @@ import com.example.project.R;
 
 import java.util.ArrayList;
 
-public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHolder> {
+public class FoodByCategoryAdapter extends RecyclerView.Adapter<FoodByCategoryAdapter.ViewHolder> {
     ArrayList<FoodDomain> foodDomains;
 
-    public PopularAdapter(ArrayList<FoodDomain> FoodDomains) {
+    public FoodByCategoryAdapter(ArrayList<FoodDomain> FoodDomains) {
         this.foodDomains = FoodDomains;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_popular, parent, false);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_food_cat, parent, false);
 
         return new ViewHolder(inflate);
     }
@@ -36,6 +36,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(foodDomains.get(position).getTitle());
+        holder.description.setText(foodDomains.get(position).getDescription());
 
         int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(foodDomains.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
 
@@ -51,9 +52,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
                 holder.itemView.getContext().startActivity(intent);
             }
         });
-
     }
-
 
     @Override
     public int getItemCount() {
@@ -64,13 +63,14 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         TextView title;
         ImageView pic;
         TextView addBtn;
-
+        TextView description;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
             pic = itemView.findViewById(R.id.pic);
             addBtn = itemView.findViewById(R.id.addBtn);
+            description = itemView.findViewById(R.id.description);
         }
     }
 }
