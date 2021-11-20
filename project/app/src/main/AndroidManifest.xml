@@ -31,7 +31,7 @@
 
         <activity
             android:name=".Activity.MapsActivity"
-            android:exported="true"
+            android:exported="true">
         </activity>
         <activity
             android:name=".Activity.SearchActivity"
@@ -61,8 +61,8 @@
             android:name=".Activity.ShowFoodDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".Activity.ShowFoodDetailActivity"
-            android:exported="true" />
+        android:name=".Activity.ShowDetailActivity"
+        android:exported="true" />
         <activity
             android:name=".Activity.RegisterActivity"
             android:exported="true" />
@@ -70,7 +70,6 @@
             android:name=".Activity.LoginActivity"
             android:exported="true" />
         <activity android:name=".Activity.CartListActivity" />
-        <activity android:name=".Activity.ShowDetailActivity" />
         <activity android:name=".Activity.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

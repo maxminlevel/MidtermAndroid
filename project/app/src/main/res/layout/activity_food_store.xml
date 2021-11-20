@@ -25,7 +25,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginLeft="20dp"
-            android:paddingVertical="10dp">
+            android:paddingVertical="10dp"
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -68,12 +69,13 @@
 
         <TextView
             android:id="@+id/nameStore"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:gravity="right"
+            android:layout_marginLeft="10dp"
             android:text="Cơm tấm Ngô Quyền"
             android:textSize="18dp"
-            />
+  />
     </LinearLayout>
 
     <LinearLayout
@@ -91,9 +93,10 @@
 
         <TextView
             android:id="@+id/addressStore"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:gravity="right"
+            android:layout_marginLeft="10dp"
             android:text="Số 8 gần Trường ĐH KHTN"
             android:textSize="18dp"
             />
@@ -114,9 +117,10 @@
 
         <TextView
             android:id="@+id/phoneStore"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:gravity="right"
+            android:layout_marginLeft="10dp"
             android:text="0123456789"
             android:textSize="18dp"
             />
@@ -136,9 +140,10 @@
             />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp">
+            android:gravity="right"
+            android:layout_marginLeft="10dp">
 
             <ImageView
                 android:layout_width="25dp"
@@ -163,6 +168,14 @@
 
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nhận xét của người dùng:"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
