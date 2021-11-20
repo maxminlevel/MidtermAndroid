@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.project.Activity.FoodStoreActivity;
+import com.example.project.Activity.RestaurantListByFoodActivity;
 import com.example.project.Activity.ShowDetailActivity;
 import com.example.project.Domain.FoodDomain;
 import com.example.project.R;
@@ -47,7 +48,7 @@ public class FoodByCategoryAdapter extends RecyclerView.Adapter<FoodByCategoryAd
         holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(), FoodStoreActivity.class);
+                Intent intent = new Intent(holder.itemView.getContext(), RestaurantListByFoodActivity.class);
                 intent.putExtra("object", foodDomains.get(position));
                 holder.itemView.getContext().startActivity(intent);
             }

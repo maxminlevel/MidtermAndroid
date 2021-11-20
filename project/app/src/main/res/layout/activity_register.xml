@@ -80,8 +80,8 @@
                         <EditText
                             android:id="@+id/editTextEmail"
                             style="@style/modifiedEditText"
-                            android:hint="Email"
                             android:backgroundTint="@color/white"
+                            android:hint="Email"
                             android:inputType="textEmailAddress"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -108,8 +108,8 @@
                         <EditText
                             android:id="@+id/editTextPassword"
                             style="@style/modifiedEditText"
-                            android:hint="Mật khẩu"
                             android:backgroundTint="@color/white"
+                            android:hint="Mật khẩu"
                             android:inputType="textPassword"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -126,10 +126,10 @@
                         app:spinning_bar_width="4dp" />
 
                     <TextView
+                        android:id="@+id/loginButton"
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin"
-                        android:id="@+id/loginButton"
-                        android:text="Đã có tài khoản rồi?"
+                        android:text="@string/nav_login_text"
                         android:textAlignment="center"
                         android:textColor="@color/themeColor"
                         android:textSize="17sp"

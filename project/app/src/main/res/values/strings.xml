@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Eat What</string>
     <string name="title_activity_login2">LoginActivity2</string>
+    <string name="nav_reg_text"> <u>Chưa có? Đăng ký tài khoản mới</u>.</string>
+    <string name="nav_login_text"><u>Đã có tài khoản rồi?</u></string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -9,4 +11,6 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+
 </resources>

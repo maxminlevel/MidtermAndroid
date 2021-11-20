@@ -33,7 +33,7 @@
 
                 <TextView
                     style="@style/viewParent.headerText.NoMode"
-                    android:text="\nBạn đã \ncó tài khoản chưa?" />
+                    android:text="\nBạn đã có \n tài khoản?" />
 
                 <ImageView
                     android:layout_width="184dp"
@@ -92,17 +92,18 @@
                 app:spinning_bar_padding="6dp"
                 app:spinning_bar_width="4dp" />
 
+
             <TextView
                 android:id="@+id/registerBtn"
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:onClick="onLoginClick"
-                android:text="Chưa có? Đăng ký tài khoản mới"
+                android:text="@string/nav_reg_text"
+
                 android:textAlignment="center"
                 android:textColor="@color/themeColor"
                 android:textSize="17sp"
                 android:textStyle="bold" />
-
 
             <LinearLayout
                 android:layout_width="match_parent"
