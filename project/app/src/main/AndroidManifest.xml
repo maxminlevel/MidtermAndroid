@@ -31,7 +31,7 @@
 
         <activity
             android:name=".Activity.MapsActivity"
-            android:exported="true"
+            android:exported="true">
         </activity>
         <activity
             android:name=".Activity.AdvancedSearchActivity"
@@ -50,9 +50,6 @@
             android:exported="true" />
         <activity
             android:name=".Activity.FoodByCategoryActivity"
-            android:exported="true" />
-        <activity
-            android:name=".Activity.ShowFoodDetailActivity"
             android:exported="true" />
         <activity
             android:name=".Activity.ShowFoodDetailActivity"
