@@ -1,5 +1,6 @@
 package com.example.project.Adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.project.Activity.FoodByCategoryActivity;
+import com.example.project.Activity.ShowDetailActivity;
 import com.example.project.Domain.CategoryDomain;
 import com.example.project.R;
 
@@ -69,6 +72,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 .load(drawableResourceId)
                 .into(holder.categoryPic);
 
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(), FoodByCategoryActivity.class);
+                intent.putExtra("category", categoryDomains.get(position).getTitle());
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
 

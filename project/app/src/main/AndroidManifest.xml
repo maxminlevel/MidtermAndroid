@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.project" >
+    package="com.example.project">
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -32,8 +32,28 @@
         <activity
             android:name=".Activity.MapsActivity"
             android:exported="true"
-            android:label="@string/title_activity_maps" >
         </activity>
+        <activity
+            android:name=".Activity.AdvancedSearchActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.FoodStoreActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.SettingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.FriendActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.ProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.FoodByCategoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.ShowFoodDetailActivity"
+            android:exported="true" />
         <activity
             android:name=".Activity.ShowFoodDetailActivity"
             android:exported="true" />

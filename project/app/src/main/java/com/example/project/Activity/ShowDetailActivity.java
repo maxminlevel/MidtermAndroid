@@ -41,7 +41,6 @@ public class ShowDetailActivity extends AppCompatActivity {
                 .into(picFood);
 
         titleTxt.setText(object.getTitle());
-        feeTxt.setText("$" + object.getFee());
         descriptionTxt.setText(object.getDescription());
         numberOrderTxt.setText(String.valueOf(numberOrder));
 
@@ -66,8 +65,8 @@ public class ShowDetailActivity extends AppCompatActivity {
         addToCardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                object.setNumberInCart(numberOrder);
-                managementCart.insertFood(object);
+//                object.setNumberInCart(numberOrder);
+//                managementCart.insertFood(object);
             }
         });
     }
