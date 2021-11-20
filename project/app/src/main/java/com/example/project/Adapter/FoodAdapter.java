@@ -12,11 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.project.Activity.FoodStoreActivity;
-<<<<<<< HEAD:project/app/src/main/java/com/example/project/Adapter/FoodByCategoryAdapter.java
 import com.example.project.Activity.RestaurantListByFoodActivity;
 import com.example.project.Activity.ShowDetailActivity;
-=======
->>>>>>> main:project/app/src/main/java/com/example/project/Adapter/FoodAdapter.java
 import com.example.project.Domain.FoodDomain;
 import com.example.project.R;
 

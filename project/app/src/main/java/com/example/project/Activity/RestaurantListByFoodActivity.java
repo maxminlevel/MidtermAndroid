@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.project.Adapter.FoodByCategoryAdapter;
 import com.example.project.Adapter.RestaurantListByFoodAdapter;
 import com.example.project.Domain.FoodDomain;
 import com.example.project.Domain.FoodInRestaurant;
