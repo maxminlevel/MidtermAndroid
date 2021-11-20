@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project">
         <activity
+            android:name=".Activity.SearchActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activity.AdvancedSearchActivity"
             android:exported="true" />
         <activity
