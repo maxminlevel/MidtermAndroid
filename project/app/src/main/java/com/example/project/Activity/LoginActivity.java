@@ -69,19 +69,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             editTextPassword.requestFocus();
             return;
         }
+        // Đang convert về FirebaseHelper bên Toàn
         mAuth.signInWithEmailAndPassword(email,password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(LoginActivity.this,"Đăng nhập thành công!",Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        }
-                        else{
-                            Toast.makeText(LoginActivity.this,"Đăng nhập thất bại",Toast.LENGTH_LONG).show();
-                        }
+            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        Toast.makeText(LoginActivity.this,"Đăng nhập thành công!",Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     }
-                });
+                    else{
+                        Toast.makeText(LoginActivity.this,"Đăng nhập thất bại",Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
 
     }
 }
