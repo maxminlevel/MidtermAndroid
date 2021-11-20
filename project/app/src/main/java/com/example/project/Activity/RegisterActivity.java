@@ -23,7 +23,7 @@ import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseHelper dataHelper;
-    private EditText editTextFullname, editTextEmail, editTextTel, editTextPassword;
+    private EditText editTextFullname, editTextEmail, editTextTel, editTextPassword, editTextRetypePassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         editTextFullname = findViewById(R.id.editTextName);
         editTextEmail =  findViewById(R.id.editTextEmail);
         editTextPassword =  findViewById(R.id.editTextPassword);
+        editTextRetypePassword =  findViewById(R.id.editTextRetypePassword);
         editTextTel = findViewById(R.id.editTextMobile);
         dataHelper = FirebaseHelper.getInstance();
     }
@@ -55,19 +56,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        if(Vatidation.checkFormRegister(editTextFullname, editTextEmail, editTextTel, editTextPassword)){
-            String fullName = editTextFullname.getText().toString().trim();
-            String email = editTextEmail.getText().toString().trim();
-            String tel = editTextTel.getText().toString().trim();
-            String password = editTextPassword.getText().toString().trim();
+        if(Vatidation.checkFormRegister(editTextFullname, editTextEmail, editTextTel, editTextPassword, editTextRetypePassword)){
+            String fullName = editTextFullname.getText().toString();
+            String email = editTextEmail.getText().toString();
+            String tel = editTextTel.getText().toString();
+            String password = editTextPassword.getText().toString();
             UserDomain user = new UserDomain(email, fullName, password, tel, "", "", "");
             if(dataHelper.register(user)) {
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             }else{
                 Toast.makeText(RegisterActivity.this,"Đăng ký thất bại",Toast.LENGTH_LONG).show();
             }
-        }else{
-            return;
         }
     }
 }

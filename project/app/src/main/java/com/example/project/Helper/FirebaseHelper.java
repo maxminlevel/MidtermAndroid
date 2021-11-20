@@ -1,12 +1,8 @@
 package com.example.project.Helper;
 
-import android.content.Intent;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.project.Activity.LoginActivity;
-import com.example.project.Activity.RegisterActivity;
 import com.example.project.Domain.CategoryDomain;
 import com.example.project.Domain.UserDomain;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -92,7 +88,23 @@ public class FirebaseHelper
         categoryList.add(new CategoryDomain("Ăn Nhanh", "thuc_an_nhanh_cat"));
         categoryList.add(new CategoryDomain("Bún Chả", "bun_cha_cat"));
         CollectionReference category = instance.db.collection("food_category");
-        // này chưa xong
         return categoryList;
+    }
+
+    private boolean login_flag;
+    public boolean login(String email, String password) {
+        auth.signInWithEmailAndPassword(email,password)
+            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        login_flag = false;
+                    }
+                    else{
+                        login_flag = true;
+                    }
+                }
+            });
+        return login_flag;
     }
 }
