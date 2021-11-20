@@ -44,7 +44,7 @@ public class AdvancedSearchActivity extends AppCompatActivity {
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AdvancedSearchActivity.this,ProfileActivity.class));
+                startActivity(new Intent(AdvancedSearchActivity.this, ProfileActivity.class));
             }
         });
 
