@@ -353,7 +353,6 @@ public class TinyDB {
 
 
     // Put methods
-
     /**
      * Put int value into SharedPreferences with 'key' and save
      * @param key SharedPreferences key

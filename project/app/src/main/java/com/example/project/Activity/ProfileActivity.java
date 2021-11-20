@@ -30,7 +30,7 @@ public class ProfileActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProfileActivity.this, AdvancedSearchActivity.class));
+                startActivity(new Intent(ProfileActivity.this, SearchActivity.class));
             }
         });
 
@@ -38,13 +38,6 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ProfileActivity.this, MainActivity.class));
-            }
-        });
-
-        profileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ProfileActivity.this,ProfileActivity.class));
             }
         });
 

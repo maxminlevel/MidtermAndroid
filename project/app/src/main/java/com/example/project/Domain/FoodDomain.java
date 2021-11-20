@@ -9,7 +9,7 @@ public class FoodDomain implements Serializable {
     private String description;
     private double averageRating;
 
-    public FoodDomain(String title, String pic, String description, String ingredient, double averageRating) {
+    public FoodDomain(String title, String pic, String description, double averageRating) {
         this.title = title;
         this.pic = pic;
         this.description = description;
