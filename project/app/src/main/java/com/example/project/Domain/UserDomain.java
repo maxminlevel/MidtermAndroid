@@ -1,6 +1,7 @@
 package com.example.project.Domain;
 
 public class UserDomain {
+    String id;
     String email, name, password, tel;
     String birthday = "", gender = "", avatar = "";
 
