@@ -19,6 +19,7 @@ public class Vatidation {
         String text = editText.getText().toString();
         if (text.startsWith(" ") || text.endsWith(" ")){
             editText.setError("Không được chưa ký tự trống ở đầu và cuối");
+            editText.requestFocus();
             return false;
         }
         return true;
@@ -42,7 +43,20 @@ public class Vatidation {
         return true;
     }
 
-    public static boolean checkFormRegister(EditText name, EditText email, EditText tel, EditText pass){
-        return isEmpty(name) && isEmpty(email) && isEmpty(pass) && isPattern(email, Patterns.EMAIL_ADDRESS) && longer(pass, 6);
+    public static boolean isSameString(EditText editText1, EditText editText2){
+        if(!editText1.getText().toString().equals(editText2.getText().toString())){
+            editText2.setError("Vui lòng kiểm tra lại");
+            editText2.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkFormRegister(EditText name, EditText email, EditText tel, EditText pass, EditText retypePass){
+        return isEmpty(name) && isEmpty(email) && isPattern(email, Patterns.EMAIL_ADDRESS) && isEmpty(pass) && longer(pass, 6) && isSameString(pass, retypePass);
+    }
+
+    public static boolean checkFormLogin(EditText editTextEmail, EditText editTextPassword) {
+        return isEmpty(editTextEmail) && isEmpty(editTextPassword) && isPattern(editTextEmail, Patterns.EMAIL_ADDRESS) && longer(editTextPassword, 6);
     }
 }
