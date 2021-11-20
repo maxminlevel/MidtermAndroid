@@ -7,7 +7,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.MapsActivity"
-    map:mapType="hybrid"
-    map:cameraTargetLng="106.6821717"
-    map:cameraTargetLat="10.762913"
-    map:cameraZoom="5"/>
+    map:mapType="normal"/>
