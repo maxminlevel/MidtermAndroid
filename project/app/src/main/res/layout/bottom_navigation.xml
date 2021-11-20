@@ -154,7 +154,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/f_hot"
             android:elevation="3dp"
-            android:src="@drawable/search_location"
+            android:src="@drawable/search"
             app:backgroundTint="#ff5e00"
             app:layout_anchor="@id/app_bar"
             app:maxImageSize="30dp"

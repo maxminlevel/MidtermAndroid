@@ -30,7 +30,7 @@ public class FriendActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(FriendActivity.this, AdvancedSearchActivity.class));
+                startActivity(new Intent(FriendActivity.this, SearchActivity.class));
             }
         });
 
@@ -45,13 +45,6 @@ public class FriendActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(FriendActivity.this, ProfileActivity.class));
-            }
-        });
-
-        friendBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(FriendActivity.this,FriendActivity.class));
             }
         });
 

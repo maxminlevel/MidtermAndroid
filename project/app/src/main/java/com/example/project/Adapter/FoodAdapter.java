@@ -17,17 +17,17 @@ import com.example.project.R;
 
 import java.util.ArrayList;
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
+public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     ArrayList<FoodDomain> foodDomains;
 
-    public SearchAdapter(ArrayList<FoodDomain> FoodDomains) {
+    public FoodAdapter(ArrayList<FoodDomain> FoodDomains) {
         this.foodDomains = FoodDomains;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_food_cat, parent, false);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_food, parent, false);
 
         return new ViewHolder(inflate);
     }
@@ -71,5 +71,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             addBtn = itemView.findViewById(R.id.addBtn);
             description = itemView.findViewById(R.id.description);
         }
+    }
+
+    public void filterList(ArrayList<FoodDomain> filteredItems) {
+        foodDomains = filteredItems;
+        notifyDataSetChanged();
     }
 }

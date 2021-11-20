@@ -8,6 +8,7 @@
         <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/drawable/category_background5.xml" value="0.2755208333333333" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/drawable/light_orange_back.xml" value="0.2755208333333333" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/drawable/orange_button_background.xml" value="0.2755208333333333" />
+        <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/drawable/searchview_background.xml" value="0.2755208333333333" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/activity_advanced_search.xml" value="0.2453125" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/activity_card_list.xml" value="0.259375" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/activity_detail_food.xml" value="0.254981884057971" />
@@ -24,8 +25,11 @@
         <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/bottom_navigation.xml" value="0.2509057971014493" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/viewholder_card.xml" value="0.259375" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/viewholder_cat.xml" value="0.259375" />
+        <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/viewholder_food.xml" value="0.24230072463768115" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/viewholder_food_cat.xml" value="0.259375" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/viewholder_popular.xml" value="0.259375" />
+        <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/layout/viewholder_usercomment.xml" value="0.24230072463768115" />
+        <entry key="..\:/Nam_3/Android/Giua_Ky/MidtermAndroid/project/app/src/main/res/menu/menu_search.xml" value="0.259375" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/project/app/src/main/res/drawable/category_background3.xml" value="0.1" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/project/app/src/main/res/drawable/category_background4.xml" value="0.1" />
         <entry key="..\:/Nam_3/Android/Giua_Ky/project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />

@@ -30,7 +30,7 @@ public class SettingActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SettingActivity.this, AdvancedSearchActivity.class));
+                startActivity(new Intent(SettingActivity.this, SearchActivity.class));
             }
         });
 
@@ -52,13 +52,6 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SettingActivity.this,FriendActivity.class));
-            }
-        });
-
-        settingBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SettingActivity.this,SettingActivity.class));
             }
         });
     }
