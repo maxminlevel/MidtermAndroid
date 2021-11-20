@@ -88,7 +88,6 @@ public class FirebaseHelper
         categoryList.add(new CategoryDomain("Ăn Nhanh", "thuc_an_nhanh_cat"));
         categoryList.add(new CategoryDomain("Bún Chả", "bun_cha_cat"));
         CollectionReference category = instance.db.collection("food_category");
-        // này chưa xong
         return categoryList;
     }
 

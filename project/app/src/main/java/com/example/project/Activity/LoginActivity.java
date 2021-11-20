@@ -51,26 +51,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
-        if(email.isEmpty()){
-            editTextEmail.setError("Email không được để trống");
-            editTextEmail.requestFocus();
-            return;
-        }
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            editTextEmail.setError("Email không hợp lệ. Vui lòng nhập lại");
-            editTextEmail.requestFocus();
-            return;
-        }
-        if(password.isEmpty()){
-            editTextPassword.setError("Mật khẩu không được để trống");
-            editTextPassword.requestFocus();
-            return;
-        }
-        if(password.length() < 6){
-            editTextPassword.setError("Mật khẩu phải chứa ít nhất 6 ký tự");
-            editTextPassword.requestFocus();
-            return;
-        }
         if(Vatidation.checkFormLogin(editTextEmail, editTextPassword)) {
             if (FirebaseHelper.getInstance().login(email, password)) {
                 startActivity(new Intent(LoginActivity.this, LoginActivity.class));
