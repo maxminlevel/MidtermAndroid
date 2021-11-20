@@ -14,6 +14,7 @@ import com.example.project.Adapter.CategoryAdapter;
 import com.example.project.Adapter.PopularAdapter;
 import com.example.project.Domain.CategoryDomain;
 import com.example.project.Domain.FoodDomain;
+import com.example.project.Helper.FirebaseHelper;
 import com.example.project.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -100,14 +101,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewCategoryList = findViewById(R.id.recyclerView);
         recyclerViewCategoryList.setLayoutManager(linearLayoutManager);
 
-        ArrayList<CategoryDomain> categoryList = new ArrayList<>();
-        categoryList.add(new CategoryDomain("Cơm", "com_suon_cat"));
-        categoryList.add(new CategoryDomain("Bún Phở", "bun_pho_cat"));
-        categoryList.add(new CategoryDomain("Lẩu", "lau_cat"));
-        categoryList.add(new CategoryDomain("Ăn Nhanh", "thuc_an_nhanh_cat"));
-        categoryList.add(new CategoryDomain("Bún Chả", "bun_cha_cat"));
+//        ArrayList<CategoryDomain> categoryList = new ArrayList<>();
+//        categoryList.add(new CategoryDomain("Cơm", "com_suon_cat"));
+//        categoryList.add(new CategoryDomain("Bún Phở", "bun_pho_cat"));
+//        categoryList.add(new CategoryDomain("Lẩu", "lau_cat"));
+//        categoryList.add(new CategoryDomain("Ăn Nhanh", "thuc_an_nhanh_cat"));
+//        categoryList.add(new CategoryDomain("Bún Chả", "bun_cha_cat"));
 
-        adapter = new CategoryAdapter(categoryList);
+        adapter = new CategoryAdapter(FirebaseHelper.getCategoryList());
         recyclerViewCategoryList.setAdapter(adapter);
     }
 }
