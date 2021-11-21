@@ -52,12 +52,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String password = editTextPassword.getText().toString().trim();
 
         if(Vatidation.checkFormLogin(editTextEmail, editTextPassword)) {
-            if (FirebaseHelper.getInstance().login(email, password)) {
-                startActivity(new Intent(LoginActivity.this, LoginActivity.class));
-                Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_LONG).show();
-            }
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
         }
     }
 }

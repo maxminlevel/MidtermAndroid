@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,19 +17,24 @@ import com.example.project.Domain.CategoryDomain;
 import com.example.project.Domain.FoodDomain;
 import com.example.project.Helper.FirebaseHelper;
 import com.example.project.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter, adapter2;
     private RecyclerView recyclerViewCategoryList, recyclerViewPopularList;
+    private FirebaseHelper firebaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         recyclerViewCategory();
         recyclerViewPopular();
         bottomNavigation();
@@ -39,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
+        firebaseHelper = FirebaseHelper.getInstance();
     }
 
     private void bottomNavigation() {
@@ -102,15 +109,22 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewCategoryList.setLayoutManager(linearLayoutManager);
 
         ArrayList<CategoryDomain> categoryList = new ArrayList<>();
-        categoryList.add(new CategoryDomain("Cơm", "com_suon_cat"));
-        categoryList.add(new CategoryDomain("Bún Phở", "bun_pho_cat"));
-        categoryList.add(new CategoryDomain("Lẩu", "lau_cat"));
-        categoryList.add(new CategoryDomain("Ăn Nhanh", "thuc_an_nhanh_cat"));
-        categoryList.add(new CategoryDomain("Bún Chả", "bun_cha_cat"));
-
-//        adapter = new CategoryAdapter(FirebaseHelper.getCategoryList());
         adapter = new CategoryAdapter(categoryList);
 
         recyclerViewCategoryList.setAdapter(adapter);
+        FirebaseFirestore.getInstance().collection("food_category").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(!queryDocumentSnapshots.isEmpty()){
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d: list){
+                                CategoryDomain c = d.toObject(CategoryDomain.class);
+                                categoryList.add(c);
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                });
     }
 }
