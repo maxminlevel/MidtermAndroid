@@ -61,9 +61,9 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         ArrayList<FoodInRestaurant> foodInResList = new ArrayList<>();
-        foodInResList.add(new FoodInRestaurant("Bún đậu thị nở",4.6,35000,"10.887186435398194, 106.78022055111393"));
-        foodInResList.add(new FoodInRestaurant("Bún đậu Lão Hạc",4.3,35000,"10.887186435398186, 106.78022055111391"));
-        foodInResList.add(new FoodInRestaurant("Bún đậu Tự nhiên",4.7,35000,"10.887186435398188, 106.78022055111398"));
+        foodInResList.add(new FoodInRestaurant("Bún đậu thị nở",4.6,35000,"317 Đông Hoà, Dĩ An, Bình Dương",10.88718643539819, 106.78022055111393));
+        foodInResList.add(new FoodInRestaurant("Bún đậu Lão Hạc",4.3,35000,"108 Đông Hoà, Dĩ An, Bình Dương",10.887186435398186, 106.78022055111391));
+        foodInResList.add(new FoodInRestaurant("Bún đậu Tự nhiên",4.7,35000,"59 Linh Trung, Thủ Đức, Thành phố Hồ Chí Minh",10.887186435398188, 106.78022055111398));
 
         adapter = new RestaurantListByFoodAdapter(foodInResList);
         recyclerView.setAdapter(adapter);

@@ -23,11 +23,14 @@ public class FoodInRestaurant {
     String address;
     double price;
     double rating;
+    double lat,lng;
 
-    public FoodInRestaurant(String ResName, double Rating, double Price, String Address) {
+    public FoodInRestaurant(String ResName, double Rating, double Price, String Address,double Lat,double Lng) {
         resName = ResName;
         rating=Rating;
         price=Price;
         address=Address;
+        lat = Lat;
+        lng = Lng;
     }
 }

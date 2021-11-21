@@ -98,10 +98,10 @@ public class FirebaseHelper
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        login_flag = false;
+                        login_flag = true;
                     }
                     else{
-                        login_flag = true;
+                        login_flag = false;
                     }
                 }
             });
