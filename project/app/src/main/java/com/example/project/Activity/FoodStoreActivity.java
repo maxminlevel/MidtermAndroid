@@ -30,7 +30,7 @@ public class FoodStoreActivity extends AppCompatActivity {
     private static final int REQUEST_CALL = 1;
 
     private ImageView mapIntent, phoneIntent;
-    private TextView addressStore, phoneStore;
+    private TextView addressStore, phoneStore, price, rating, nameStore;
 
     public RecyclerView recyclerView;
     public RecyclerView.Adapter adapter;
@@ -43,6 +43,7 @@ public class FoodStoreActivity extends AppCompatActivity {
         initView();
 
         recyclerViewUserComment();
+        getBundle();
 
         phoneIntent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,11 +60,24 @@ public class FoodStoreActivity extends AppCompatActivity {
         });
     }
 
+    private void getBundle() {
+        Bundle bundle = getIntent().getExtras();
+
+        price.setText(String.valueOf(bundle.getDouble("price", 10000)) + " VND");
+        nameStore.setText(bundle.getString("nameStore", "Tên mẫu"));
+        phoneStore.setText(bundle.getString("phoneStore", "SĐT mẫu"));
+        addressStore.setText(bundle.getString("addressStore","Địa chỉ mẫu"));
+        rating.setText(String.valueOf(bundle.getDouble("rating", 10.0)));
+    }
+
     private void initView() {
         mapIntent = findViewById(R.id.mapIntent);
         phoneIntent = findViewById(R.id.phoneIntent);
         addressStore = findViewById(R.id.addressStore);
         phoneStore = findViewById(R.id.phoneStore);
+        nameStore = findViewById(R.id.nameStore);
+        price = findViewById(R.id.price);
+        rating = findViewById(R.id.rating);
     }
 
     private void makePhoneCall() {

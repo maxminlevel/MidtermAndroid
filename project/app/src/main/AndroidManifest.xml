@@ -40,9 +40,6 @@
             android:name=".Activity.RestaurantListByFoodActivity"
             android:exported="true" />
         <activity
-            android:name=".Activity.AdvancedSearchActivity"
-            android:exported="true" />
-        <activity
             android:name=".Activity.FoodStoreActivity"
             android:exported="true" />
         <activity

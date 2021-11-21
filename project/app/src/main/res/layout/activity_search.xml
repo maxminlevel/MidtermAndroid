@@ -38,8 +38,9 @@
 
         <ImageView
             android:id="@+id/voice_recognition"
-            android:layout_width="36dp"
+            android:layout_width="fill_parent"
             android:layout_height="30dp"
+            android:layout_gravity="right"
             app:srcCompat="@drawable/micro"
             tools:srcCompat="@drawable/micro"
             android:layout_marginLeft="10dp"
@@ -47,22 +48,34 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:clipToPadding="false"
-        android:paddingStart="22dp"
-        android:paddingEnd="22dp"
-        android:paddingBottom="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutVoice"
-        android:id="@+id/recyclerViewFoodSearch"
-        />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
-    <include
-        layout="@layout/bottom_navigation"
-        android:id="@+id/layoutInclude"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:layout_marginTop="8dp"
+            android:clipToPadding="false"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            app:layout_constraintEnd_toEndOf="@+id/scrollViewSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutVoice"
+            android:id="@+id/recyclerViewFoodSearch"
+            />
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            layout="@layout/bottom_navigation"
+            android:id="@+id/layoutInclude"/>
+
+    </LinearLayout>
+
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>

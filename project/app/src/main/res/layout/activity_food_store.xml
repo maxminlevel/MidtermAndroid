@@ -26,7 +26,7 @@
             android:orientation="vertical"
             android:layout_marginLeft="20dp"
             android:paddingVertical="10dp"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -42,8 +42,30 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/description"
                 android:text="Mô tả các thành phần của món ăn đó"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:textSize="16dp"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giá tiền: "
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="10 000 VND"
+                    android:textSize="18dp"
+                    android:textColor="@color/teal_200"/>
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
@@ -176,10 +198,11 @@
             android:layout_marginLeft="10dp">
 
             <TextView
+                android:id="@+id/rating"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18dp"
-                android:text="7.8"/>
+                android:layout_height="match_parent"
+                android:text="7.8"
+                android:textSize="18dp" />
 
             <ImageView
                 android:layout_width="25dp"

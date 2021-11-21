@@ -3,6 +3,7 @@ package com.example.project.Adapter;
 import static androidx.core.content.ContextCompat.startActivity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,17 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
         holder.detailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.itemView.getContext().startActivity(new Intent(holder.itemView.getContext(), FoodStoreActivity.class));
+                Intent intent = new Intent(new Intent(holder.itemView.getContext(), FoodStoreActivity.class));
+                Bundle bundle = new Bundle();
+
+                bundle.putString("addressStore", foodInRestaurant.get(position).getAddress());
+                bundle.putDouble("price", foodInRestaurant.get(position).getPrice());
+                bundle.putDouble("rating", foodInRestaurant.get(position).getRating());
+                bundle.putString("nameStore", foodInRestaurant.get(position).getResName());
+                bundle.putString("phoneStore", foodInRestaurant.get(position).getPhone());
+
+                intent.putExtras(bundle);
+                holder.itemView.getContext().startActivity(intent);
             }
         });
 
