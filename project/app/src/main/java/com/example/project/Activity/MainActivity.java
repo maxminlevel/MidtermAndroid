@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,15 +18,18 @@ import com.example.project.Helper.FirebaseHelper;
 import com.example.project.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.Query;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firestore.v1.StructuredQuery;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView.Adapter adapter, adapter2;
+    private RecyclerView.Adapter categoryAdapter, popularAdapter;
     private RecyclerView recyclerViewCategoryList, recyclerViewPopularList;
     private FirebaseHelper firebaseHelper;
 
@@ -92,15 +94,32 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<FoodDomain> foodList = new ArrayList<>();
 
-        foodList.add(new FoodDomain("Pizza", "pizza", "slices pepperoni ,mozzarella cheese, fresh oregano,  ground black pepper, pizza sauce", 8.7));
-        foodList.add(new FoodDomain("Hamburger", "burger", "beef, Gouda Cheese, Special sauce, Lettuce, tomato ",  9.4));
-        foodList.add(new FoodDomain("Cơm sườn trứng", "com_suon_1", " Cơm sườn bì Ngô Quyền", 8.4));
-        foodList.add(new FoodDomain("Lẩu Thái", "lau_thai", "Lẩu thái chua cay ",  7.5));
-        foodList.add(new FoodDomain("Lẩu thập cẩm", "lau_thap_cam", "Lẩu thập cẩm hải sản, bò viên",  8.9));
+//        foodList.add(new FoodDomain("Pizza", "pizza", "slices pepperoni ,mozzarella cheese, fresh oregano,  ground black pepper, pizza sauce", 8.7));
+//        foodList.add(new FoodDomain("Hamburger", "burger", "beef, Gouda Cheese, Special sauce, Lettuce, tomato ",  9.4));
+//        foodList.add(new FoodDomain("Cơm sườn trứng", "com_suon_1", " Cơm sườn bì Ngô Quyền", 8.4));
+//            foodList.add(new FoodDomain("Lẩu Thái", "lau_thai", "Lẩu thái chua cay ",  7.5));
+//        foodList.add(new FoodDomain("Lẩu thập cẩm", "lau_thap_cam", "Lẩu thập cẩm hải sản, bò viên",  8.9));
 
-        adapter2 = new PopularAdapter(foodList);
-        recyclerViewPopularList.setAdapter(adapter2);
-
+        popularAdapter = new PopularAdapter(foodList);
+        recyclerViewPopularList.setAdapter(popularAdapter);
+        FirebaseFirestore.getInstance().collection("food").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(!queryDocumentSnapshots.isEmpty()){
+                            List<DocumentSnapshot> list_food = queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d: list_food){
+                                foodList.add(new FoodDomain(
+                                        d.getString("name"),
+                                        d.getString("pic"),
+                                        d.getString("desc"),
+                                        d.getString("averageRating")
+                                ));
+                            }
+                            popularAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
     }
 
     private void recyclerViewCategory() {
@@ -109,9 +128,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewCategoryList.setLayoutManager(linearLayoutManager);
 
         ArrayList<CategoryDomain> categoryList = new ArrayList<>();
-        adapter = new CategoryAdapter(categoryList);
+        categoryAdapter = new CategoryAdapter(categoryList);
 
-        recyclerViewCategoryList.setAdapter(adapter);
+        recyclerViewCategoryList.setAdapter(categoryAdapter);
         FirebaseFirestore.getInstance().collection("food_category").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -122,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                                 CategoryDomain c = d.toObject(CategoryDomain.class);
                                 categoryList.add(c);
                             }
-                            adapter.notifyDataSetChanged();
+                            categoryAdapter.notifyDataSetChanged();
                         }
                     }
                 });

@@ -1,5 +1,6 @@
 package com.example.project.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.project.Activity.FoodStoreActivity;
-import com.example.project.Activity.ShowDetailActivity;
 import com.example.project.Domain.FoodDomain;
 import com.example.project.R;
 
@@ -34,10 +34,14 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.title.setText(foodDomains.get(position).getTitle());
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        holder.title.setText(foodDomains.get(position).getName());
 
         int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(foodDomains.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
+
+        if(drawableResourceId==0){
+            drawableResourceId = holder.itemView.getContext().getResources().getIdentifier("food", "drawable", holder.itemView.getContext().getPackageName());
+        }
 
         Glide.with(holder.itemView.getContext())
                 .load(drawableResourceId)
