@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project.Domain.FoodDomain;
 import com.example.project.Domain.UserDomain;
 import com.example.project.Helper.FirebaseHelper;
 import com.example.project.Helper.Vatidation;
@@ -26,6 +28,11 @@ import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextPassword, editTextEmail;
     private FirebaseAuth mAuth;
+    SharedPreferences sharedPreferences;
+    private static final String SHARED_PREF_NAME = "my_pref_account";
+    private static final String userName = "user_name";
+    private static final String email = "email";
+    private static final String password = "password";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

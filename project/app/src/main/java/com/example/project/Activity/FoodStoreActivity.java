@@ -1,10 +1,21 @@
 package com.example.project.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.project.Adapter.FoodAdapter;
 import com.example.project.Adapter.UserCommentAdapter;
@@ -16,6 +27,11 @@ import java.util.ArrayList;
 
 public class FoodStoreActivity extends AppCompatActivity {
 
+    private static final int REQUEST_CALL = 1;
+
+    private ImageView mapIntent, phoneIntent;
+    private TextView addressStore, phoneStore;
+
     public RecyclerView recyclerView;
     public RecyclerView.Adapter adapter;
 
@@ -24,7 +40,49 @@ public class FoodStoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_store);
 
+        initView();
+
         recyclerViewUserComment();
+
+        phoneIntent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                makePhoneCall();
+            }
+        });
+
+        mapIntent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAddressStore();
+            }
+        });
+    }
+
+    private void initView() {
+        mapIntent = findViewById(R.id.mapIntent);
+        phoneIntent = findViewById(R.id.phoneIntent);
+        addressStore = findViewById(R.id.addressStore);
+        phoneStore = findViewById(R.id.phoneStore);
+    }
+
+    private void makePhoneCall() {
+        String number = phoneStore.getText().toString();
+
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + number));
+        startActivity(intent);
+    }
+
+    private void showAddressStore() {
+        String latitude = "10.688289";
+        String longitude = "105.376065";
+
+        String location = "geo:" + latitude + "," + longitude;
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(location));
+        startActivity(intent);
     }
 
     private void recyclerViewUserComment() {
