@@ -1,36 +1,28 @@
 package com.example.project.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.project.Adapter.FoodAdapter;
 import com.example.project.Adapter.UserCommentAdapter;
-import com.example.project.Domain.FoodDomain;
 import com.example.project.Domain.UserCommentDomain;
 import com.example.project.R;
 
 import java.util.ArrayList;
 
-public class FoodStoreActivity extends AppCompatActivity {
+public class FoodRestaurantActivity extends AppCompatActivity {
 
     private static final int REQUEST_CALL = 1;
 
     private ImageView mapIntent, phoneIntent;
-    private TextView addressStore, phoneStore;
+    private TextView addressStore, phoneStore, price, rating, nameStore;
 
     public RecyclerView recyclerView;
     public RecyclerView.Adapter adapter;
@@ -38,11 +30,12 @@ public class FoodStoreActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_store);
+        setContentView(R.layout.activity_food_restaurant);
 
         initView();
 
         recyclerViewUserComment();
+        getBundle();
 
         phoneIntent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,11 +52,24 @@ public class FoodStoreActivity extends AppCompatActivity {
         });
     }
 
+    private void getBundle() {
+        Bundle bundle = getIntent().getExtras();
+
+        price.setText(String.valueOf(bundle.getDouble("price", 10000)) + " VND");
+        nameStore.setText(bundle.getString("nameStore", "Tên mẫu"));
+        phoneStore.setText(bundle.getString("phoneStore", "SĐT mẫu"));
+        addressStore.setText(bundle.getString("addressStore","Địa chỉ mẫu"));
+        rating.setText(String.valueOf(bundle.getDouble("rating", 10.0)));
+    }
+
     private void initView() {
         mapIntent = findViewById(R.id.mapIntent);
         phoneIntent = findViewById(R.id.phoneIntent);
         addressStore = findViewById(R.id.addressStore);
         phoneStore = findViewById(R.id.phoneStore);
+        nameStore = findViewById(R.id.nameStore);
+        price = findViewById(R.id.price);
+        rating = findViewById(R.id.rating);
     }
 
     private void makePhoneCall() {

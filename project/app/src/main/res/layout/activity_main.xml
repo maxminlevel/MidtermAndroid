@@ -207,6 +207,7 @@
     </ScrollView>
 
     <include
+        android:id="@+id/layoutInclude"
         layout="@layout/bottom_navigation"
-        android:id="@+id/layoutInclude"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
