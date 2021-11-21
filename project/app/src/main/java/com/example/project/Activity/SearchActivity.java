@@ -70,7 +70,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     }
 
     private void bottomNavigation() {
-        FloatingActionButton floatingActionButton = findViewById(R.id.card_btn);
         LinearLayout homeBtn = findViewById(R.id.homeBtn);
         LinearLayout profileBtn = findViewById(R.id.profileBtn);
         LinearLayout friendBtn = findViewById(R.id.friendBtn);

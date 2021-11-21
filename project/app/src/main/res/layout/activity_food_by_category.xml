@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.FoodByCategoryActivity">
+    tools:context=".Activity.SearchActivity"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/catName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/orange_button_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -32,18 +33,65 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewFoodCat"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_margin="8dp"
         android:clipToPadding="false"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
-        android:paddingBottom="80dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/catName" />
+        app:layout_constraintTop_toBottomOf="@+id/sv_title"
+        android:orientation="horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.SearchView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:queryHint="Search title"
+            android:background="@drawable/searchview_background"
+            android:id="@+id/sv_title"
+            android:layout_weight="8"/>
+
+        <ImageView
+            android:id="@+id/voice_recognition"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+
+            app:srcCompat="@drawable/micro"
+            tools:srcCompat="@drawable/micro"
+            android:layout_marginLeft="10dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4.5"
+            android:layout_marginTop="8dp"
+            android:clipToPadding="false"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            app:layout_constraintEnd_toEndOf="@+id/scrollViewSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutVoice"
+            android:id="@+id/recyclerViewFoodCat"
+            />
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            layout="@layout/bottom_navigation"
+            android:id="@+id/layoutInclude"/>
+
+    </LinearLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
