@@ -2,7 +2,7 @@ package com.example.project.Domain;
 
 import java.io.Serializable;
 
-public class FoodInRestaurant {
+public class FoodInRestaurant implements Serializable{
     public String getResName() {
         return resName;
     }

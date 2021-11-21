@@ -64,6 +64,7 @@
                     android:gravity="right"
                     android:text="10 000 VND"
                     android:textSize="18dp"
+                    android:textStyle="bold"
                     android:textColor="@color/teal_200"/>
             </LinearLayout>
 

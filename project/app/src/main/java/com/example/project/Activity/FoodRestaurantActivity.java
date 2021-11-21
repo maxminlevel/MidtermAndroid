@@ -97,13 +97,11 @@ public class FoodRestaurantActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         ArrayList<UserCommentDomain> list = new ArrayList<>();
-        list.add(new UserCommentDomain("user", "user1", "Bình luận gì đó về món ăn của cửa hàng này"));
-        list.add(new UserCommentDomain("user", "user2", "Bình luận gì đó về món ăn của cửa hàng này"));
-        list.add(new UserCommentDomain("user", "user3", "Bình luận gì đó về món ăn của cửa hàng này"));
-        list.add(new UserCommentDomain("user", "user4", "Bình luận gì đó về món ăn của cửa hàng này"));
-        list.add(new UserCommentDomain("user", "user5", "Bình luận gì đó về món ăn của cửa hàng này"));
-        list.add(new UserCommentDomain("user", "user6", "Bình luận gì đó về món ăn của cửa hàng này"));
-        list.add(new UserCommentDomain("user", "user7", "Bình luận gì đó về món ăn của cửa hàng này"));
+        list.add(new UserCommentDomain("profile1", "Vũ Trường Không", "Món này ngon lắm, mùi vị không tệ"));
+        list.add(new UserCommentDomain("profile2", "Hoắc Vũ Hạo", "Vote 10* cho quán ăn này"));
+        list.add(new UserCommentDomain("profile3", "Đường Tam", "Về sau sẽ tới quán ăn nhiều hơn nữa"));
+        list.add(new UserCommentDomain("profile4", "Bạch Tú Tú", "Quán ăn bán đồ ăn rất ngon, hôm sau sẽ thử món khác tiếp"));
+        list.add(new UserCommentDomain("profile5", "Trần Anh Tuấn", "Lần đầu được ăn món này và nó đã trở thành món tủ của tôi"));
 
         adapter = new UserCommentAdapter(list);
         recyclerView.setAdapter(adapter);
