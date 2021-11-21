@@ -167,7 +167,7 @@ public class OneMarkerMapsActivity extends FragmentActivity implements OnMapRead
     @Override
     public boolean onMarkerClick(Marker marker) {
 
-        Intent intent = new Intent(OneMarkerMapsActivity.this, FoodStoreActivity.class);
+        Intent intent = new Intent(OneMarkerMapsActivity.this, FoodRestaurantActivity.class);
         // Truyen data la
 //        intent.putExtra("idStore", restaurant.getId());
 //        intent.putExtra("idFood",)

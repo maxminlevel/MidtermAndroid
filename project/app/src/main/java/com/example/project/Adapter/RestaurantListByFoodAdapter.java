@@ -3,7 +3,6 @@ package com.example.project.Adapter;
 import static androidx.core.content.ContextCompat.startActivity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.project.Activity.FoodStoreActivity;
+import com.example.project.Activity.FoodRestaurantActivity;
 import com.example.project.Activity.LoginActivity;
 import com.example.project.Activity.MapsActivity;
 import com.example.project.Activity.OneMarkerMapsActivity;
 import com.example.project.Domain.FoodDomain;
+import com.example.project.Activity.FoodRestaurantActivity;
 import com.example.project.Domain.FoodInRestaurant;
 import com.example.project.R;
 
@@ -66,7 +66,7 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
         holder.detailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.itemView.getContext().startActivity(new Intent(holder.itemView.getContext(), FoodStoreActivity.class));
+                holder.itemView.getContext().startActivity(new Intent(holder.itemView.getContext(), FoodRestaurantActivity.class));
             }
         });
 

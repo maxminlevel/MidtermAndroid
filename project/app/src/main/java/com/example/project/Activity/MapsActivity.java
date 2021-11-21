@@ -178,7 +178,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public boolean onMarkerClick(Marker marker) {
 
 //        Toast.makeText(MapsActivity.this,"Nhấn vào một món ăn để xem chi tiết",Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(MapsActivity.this, FoodStoreActivity.class);
+        Intent intent = new Intent(MapsActivity.this, FoodRestaurantActivity.class);
         // Truyen data la
 //        intent.putExtra("idStore", restaurant.getId());
 //        intent.putExtra("idFood",)

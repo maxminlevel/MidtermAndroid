@@ -7,62 +7,67 @@
     tools:context=".Activity.SearchActivity"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.SearchView
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:queryHint="Search title"
-        android:background="@drawable/searchview_background"
-        android:id="@+id/sv_title"
-        />
-
     <LinearLayout
-        android:id="@+id/layoutVoice"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:clipToPadding="false"
-        android:paddingStart="22dp"
-        android:paddingEnd="22dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sv_title"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
+
+        <androidx.appcompat.widget.SearchView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Tìm kiếm nâng cao bằng giọng nói:"
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:layout_marginTop="5dp"/>
+            app:queryHint="Search title"
+            android:background="@drawable/searchview_background"
+            android:id="@+id/sv_title"
+            android:layout_weight="8"/>
 
         <ImageView
             android:id="@+id/voice_recognition"
-            android:layout_width="36dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+
             app:srcCompat="@drawable/micro"
             tools:srcCompat="@drawable/micro"
             android:layout_marginLeft="10dp"
             />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5.5"
+            android:layout_marginTop="8dp"
+            android:clipToPadding="false"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            app:layout_constraintEnd_toEndOf="@+id/scrollViewSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutVoice"
+            android:id="@+id/recyclerViewFoodSearch"
+            />
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            layout="@layout/bottom_navigation"
+            android:id="@+id/layoutInclude"/>
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:clipToPadding="false"
-        android:paddingStart="22dp"
-        android:paddingEnd="22dp"
-        android:paddingBottom="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutVoice"
-        android:id="@+id/recyclerViewFoodSearch"
-        />
 
-    <include
-        layout="@layout/bottom_navigation"
-        android:id="@+id/layoutInclude"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

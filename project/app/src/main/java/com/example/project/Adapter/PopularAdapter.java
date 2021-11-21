@@ -12,9 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.project.Activity.FoodStoreActivity;
 import com.example.project.Activity.RestaurantListByFoodActivity;
-import com.example.project.Activity.ShowDetailActivity;
 import com.example.project.Domain.FoodDomain;
 import com.example.project.R;
 

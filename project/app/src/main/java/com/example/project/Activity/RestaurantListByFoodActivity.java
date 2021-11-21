@@ -23,9 +23,8 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
     public RecyclerView.Adapter adapter;
     private FoodDomain foodDomain;
     private ImageView img;
-    private TextView fName, des, rating, viewAllLo;
+    private TextView fName, des, rating;
     ArrayList<FoodInRestaurant> foodInResList = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +32,8 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
         recyclerViewFoodCat();
         initView();
         getBundle();
+
+        TextView viewAllLo = findViewById(R.id.viewAllLocation);
         viewAllLo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +50,7 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
         fName = findViewById(R.id.foodName);
         des = findViewById(R.id.foodDescription);
         rating = findViewById(R.id.rating_food_res_avg);
-        viewAllLo = findViewById(R.id.viewAllLocation);
+
     }
 
     private void getBundle() {
@@ -70,10 +71,9 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
-        // Query de lay danh sach cac quan an
-        foodInResList.add(new FoodInRestaurant("Bún đậu thị nở",4.6,35000,"317 Đông Hoà, Dĩ An, Bình Dương",10.88718643539819, 106.78022055111393));
-        foodInResList.add(new FoodInRestaurant("Bún đậu Lão Hạc",4.3,35000,"108 Đông Hoà, Dĩ An, Bình Dương",10.887186435498186, 106.78022055111391));
-        foodInResList.add(new FoodInRestaurant("Bún đậu Tự nhiên",4.7,35000,"59 Linh Trung, Thủ Đức, Thành phố Hồ Chí Minh",10.887186436398188, 106.78022055111398));
+        foodInResList.add(new FoodInRestaurant("Bún đậu thị nở",4.6,35000,"Kế bên KTX khu B", 10.887186435398194, 106.78022055111393, "0123456789"));
+        foodInResList.add(new FoodInRestaurant("Bún đậu Lão Hạc",4.3,35000,"khu phố 6 Linh Trung",10.887186435398186, 106.78022055111391, "03564829665"));
+        foodInResList.add(new FoodInRestaurant("Bún đậu Tự nhiên",4.7,35000,"Chợ ẩm thực làng ĐH",10.887186435398188, 106.78022055111398, "0158396839"));
 
         adapter = new RestaurantListByFoodAdapter(foodInResList);
         recyclerView.setAdapter(adapter);
