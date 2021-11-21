@@ -40,8 +40,8 @@ public class ShowDetailActivity extends AppCompatActivity {
                 .load(drawableResourceId)
                 .into(picFood);
 
-        titleTxt.setText(object.getTitle());
-        descriptionTxt.setText(object.getDescription());
+        titleTxt.setText(object.getName());
+        descriptionTxt.setText(object.getDesc());
         numberOrderTxt.setText(String.valueOf(numberOrder));
 
         plusBtn.setOnClickListener(new View.OnClickListener() {

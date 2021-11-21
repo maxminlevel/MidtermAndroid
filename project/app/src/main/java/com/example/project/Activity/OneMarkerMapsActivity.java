@@ -42,7 +42,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
+public class OneMarkerMapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleMap.OnMarkerClickListener,
         GoogleMap.OnCircleClickListener, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
 
@@ -71,8 +71,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         restaurant = (FoodInRestaurant) getIntent().getSerializableExtra("restaurant");
 //       listRestaurant = (ArrayList <FoodInRestaurant>)intent.getSerializableExtra("restaurant");
-        foodInResList =  getIntent().getParcelableArrayListExtra("list_food");
-        // set dynamically image
 
 
     }
@@ -103,7 +101,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Nếu ID cửa hàng trống khi đó sẽ load icon món ăn và marker link tới view 1 món nhiều cửa hàng
         // Nếu đầy đủ 2 tham số thì marker link tới view 1 món/ 1 cửa hàng
         // marker sử dụng canvas
-      // addFoodMarkerOnMap(10.88718643539816, 106.78022055111391, "Hành của HCMUS");
+        // addFoodMarkerOnMap(10.88718643539816, 106.78022055111391, "Hành của HCMUS");
 //        addFoodMarkerOnMap(10.7568282,106.6796836, "Burger");
 //        addFoodMarkerOnMap(10.7661902,106.6835089, "Chơi đồ án");
 //        if(restaurant!=null){
@@ -113,16 +111,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(restaurant != null) {
             addFoodMarkerOnMap(restaurant.getLat(), restaurant.getLng(), restaurant.getResName());
         }
-//        addFoodMarkerOnMap(foodInResList.get(0).getLat(),foodInResList.get(0).getLng(),foodInResList.get(0).getResName());
-//        addFoodMarkerOnMap(foodInResList.get(1).getLat(),foodInResList.get(1).getLng(),foodInResList.get(1).getResName());
 
-        if(!foodInResList.isEmpty()) {
-            for(FoodInRestaurant foodInRestaurant:foodInResList){
-                Log.d("TAG", "onMapReady: "+ foodInRestaurant.getResName());
-                addFoodMarkerOnMap(foodInRestaurant.getLat(),foodInRestaurant.getLng()
-                        , foodInRestaurant.getResName());
-            }
-        }
+
 
         mMap.setOnMarkerClickListener(this);
         mMap.setOnCircleClickListener(this);
@@ -177,8 +167,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public boolean onMarkerClick(Marker marker) {
 
-//        Toast.makeText(MapsActivity.this,"Nhấn vào một món ăn để xem chi tiết",Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(MapsActivity.this, FoodStoreActivity.class);
+        Intent intent = new Intent(OneMarkerMapsActivity.this, FoodStoreActivity.class);
         // Truyen data la
 //        intent.putExtra("idStore", restaurant.getId());
 //        intent.putExtra("idFood",)
@@ -196,12 +185,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private int NextAvailableID = 1;
     @Override
     public void onMapClick(LatLng latLng) {
-        Toast.makeText(MapsActivity.this,"Nhấn vào một món ăn để xem chi tiết",Toast.LENGTH_LONG).show();
+        Toast.makeText(OneMarkerMapsActivity.this,"Nhấn vào một món ăn để xem chi tiết",Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onMapLongClick(LatLng latLng) {
         addFoodMarkerOnMap(latLng.latitude, latLng.longitude, String.valueOf(NextAvailableID++));
-        Toast.makeText(MapsActivity.this,"Tạo view mới thêm món ăn",Toast.LENGTH_LONG).show();
+        Toast.makeText(OneMarkerMapsActivity.this,"Tạo view mới thêm món ăn",Toast.LENGTH_LONG).show();
     }
 }

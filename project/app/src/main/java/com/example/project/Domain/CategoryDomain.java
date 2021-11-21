@@ -1,20 +1,32 @@
 package com.example.project.Domain;
 
-public class CategoryDomain {
-    private String title;
+import com.google.firebase.database.Exclude;
+
+import java.io.Serializable;
+
+public class CategoryDomain implements Serializable{
+
+    @Exclude
+    private String id;
+
+    private String name;
     private String pic;
 
-    public CategoryDomain(String title, String pic) {
-        this.title = title;
+    public CategoryDomain(){
+
+    }
+
+    public CategoryDomain(String name, String pic) {
+        this.name = name;
         this.pic = pic;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPic() {
