@@ -108,8 +108,12 @@ public class MainActivity extends AppCompatActivity {
         categoryList.add(new CategoryDomain("Ăn Nhanh", "thuc_an_nhanh_cat"));
         categoryList.add(new CategoryDomain("Bún Chả", "bun_cha_cat"));
 
+
+
+
 //        adapter = new CategoryAdapter(FirebaseHelper.getCategoryList());
         adapter = new CategoryAdapter(categoryList);
+
 
         recyclerViewCategoryList.setAdapter(adapter);
     }

@@ -1,5 +1,7 @@
 package com.example.project.Adapter;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.project.Activity.FoodStoreActivity;
+import com.example.project.Activity.LoginActivity;
 import com.example.project.Domain.FoodDomain;
 import com.example.project.Domain.FoodInRestaurant;
 import com.example.project.R;
@@ -53,6 +56,12 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
                 // Open GG map and marker the postion of Restaurant
             }
         });
+        holder.detailBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.itemView.getContext().startActivity(new Intent(holder.itemView.getContext(), FoodStoreActivity.class));
+            }
+        });
 
     }
 
@@ -63,7 +72,7 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView res_name, price, rating;
+        TextView res_name, price, rating, detailBtn;
         ImageView marker;
 
 
@@ -74,6 +83,7 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
             price = itemView.findViewById(R.id.price_food_res);
             rating = itemView.findViewById(R.id.rating_food_res);
             marker = itemView.findViewById(R.id.marker_res);
+            detailBtn = itemView.findViewById(R.id.detailBtn);
         }
     }
 }

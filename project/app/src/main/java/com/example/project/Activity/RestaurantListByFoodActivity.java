@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import com.example.project.Adapter.FoodAdapter;
 import com.example.project.Adapter.RestaurantListByFoodAdapter;
 import com.example.project.Domain.FoodDomain;
@@ -43,7 +44,7 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
     }
 
     private void getBundle() {
-            String uri = "drawable";
+          String uri = "drawable";
           foodDomain = (FoodDomain) getIntent().getSerializableExtra("object");
 
           // set dynamically image
@@ -52,10 +53,6 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
           fName.setText(foodDomain.getTitle());
           des.setText(foodDomain.getDescription());
           rating.setText(String.valueOf(foodDomain.getAverageRating()));
-
-//        catTitle = (String) getIntent().getStringExtra("category");
-//
-//        catName.setText(catTitle);
     }
 
     private void recyclerViewFoodCat() {
