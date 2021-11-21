@@ -34,8 +34,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.title.setText(foodDomains.get(position).getTitle());
-        holder.description.setText(foodDomains.get(position).getDescription());
+        holder.title.setText(foodDomains.get(position).getName());
+        holder.description.setText(foodDomains.get(position).getDesc());
 
         int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(foodDomains.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
 
