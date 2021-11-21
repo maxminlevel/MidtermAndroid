@@ -1,14 +1,12 @@
 package com.example.project.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 import com.example.project.Adapter.FoodAdapter;
 import com.example.project.Adapter.RestaurantListByFoodAdapter;
@@ -50,8 +48,8 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
           // set dynamically image
           img.setImageResource(getResources().getIdentifier(
                   foodDomain.getPic(), "drawable", this.getPackageName()));
-          fName.setText(foodDomain.getTitle());
-          des.setText(foodDomain.getDescription());
+          fName.setText(foodDomain.getName());
+          des.setText(foodDomain.getDesc());
           rating.setText(String.valueOf(foodDomain.getAverageRating()));
     }
 

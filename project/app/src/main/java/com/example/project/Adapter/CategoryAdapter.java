@@ -1,6 +1,8 @@
 package com.example.project.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.project.Activity.FoodByCategoryActivity;
-import com.example.project.Activity.ShowDetailActivity;
 import com.example.project.Domain.CategoryDomain;
 import com.example.project.R;
 
@@ -36,38 +37,33 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.categoryName.setText(categoryDomains.get(position).getTitle());
-        String picUrl = "";
-        switch (position) {
-            case 0: {
-                picUrl = "com_suon_cat";
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        holder.categoryName.setText(categoryDomains.get(position).getName());
+        String picUrl = categoryDomains.get(position).getPic();
+
+        // make category_background1 is a color id
+        switch (position%5){
+            case 0:
                 holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.category_background1));
                 break;
-            }
-            case 1: {
-                picUrl = "bun_pho_cat";
+            case 1:
                 holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.category_background2));
                 break;
-            }
-            case 2: {
-                picUrl = "lau_cat";
+            case 2:
                 holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.category_background3));
                 break;
-            }
-            case 3: {
-                picUrl = "thuc_an_nhanh_cat";
+            case 3:
                 holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.category_background4));
                 break;
-            }
-            case 4: {
-                picUrl = "bun_cha_cat";
+            case 4:
                 holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.category_background5));
                 break;
-            }
         }
-        int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(picUrl, "drawable", holder.itemView.getContext().getPackageName());
 
+        int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(picUrl, "drawable", holder.itemView.getContext().getPackageName());
+        if(drawableResourceId==0) {
+            drawableResourceId = holder.itemView.getContext().getResources().getIdentifier("food", "drawable", holder.itemView.getContext().getPackageName());
+        }
         Glide.with(holder.itemView.getContext())
                 .load(drawableResourceId)
                 .into(holder.categoryPic);
@@ -76,7 +72,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), FoodByCategoryActivity.class);
-                intent.putExtra("category", categoryDomains.get(position).getTitle());
+                intent.putExtra("category", categoryDomains.get(position).getName());
                 holder.itemView.getContext().startActivity(intent);
             }
         });

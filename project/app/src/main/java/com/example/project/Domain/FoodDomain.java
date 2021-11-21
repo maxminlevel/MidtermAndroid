@@ -1,28 +1,44 @@
 package com.example.project.Domain;
 
+import com.google.firebase.database.Exclude;
+import com.google.firebase.firestore.DocumentReference;
+
 import java.io.Serializable;
 
 public class FoodDomain implements Serializable {
-    private String id;
-    private String title;
-    private String pic;
-    private String description;
-    private double averageRating;
 
-    public FoodDomain(String title, String pic, String description, double averageRating) {
-        this.title = title;
+    @Exclude
+    private String id;
+
+    private String name, pic, desc;
+    DocumentReference category;
+    private String averageRating;
+
+    public FoodDomain(){
+
+    }
+
+    public FoodDomain(String name, String pic, String desc, DocumentReference category, String averageRating) {
+        this.name = name;
         this.pic = pic;
-        this.description = description;
+        this.desc = desc;
+        this.category = category;
         this.averageRating = averageRating;
     }
 
-
-    public String getTitle() {
-        return title;
+    public FoodDomain(String name, String pic, String description, String averageRating) {
+        this.name = name;
+        this.pic = pic;
+        this.desc = description;
+        this.averageRating = averageRating;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPic() {
@@ -33,19 +49,27 @@ public class FoodDomain implements Serializable {
         this.pic = pic;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
-    public void setAverageRating(double averageRating) {
-        this.averageRating = averageRating;
+    public DocumentReference getCategory() {
+        return category;
     }
 
-    public double getAverageRating() {
+    public void setCategory(DocumentReference category) {
+        this.category = category;
+    }
+
+    public String getAverageRating() {
         return averageRating;
+    }
+
+    public void setAverageRating(String averageRating) {
+        this.averageRating = averageRating;
     }
 }
