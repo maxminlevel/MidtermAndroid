@@ -153,6 +153,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         MarkerOptions markerOptions = new MarkerOptions()
                 .position(position)
                 //.icon(BitmapDescriptorFactory.fromBitmap(bmp))
+                .title(name)
                 .anchor(0.5f, 1);
         Marker marker = mMap.addMarker(markerOptions);
 

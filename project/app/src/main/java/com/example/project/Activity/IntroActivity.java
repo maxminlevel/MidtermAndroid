@@ -1,9 +1,12 @@
 package com.example.project.Activity;
 
+import static com.example.project.Activity.LoginActivity.MY_PREFS_NAME;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -15,9 +18,15 @@ public class IntroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        boolean firstTime = prefs.getBoolean("firstTime", true);
+        if(!firstTime){
+            startActivity(new Intent(IntroActivity.this, MainActivity.class));
+        }
         setContentView(R.layout.activity_intro);
-
-
+        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putBoolean("firstTime", false);
+        editor.apply();
         startBtn=findViewById(R.id.startbtn);
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,5 +34,7 @@ public class IntroActivity extends AppCompatActivity {
                 startActivity(new Intent(IntroActivity.this, MainActivity.class));
             }
         });
+
+
     }
 }
