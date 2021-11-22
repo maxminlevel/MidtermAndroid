@@ -80,7 +80,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Quên mật khẩu?"
                 android:textColor="@color/darkTextColor"
-                android:textSize="@dimen/newsMoreTextSize" />x
+                android:textSize="@dimen/newsMoreTextSize" />
 
             <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                 android:id="@+id/cirLoginButton"

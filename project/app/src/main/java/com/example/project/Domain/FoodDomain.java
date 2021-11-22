@@ -1,15 +1,18 @@
 package com.example.project.Domain;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.firebase.database.Exclude;
 import com.google.firebase.firestore.DocumentReference;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class FoodDomain implements Serializable {
 
     @Exclude
     private String id;
-
     private String name, pic, desc;
     DocumentReference category;
     private String averageRating;
@@ -32,6 +35,16 @@ public class FoodDomain implements Serializable {
         this.desc = description;
         this.averageRating = averageRating;
     }
+
+    protected FoodDomain(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        pic = in.readString();
+        desc = in.readString();
+        averageRating = in.readString();
+    }
+
+
 
     public String getName() {
         return name;
@@ -72,4 +85,10 @@ public class FoodDomain implements Serializable {
     public void setAverageRating(String averageRating) {
         this.averageRating = averageRating;
     }
+
+    public String getId() {
+        return id;
+    }
+
+
 }
