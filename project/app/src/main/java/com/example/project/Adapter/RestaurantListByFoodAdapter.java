@@ -19,7 +19,7 @@ import com.example.project.Activity.MapsActivity;
 import com.example.project.Activity.OneMarkerMapsActivity;
 import com.example.project.Domain.FoodDomain;
 import com.example.project.Activity.FoodRestaurantActivity;
-import com.example.project.Domain.FoodInRestaurant;
+import com.example.project.Domain.FoodInRestaurantDomain;
 import com.example.project.R;
 
 import java.io.Serializable;
@@ -27,9 +27,9 @@ import java.util.ArrayList;
 
 public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<RestaurantListByFoodAdapter.ViewHolder>{
 
-    ArrayList<FoodInRestaurant> foodInRestaurant;
+    ArrayList<FoodInRestaurantDomain> foodInRestaurant;
 
-    public RestaurantListByFoodAdapter(ArrayList<FoodInRestaurant> FoodInRestaurant) {
+    public RestaurantListByFoodAdapter(ArrayList<FoodInRestaurantDomain> FoodInRestaurant) {
         this.foodInRestaurant = FoodInRestaurant;
     }
 
@@ -43,7 +43,7 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantListByFoodAdapter.ViewHolder holder, int position) {
-        FoodInRestaurant restaurant = foodInRestaurant.get(position);
+        FoodInRestaurantDomain restaurant = foodInRestaurant.get(position);
         holder.res_name.setText(restaurant.getResName());
         holder.price.setText(String.valueOf(restaurant.getPrice()));
         holder.rating.setText(String.valueOf(restaurant.getRating()));

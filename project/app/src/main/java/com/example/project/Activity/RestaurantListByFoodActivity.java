@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.project.Adapter.RestaurantListByFoodAdapter;
 import com.example.project.Domain.FoodDomain;
-import com.example.project.Domain.FoodInRestaurant;
+import com.example.project.Domain.FoodInRestaurantDomain;
 import com.example.project.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -30,7 +30,7 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
     private FoodDomain foodDomain;
     private ImageView img;
     private TextView fName, des, rating;
-    ArrayList<FoodInRestaurant> foodInResList = new ArrayList<>();
+    ArrayList<FoodInRestaurantDomain> foodInResList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +99,7 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
                                             if(store.exists()) {
                                                 Log.e("TF", store.toString());
                                                 GeoPoint geoPoint = store.getGeoPoint("location");
-                                                FoodInRestaurant foodInRestaurant = new FoodInRestaurant(
+                                                FoodInRestaurantDomain foodInRestaurant = new FoodInRestaurantDomain(
                                                         store.getString("name"),
                                                         food_store.getDouble("rating"),
                                                         food_store.getDouble("price"),

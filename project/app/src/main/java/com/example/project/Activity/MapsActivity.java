@@ -11,7 +11,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.project.Domain.FoodInRestaurant;
+import com.example.project.Domain.FoodInRestaurantDomain;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -34,7 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
-    ArrayList<FoodInRestaurant> foodInResList = new ArrayList<>();
+    ArrayList<FoodInRestaurantDomain> foodInResList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,8 +98,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        addFoodMarkerOnMap(foodInResList.get(1).getLat(),foodInResList.get(1).getLng(),foodInResList.get(1).getResName());
         addMarkerYourLocation(self);
         if(!foodInResList.isEmpty()) {
-            for(FoodInRestaurant foodInRestaurant:foodInResList){
-                addFoodMarkerOnMap(foodInRestaurant.getLat(),foodInRestaurant.getLng(),foodInRestaurant.getResName(),foodInRestaurant);
+            for(FoodInRestaurantDomain foodInRestaurantDomain :foodInResList){
+                addFoodMarkerOnMap(foodInRestaurantDomain.getLat(), foodInRestaurantDomain.getLng(), foodInRestaurantDomain.getResName(), foodInRestaurantDomain);
             }
         }
 
@@ -143,7 +143,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return circle;
     }
 
-    private Marker addFoodMarkerOnMap(double lat, double lng, String name, FoodInRestaurant foodInRestaurant) {
+    private Marker addFoodMarkerOnMap(double lat, double lng, String name, FoodInRestaurantDomain foodInRestaurantDomain) {
         LatLng position = new LatLng(lat, lng);
 
 //        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
@@ -175,7 +175,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Marker marker = mMap.addMarker(markerOptions);
 
 
-        marker.setTag(foodInRestaurant);
+        marker.setTag(foodInRestaurantDomain);
         return marker;
     }
 
@@ -189,7 +189,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        intent.putExtra("idFood",)
 
 
-        FoodInRestaurant restaurant = (FoodInRestaurant) marker.getTag();
+        FoodInRestaurantDomain restaurant = (FoodInRestaurantDomain) marker.getTag();
 
         intent.putExtra("nameStore",restaurant.getResName());
         intent.putExtra("phoneStore",restaurant.getTel());

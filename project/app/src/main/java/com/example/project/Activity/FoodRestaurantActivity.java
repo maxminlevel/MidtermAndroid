@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.project.Adapter.UserCommentAdapter;
 import com.example.project.Domain.FoodDomain;
-import com.example.project.Domain.FoodInRestaurant;
+import com.example.project.Domain.FoodInRestaurantDomain;
 import com.example.project.Domain.UserCommentDomain;
 import com.example.project.R;
 
@@ -67,7 +67,7 @@ public class FoodRestaurantActivity extends AppCompatActivity {
 
     private void getBundle() {
         Bundle bundle = getIntent().getExtras();
-        FoodInRestaurant foodInRestaurant = (FoodInRestaurant) getIntent().getSerializableExtra("object");
+        FoodInRestaurantDomain foodInRestaurant = (FoodInRestaurantDomain) getIntent().getSerializableExtra("object");
         FoodDomain food = (FoodDomain) getIntent().getSerializableExtra("foodObject");
         price.setText(foodInRestaurant.getPrice()+ " VND");
         nameStore.setText(foodInRestaurant.getResName());

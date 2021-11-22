@@ -3,12 +3,10 @@ package com.example.project.Domain;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.firebase.firestore.DocumentReference;
-
 import java.io.Serializable;
 
-public class FoodInRestaurant implements Serializable, Parcelable {
-    protected FoodInRestaurant(Parcel in) {
+public class FoodInRestaurantDomain implements Serializable, Parcelable {
+    protected FoodInRestaurantDomain(Parcel in) {
         resName = in.readString();
         address = in.readString();
         price = in.readDouble();
@@ -17,15 +15,15 @@ public class FoodInRestaurant implements Serializable, Parcelable {
         lng = in.readDouble();
     }
 
-    public static final Creator<FoodInRestaurant> CREATOR = new Creator<FoodInRestaurant>() {
+    public static final Creator<FoodInRestaurantDomain> CREATOR = new Creator<FoodInRestaurantDomain>() {
         @Override
-        public FoodInRestaurant createFromParcel(Parcel in) {
-            return new FoodInRestaurant(in);
+        public FoodInRestaurantDomain createFromParcel(Parcel in) {
+            return new FoodInRestaurantDomain(in);
         }
 
         @Override
-        public FoodInRestaurant[] newArray(int size) {
-            return new FoodInRestaurant[size];
+        public FoodInRestaurantDomain[] newArray(int size) {
+            return new FoodInRestaurantDomain[size];
         }
     };
 
@@ -66,7 +64,7 @@ public class FoodInRestaurant implements Serializable, Parcelable {
 
     String tel;
 
-    public FoodInRestaurant(String ResName, double Rating, double Price, String Address,double Lat,double Lng,String Tel) {
+    public FoodInRestaurantDomain(String ResName, double Rating, double Price, String Address, double Lat, double Lng, String Tel) {
         resName = ResName;
         rating = Rating;
         price = Price;
