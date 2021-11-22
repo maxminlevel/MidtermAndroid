@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project.Adapter.UserCommentAdapter;
+import com.example.project.Domain.FoodDomain;
+import com.example.project.Domain.FoodInRestaurant;
 import com.example.project.Domain.UserCommentDomain;
 import com.example.project.R;
 
@@ -22,8 +24,8 @@ public class FoodRestaurantActivity extends AppCompatActivity {
 
     private static final int REQUEST_CALL = 1;
 
-    private ImageView mapIntent, phoneIntent;
-    private TextView addressStore, phoneStore, price, rating, nameStore, addRating;
+    private ImageView mapIntent, phoneIntent, foodImg;
+    private TextView addressStore, phoneStore, price, rating, nameStore, addRating, foodName, foodDesc;
 
     public RecyclerView recyclerView;
     public RecyclerView.Adapter adapter;
@@ -35,9 +37,9 @@ public class FoodRestaurantActivity extends AppCompatActivity {
 
         initView();
         handleEventClick();
+        getBundle();
 
         recyclerViewUserComment();
-        getBundle();
 
         phoneIntent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,12 +67,20 @@ public class FoodRestaurantActivity extends AppCompatActivity {
 
     private void getBundle() {
         Bundle bundle = getIntent().getExtras();
-
-        price.setText(String.valueOf(bundle.getDouble("price", 10000)) + " VND");
-        nameStore.setText(bundle.getString("nameStore", "Tên mẫu"));
-        phoneStore.setText(bundle.getString("phoneStore", "SĐT mẫu"));
-        addressStore.setText(bundle.getString("addressStore","Địa chỉ mẫu"));
-        rating.setText(String.valueOf(bundle.getDouble("rating", 10.0)));
+        FoodInRestaurant foodInRestaurant = (FoodInRestaurant) getIntent().getSerializableExtra("object");
+        FoodDomain food = (FoodDomain) getIntent().getSerializableExtra("foodObject");
+        price.setText(foodInRestaurant.getPrice()+ " VND");
+        nameStore.setText(foodInRestaurant.getResName());
+        phoneStore.setText(foodInRestaurant.getTel());
+        addressStore.setText(foodInRestaurant.getAddress());
+        rating.setText(foodInRestaurant.getRating()+"");
+        foodName.setText(food.getName());
+        foodDesc.setText(food.getDesc());
+        int resoureID = getResources().getIdentifier(food.getPic(), "drawable", this.getPackageName());
+        if(resoureID==0){
+            resoureID = getResources().getIdentifier("food", "drawable", this.getPackageName());
+        }
+        foodImg.setImageResource(resoureID);
     }
 
     private void initView() {
@@ -82,6 +92,9 @@ public class FoodRestaurantActivity extends AppCompatActivity {
         price = findViewById(R.id.price);
         rating = findViewById(R.id.rating);
         addRating = findViewById(R.id.addRating);
+        foodName = findViewById(R.id.foodName);
+        foodImg = findViewById(R.id.foodImg);
+        foodDesc = findViewById(R.id.foodDesc);
     }
 
     private void makePhoneCall() {

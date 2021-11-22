@@ -18,7 +18,8 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             app:srcCompat="@drawable/burger"
-            tools:srcCompat="@drawable/burger" />
+            tools:srcCompat="@drawable/burger"
+            android:id="@+id/foodImg"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +32,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/title"
+                android:id="@+id/foodName"
                 android:text="Tên món ăn"
                 android:textSize="20dp"
                 android:textStyle="bold"
@@ -40,7 +41,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/description"
+                android:id="@+id/foodDesc"
                 android:text="Mô tả các thành phần của món ăn đó"
                 android:layout_marginTop="10dp"
                 android:textSize="16dp"/>

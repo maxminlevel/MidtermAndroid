@@ -68,14 +68,8 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), FoodRestaurantActivity.class);
-                //intent.putExtra("object", (Serializable) restaurant);
-                intent.putExtra("price", restaurant.getPrice());
-                intent.putExtra("nameStore", restaurant.getResName());
-
-                intent.putExtra("phoneStore", restaurant.getTel());
-
-                intent.putExtra("addressStore", restaurant.getAddress());
-                intent.putExtra("rating", restaurant.getRating());
+                intent.putExtra("object", (Serializable) restaurant);
+                intent.putExtra("foodObject",(Serializable) restaurant.getFood());
                 holder.itemView.getContext().startActivity(intent);
             }
         });
@@ -91,8 +85,6 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView res_name, price, rating, detailBtn;
         ImageView marker;
-
-
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

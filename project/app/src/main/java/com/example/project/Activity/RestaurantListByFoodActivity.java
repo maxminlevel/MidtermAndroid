@@ -110,7 +110,6 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
                                                 );
                                                 foodInRestaurant.setFood(foodDomain);
                                                 foodInResList.add(foodInRestaurant);
-                                                Log.e("TF", foodInRestaurant.getTel());
                                             }
                                             adapter.notifyDataSetChanged();
                                         }
