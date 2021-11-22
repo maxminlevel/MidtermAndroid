@@ -17,9 +17,14 @@ import android.widget.Toast;
 import com.example.project.Adapter.FoodAdapter;
 import com.example.project.Domain.FoodDomain;
 import com.example.project.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
@@ -126,6 +131,26 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         adapter = new FoodAdapter(foodList);
         recyclerView.setAdapter(adapter);
+
+        FirebaseFirestore.getInstance().collection("food").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(!queryDocumentSnapshots.isEmpty()){
+                            List<DocumentSnapshot> list_food = queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d: list_food){
+                                foodList.add(new FoodDomain(
+                                        d.getId(),
+                                        d.getString("name"),
+                                        d.getString("pic"),
+                                        d.getString("desc"),
+                                        d.getString("averageRating")
+                                ));
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                });
     }
 
     private ArrayList<FoodDomain> filter(String text) {
