@@ -51,6 +51,11 @@ public class FoodInRestaurant implements Serializable, Parcelable {
     double price;
     double rating;
     double lat,lng;
+
+    public String getTel() {
+        return tel;
+    }
+
     String tel;
 
     public FoodInRestaurant(String ResName, double Rating, double Price, String Address,double Lat,double Lng,String Tel) {

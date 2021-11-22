@@ -79,7 +79,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                Toast.makeText(RegisterActivity.this,"Đăng ký thành công",Toast.LENGTH_LONG).show();
+                                // Gui len
                                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+
                             }else{
                                 Toast.makeText(RegisterActivity.this,"Đăng ký thất bại",Toast.LENGTH_LONG).show();
                             }
