@@ -30,6 +30,7 @@ public class FoodRestaurantActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
     public RecyclerView.Adapter adapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,7 @@ public class FoodRestaurantActivity extends AppCompatActivity {
 
         initView();
         handleEventClick();
-
+;
         bottomNavigation();
 
         recyclerViewUserComment();

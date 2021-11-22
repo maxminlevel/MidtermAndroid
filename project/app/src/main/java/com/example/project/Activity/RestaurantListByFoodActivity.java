@@ -11,10 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.project.Adapter.FoodAdapter;
 import com.example.project.Adapter.RestaurantListByFoodAdapter;
 import com.example.project.Domain.FoodDomain;
-import com.example.project.Domain.FoodInRestaurant;
+import com.example.project.Domain.FoodInRestaurantDomain;
 import com.example.project.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -26,7 +25,7 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
     private FoodDomain foodDomain;
     private ImageView img;
     private TextView fName, des, rating;
-    ArrayList<FoodInRestaurant> foodInResList = new ArrayList<>();
+    ArrayList<FoodInRestaurantDomain> foodInResList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,10 +117,10 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
-        foodInResList.add(new FoodInRestaurant("Bún đậu thị nở",4.6,35000,"Kế bên KTX khu B", 10.887186435398194, 106.78022055111393, "0123456789"));
-        foodInResList.add(new FoodInRestaurant("Bún đậu Lão Hạc",4.3,30000,"khu phố 6 Linh Trung",10.887186435398186, 106.78022055111391, "03564829665"));
-        foodInResList.add(new FoodInRestaurant("Bún đậu Tự nhiên",4.7,30000,"Chợ ẩm thực làng ĐH",10.887186435398188, 106.78022055111398, "0158396839"));
-        foodInResList.add(new FoodInRestaurant("Bún đậu Nhà Làm",7.8,25000,"Đường vành đai làng ĐH",10.887186435398188, 106.78022055111398, "0529582960"));
+        foodInResList.add(new FoodInRestaurantDomain("Bún đậu thị nở",4.6,35000,"Kế bên KTX khu B", 10.887186435398194, 106.78022055111393, "0123456789"));
+        foodInResList.add(new FoodInRestaurantDomain("Bún đậu Lão Hạc",4.3,30000,"khu phố 6 Linh Trung",10.887186435398186, 106.78022055111391, "03564829665"));
+        foodInResList.add(new FoodInRestaurantDomain("Bún đậu Tự nhiên",4.7,30000,"Chợ ẩm thực làng ĐH",10.887186435398188, 106.78022055111398, "0158396839"));
+        foodInResList.add(new FoodInRestaurantDomain("Bún đậu Nhà Làm",7.8,25000,"Đường vành đai làng ĐH",10.887186435398188, 106.78022055111398, "0529582960"));
 
         adapter = new RestaurantListByFoodAdapter(foodInResList);
         recyclerView.setAdapter(adapter);

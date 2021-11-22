@@ -1,34 +1,22 @@
 package com.example.project.Activity;
 
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.EditText;
-import android.widget.SeekBar;
 import android.widget.Toast;
 
-import com.example.project.Domain.FoodDomain;
-import com.example.project.Domain.FoodInRestaurant;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
+import com.example.project.Domain.FoodInRestaurantDomain;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
@@ -37,10 +25,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.project.databinding.ActivityMapsBinding;
 import com.example.project.R;
-import com.google.android.gms.tasks.OnSuccessListener;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 
 public class OneMarkerMapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleMap.OnMarkerClickListener,
@@ -48,7 +32,7 @@ public class OneMarkerMapsActivity extends FragmentActivity implements OnMapRead
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
-    private FoodInRestaurant restaurant = null;
+    private FoodInRestaurantDomain restaurant = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +52,7 @@ public class OneMarkerMapsActivity extends FragmentActivity implements OnMapRead
     }
     private void getBundle() {
 
-        restaurant = (FoodInRestaurant) getIntent().getSerializableExtra("restaurant");
+        restaurant = (FoodInRestaurantDomain) getIntent().getSerializableExtra("restaurant");
 //       listRestaurant = (ArrayList <FoodInRestaurant>)intent.getSerializableExtra("restaurant");
 
 
