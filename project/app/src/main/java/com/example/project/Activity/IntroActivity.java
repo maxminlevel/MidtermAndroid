@@ -18,13 +18,13 @@ public class IntroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("My_Pref_firstTime", MODE_PRIVATE);
         boolean firstTime = prefs.getBoolean("firstTime", true);
         if(!firstTime){
             startActivity(new Intent(IntroActivity.this, MainActivity.class));
         }
         setContentView(R.layout.activity_intro);
-        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = getSharedPreferences("My_Pref_firstTime", MODE_PRIVATE).edit();
         editor.putBoolean("firstTime", false);
         editor.apply();
         startBtn=findViewById(R.id.startbtn);

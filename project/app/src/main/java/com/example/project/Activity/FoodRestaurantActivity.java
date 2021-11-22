@@ -29,9 +29,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class FoodRestaurantActivity extends AppCompatActivity {
-
     private static final int REQUEST_CALL = 1;
-
     private ImageView mapIntent, phoneIntent, foodImg;
     private TextView addressStore, phoneStore, price, rating, nameStore, addRating, foodName, foodDesc;
 
@@ -177,13 +175,6 @@ public class FoodRestaurantActivity extends AppCompatActivity {
     }
 
     private void showAddressStore() {
-//        String latitude = "10.688289";
-//        String longitude = "105.376065";
-//
-//        String location = "geo:" + latitude + "," + longitude;
-//
-//        Intent intent = new Intent(Intent.ACTION_VIEW);
-//        intent.setData(Uri.parse(location));
         Intent intent = new Intent(FoodRestaurantActivity.this, MapsActivity.class);
         intent.putExtra("food_store",  (Serializable) foodInRestaurant);
         startActivity(intent);
