@@ -49,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
         Button accountBtn= findViewById(R.id.viewAccountBtn);
         ImageView avatarImg = findViewById(R.id.Avatar);
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-
+//        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+//        editor.clear();
+//        editor.commit();
         if(!prefs.getString("fullName","").isEmpty()){
             accountBtn.setVisibility(View.GONE);
             avatarImg.setVisibility(View.VISIBLE);

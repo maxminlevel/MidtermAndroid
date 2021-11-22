@@ -1,34 +1,22 @@
 package com.example.project.Activity;
 
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.EditText;
-import android.widget.SeekBar;
 import android.widget.Toast;
 
-import com.example.project.Domain.FoodDomain;
 import com.example.project.Domain.FoodInRestaurant;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
@@ -37,9 +25,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.project.databinding.ActivityMapsBinding;
 import com.example.project.R;
-import com.google.android.gms.tasks.OnSuccessListener;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
@@ -48,7 +34,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
-    private FoodInRestaurant restaurant = null;
     ArrayList<FoodInRestaurant> foodInResList = new ArrayList<>();
 
     @Override
@@ -69,7 +54,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     private void getBundle() {
 
-        restaurant = (FoodInRestaurant) getIntent().getSerializableExtra("restaurant");
 //       listRestaurant = (ArrayList <FoodInRestaurant>)intent.getSerializableExtra("restaurant");
         foodInResList =  getIntent().getParcelableArrayListExtra("list_food");
         // set dynamically image
@@ -110,17 +94,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //            //addFoodMarkerOnMap(restaurant.getLat(),restaurant.getLng(), restaurant.getResName());
 //            //LatLng self = new LatLng(restaurant.getLat(),restaurant.getLng());
 //        }
-        if(restaurant != null) {
-            addFoodMarkerOnMap(restaurant.getLat(), restaurant.getLng(), restaurant.getResName());
-        }
 //        addFoodMarkerOnMap(foodInResList.get(0).getLat(),foodInResList.get(0).getLng(),foodInResList.get(0).getResName());
 //        addFoodMarkerOnMap(foodInResList.get(1).getLat(),foodInResList.get(1).getLng(),foodInResList.get(1).getResName());
-
+        addMarkerYourLocation(self);
         if(!foodInResList.isEmpty()) {
             for(FoodInRestaurant foodInRestaurant:foodInResList){
-                Log.d("TAG", "onMapReady: "+ foodInRestaurant.getResName());
-                addFoodMarkerOnMap(foodInRestaurant.getLat(),foodInRestaurant.getLng()
-                        , foodInRestaurant.getResName());
+                addFoodMarkerOnMap(foodInRestaurant.getLat(),foodInRestaurant.getLng(),foodInRestaurant.getResName(),foodInRestaurant);
             }
         }
 
@@ -133,6 +112,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
         MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style);
         mMap.setMapStyle(style);
+    }
+    private void addMarkerYourLocation(LatLng self) {
+
+        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+        Bitmap bmp = Bitmap.createBitmap(80, 80, conf);
+        Canvas canvas1 = new Canvas(bmp);
+
+        Paint color = new Paint();
+
+        canvas1.drawBitmap(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),
+                R.drawable.user_loca),80, 80,false), 0,0, color);
+
+        mMap.addMarker(new MarkerOptions()
+                .position(self)
+                .title("Your Location")
+                .icon(BitmapDescriptorFactory.fromBitmap(bmp))
+                .anchor(0.5f, 1));
     }
 
     private Circle addCircleOnMap(double lat, double lng, double radius, String name) {
@@ -147,30 +143,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return circle;
     }
 
-    private Marker addFoodMarkerOnMap(double lat, double lng, String name) {
+    private Marker addFoodMarkerOnMap(double lat, double lng, String name, FoodInRestaurant foodInRestaurant) {
         LatLng position = new LatLng(lat, lng);
 
-        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
-        int width = 350;
-        int heigh = 100;
-        Bitmap bmp = Bitmap.createBitmap(width, heigh, conf);
-        Canvas canvas1 = new Canvas(bmp);
-        canvas1.drawColor(Color.GREEN);
+//        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+//        int width = 350;
+//        int heigh = 100;
+//        Bitmap bmp = Bitmap.createBitmap(width, heigh, conf);
+//        Canvas canvas1 = new Canvas(bmp);
+//        canvas1.drawColor(Color.GREEN);
+//
+//        // paint defines the text color, stroke width and size
+//        Paint color = new Paint();
+//        color.setTextSize(35);
+//        color.setColor(Color.BLACK);
+//
+//        // modify canvas
+//        canvas1.drawBitmap(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),
+//                R.drawable.bun_cha_cat),100, 100,false), 0,0, color);
+//        canvas1.drawText(name, 100, 40, color);
+//        MarkerOptions markerOptions = new MarkerOptions()
+//                .position(position)
+//                .icon(BitmapDescriptorFactory.fromBitmap(bmp))
+//                .anchor(0.5f, 1);
 
-        // paint defines the text color, stroke width and size
-        Paint color = new Paint();
-        color.setTextSize(35);
-        color.setColor(Color.BLACK);
-
-        // modify canvas
-        canvas1.drawBitmap(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),
-                R.drawable.bun_cha_cat),100, 100,false), 0,0, color);
-        canvas1.drawText(name, 100, 40, color);
         MarkerOptions markerOptions = new MarkerOptions()
                 .position(position)
-                .icon(BitmapDescriptorFactory.fromBitmap(bmp))
-                .anchor(0.5f, 1);
+                .title(name)
+                .draggable(true)
+                .visible(true);
         Marker marker = mMap.addMarker(markerOptions);
+
+
+        marker.setTag(foodInRestaurant);
         return marker;
     }
 
@@ -182,7 +187,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Truyen data la
 //        intent.putExtra("idStore", restaurant.getId());
 //        intent.putExtra("idFood",)
+
+
+        FoodInRestaurant restaurant = (FoodInRestaurant) marker.getTag();
+
+        intent.putExtra("nameStore",restaurant.getResName());
+        intent.putExtra("phoneStore",restaurant.getTel());
+        intent.putExtra("addressStore",restaurant.getAddress());
+        intent.putExtra("rating",restaurant.getRating());
         startActivity(intent);
+
 
 
         return false;
@@ -201,7 +215,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapLongClick(LatLng latLng) {
-        addFoodMarkerOnMap(latLng.latitude, latLng.longitude, String.valueOf(NextAvailableID++));
         Toast.makeText(MapsActivity.this,"Tạo view mới thêm món ăn",Toast.LENGTH_LONG).show();
     }
 }

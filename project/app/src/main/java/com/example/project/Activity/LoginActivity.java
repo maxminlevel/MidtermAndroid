@@ -42,10 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public static final String MY_PREFS_NAME = "MyPrefsFile";
     private FirebaseAuth mAuth;
     SharedPreferences sharedPreferences;
-    private static final String SHARED_PREF_NAME = "my_pref_account";
-    private static final String userName = "user_name";
-    private static final String email = "email";
-    private static final String password = "password";
+
     UserDomain userDomain;
     public FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
@@ -109,6 +106,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         editor.putString("fullName", userDomain.getFullName());
                                         editor.putString("email", userDomain.getEmail());
                                         editor.putString("avatar", userDomain.getAvatar());
+                                        editor.putString("tel", userDomain.getTel());
+                                        editor.putString("gender", userDomain.getGender());
                                         editor.putString("birthday", userDomain.getBirthday());
                                         editor.apply();
                                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
