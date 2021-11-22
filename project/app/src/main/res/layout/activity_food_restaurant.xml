@@ -1,260 +1,288 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:layout_height="match_parent"
-    tools:context=".Activity.FoodRestaurantActivity"
-    android:orientation="vertical">
+    tools:context=".Activity.FoodRestaurantActivity">
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scrollView7"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="20dp"
-        android:layout_marginVertical="10dp">
-
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            app:srcCompat="@drawable/burger"
-            tools:srcCompat="@drawable/burger" />
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="20dp"
-            android:paddingVertical="10dp"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/title"
-                android:text="Tên món ăn"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/f_hot"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/description"
-                android:text="Mô tả các thành phần của món ăn đó"
-                android:layout_marginTop="10dp"
-                android:textSize="16dp"/>
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp"
+                android:layout_marginVertical="10dp">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    app:srcCompat="@drawable/burger"
+                    tools:srcCompat="@drawable/burger" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp"
+                    android:paddingVertical="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/title"
+                        android:text="Tên món ăn"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/f_hot"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/description"
+                        android:text="Mô tả các thành phần của món ăn đó"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16dp"/>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Giá tiền: "
+                            android:textStyle="bold"
+                            android:textSize="18dp"
+                            android:textColor="#000000"/>
+
+                        <TextView
+                            android:id="@+id/price"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:text="10 000 VND"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/teal_200"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tên cửa hàng: "
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        android:textColor="#000000"
+                        />
+
+                    <TextView
+                        android:id="@+id/nameStore"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layout_marginLeft="10dp"
+                        android:text="Cơm tấm Ngô Quyền"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Địa chỉ: "
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        android:textColor="#000000"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <ImageView
+                            android:id="@+id/mapIntent"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:srcCompat="@drawable/map"
+                            tools:srcCompat="@drawable/map"
+                            android:layout_marginRight="10dp"/>
+
+                        <TextView
+                            android:id="@+id/addressStore"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Số 8 gần trường KHTN"
+                            android:textSize="18dp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số điện thoại: "
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        android:textColor="#000000"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <ImageView
+                            android:id="@+id/phoneIntent"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:srcCompat="@drawable/phone"
+                            tools:srcCompat="@drawable/phone"
+                            android:layout_marginRight="10dp"/>
+
+                        <TextView
+                            android:id="@+id/phoneStore"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0123456789"
+                            android:textSize="18dp" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đánh giá: "
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        android:textColor="#000000"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layout_marginLeft="10dp">
+
+                        <TextView
+                            android:id="@+id/rating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="7.8"
+                            android:textColor="@color/f_hot"
+                            android:textSize="18dp" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            app:srcCompat="@drawable/star" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/addRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/orange_button_background"
+                    android:paddingStart="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="10dp"
+                    android:layout_gravity="center"
+                    android:paddingBottom="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Thêm đánh giá"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Giá tiền: "
+                    android:text="Bình luận của người dùng:"
                     android:textStyle="bold"
                     android:textSize="18dp"
-                    android:textColor="#000000"/>
+                    android:layout_marginBottom="10dp"
+                    android:textColor="#000000"
+                    />
 
-                <TextView
-                    android:id="@+id/price"
-                    android:layout_width="fill_parent"
+                <EditText
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="10 000 VND"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/teal_200"/>
+                    android:hint="Viết bình luận..."
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@drawable/card_background"
+                    android:elevation="5dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recyclerViewComment"
+                    android:paddingBottom="90dp"/>
+
             </LinearLayout>
 
         </LinearLayout>
-    </LinearLayout>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingHorizontal="20dp">
+    </ScrollView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tên cửa hàng: "
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:textColor="#000000"
-            />
+    <include
+        android:id="@+id/layoutInclude"
+        layout="@layout/bottom_navigation"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-        <TextView
-            android:id="@+id/nameStore"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:layout_marginLeft="10dp"
-            android:text="Cơm tấm Ngô Quyền"
-            android:textSize="18dp"
-  />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Địa chỉ: "
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:textColor="#000000"
-            />
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right">
-
-            <ImageView
-                android:id="@+id/mapIntent"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:srcCompat="@drawable/map"
-                tools:srcCompat="@drawable/map"
-                android:layout_marginRight="10dp"/>
-
-            <TextView
-                android:id="@+id/addressStore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Số 8 gần trường KHTN"
-                android:textSize="18dp" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Số điện thoại: "
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:textColor="#000000"
-            />
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right">
-
-            <ImageView
-                android:id="@+id/phoneIntent"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:srcCompat="@drawable/phone"
-                tools:srcCompat="@drawable/phone"
-                android:layout_marginRight="10dp"/>
-
-            <TextView
-                android:id="@+id/phoneStore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0123456789"
-                android:textSize="18dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="5dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Đánh giá: "
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:textColor="#000000"
-            />
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:layout_marginLeft="10dp">
-
-            <TextView
-                android:id="@+id/rating"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="7.8"
-                android:textSize="18dp" />
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                app:srcCompat="@drawable/star" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/addRating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/orange_button_background"
-        android:paddingStart="10dp"
-        android:paddingTop="5dp"
-        android:paddingEnd="10dp"
-        android:layout_gravity="center"
-        android:paddingBottom="5dp"
-        android:layout_marginBottom="10dp"
-        android:text="Thêm đánh giá"
-        android:textColor="#ffffff"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bình luận của người dùng:"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:layout_marginBottom="10dp"
-        android:textColor="#000000"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Viết bình luận..."
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="5dp"
-        android:layout_marginHorizontal="5dp"
-        android:background="@drawable/card_background"
-        android:elevation="5dp"
-        android:layout_marginBottom="10dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/recyclerViewComment"/>
-
-</LinearLayout>
-
-</LinearLayout>

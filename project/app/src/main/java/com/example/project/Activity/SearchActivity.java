@@ -17,9 +17,14 @@ import android.widget.Toast;
 import com.example.project.Adapter.FoodAdapter;
 import com.example.project.Domain.FoodDomain;
 import com.example.project.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
@@ -111,20 +116,40 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         foodList = new ArrayList<>();
 
-        foodList.add(new FoodDomain("Cơm sườn", "com_suon_1", "Sườn nướng, Trứng chiên, Bì, Chả", "9.0"));
-        foodList.add(new FoodDomain("Cơm gà sốt thái", "com_ga_sot_thai", "Cơm chiên, Gà chiên mắm, Nước sốt me",  "8.9"));
-        foodList.add(new FoodDomain("Cơm gà xối mỡ", "com_ga_xoi_mo", "Cơm chiên, Gà hấp xối mỡ, Canh gà", "6.8"));
-        foodList.add(new FoodDomain("Cơm dương châu", "com_duong_chau", "Cơm chiên, Xá xíu, Lạp xưởng, Đậu Hà Lan",  "9.0"));
-        foodList.add(new FoodDomain("Cơm cuộn sushi", "com_cuon_sushi", "Cơm nắm, Rong biển, Trứng cuộn", "9.4"));
-        foodList.add(new FoodDomain("Cơm gà xé", "com_ga_xe_1", "Cơm chiên, Gà luộc xé, Canh gà trứng",  "7.1"));
-        foodList.add(new FoodDomain("Cơm chiên cá mặn", "com_chien_ca_man", "Cơm chiên, Trứng gà, Ức gà, Cá mặn",  "8.6"));
-        foodList.add(new FoodDomain("Pizza", "pizza", "Bột mỳ, Sốt cà chua, Phô mai, Topping",  "8.7"));
-        foodList.add(new FoodDomain("Hamburger", "burger", "Bánh mì, Sa lát, Thịt hun khói, Thịt bò", "9.4"));
-        foodList.add(new FoodDomain("Lẩu Thái", "lau_thai", "Lẩu thái chua cay ",  "7.5"));
-        foodList.add(new FoodDomain("Lẩu thập cẩm", "lau_thap_cam", "Lẩu thập cẩm hải sản, bò viên",  "8.9"));
+        foodList.add(new FoodDomain("0","Cơm sườn", "com_suon_1", "Sườn nướng, Trứng chiên, Bì, Chả", "9.0"));
+        foodList.add(new FoodDomain("0","Cơm gà sốt thái", "com_ga_sot_thai", "Cơm chiên, Gà chiên mắm, Nước sốt me",  "8.9"));
+        foodList.add(new FoodDomain("0","Cơm gà xối mỡ", "com_ga_xoi_mo", "Cơm chiên, Gà hấp xối mỡ, Canh gà", "6.8"));
+        foodList.add(new FoodDomain("0","Cơm dương châu", "com_duong_chau", "Cơm chiên, Xá xíu, Lạp xưởng, Đậu Hà Lan",  "9.0"));
+        foodList.add(new FoodDomain("0","Cơm cuộn sushi", "com_cuon_sushi", "Cơm nắm, Rong biển, Trứng cuộn", "9.4"));
+        foodList.add(new FoodDomain("0","Cơm gà xé", "com_ga_xe_1", "Cơm chiên, Gà luộc xé, Canh gà trứng",  "7.1"));
+        foodList.add(new FoodDomain("0","Cơm chiên cá mặn", "com_chien_ca_man", "Cơm chiên, Trứng gà, Ức gà, Cá mặn",  "8.6"));
+        foodList.add(new FoodDomain("0","Pizza", "pizza", "Bột mỳ, Sốt cà chua, Phô mai, Topping",  "8.7"));
+        foodList.add(new FoodDomain("0","Hamburger", "burger", "Bánh mì, Sa lát, Thịt hun khói, Thịt bò", "9.4"));
+        foodList.add(new FoodDomain("0","Lẩu Thái", "lau_thai", "Lẩu thái chua cay ",  "7.5"));
+        foodList.add(new FoodDomain("0","Lẩu thập cẩm", "lau_thap_cam", "Lẩu thập cẩm hải sản, bò viên",  "8.9"));
 
         adapter = new FoodAdapter(foodList);
         recyclerView.setAdapter(adapter);
+
+        FirebaseFirestore.getInstance().collection("food").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(!queryDocumentSnapshots.isEmpty()){
+                            List<DocumentSnapshot> list_food = queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d: list_food){
+                                foodList.add(new FoodDomain(
+                                        d.getId(),
+                                        d.getString("name"),
+                                        d.getString("pic"),
+                                        d.getString("desc"),
+                                        d.getString("averageRating")
+                                ));
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                });
     }
 
     private ArrayList<FoodDomain> filter(String text) {

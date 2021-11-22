@@ -4,6 +4,9 @@
     android:layout_height="wrap_content"
     android:padding="10dp"
     android:orientation="vertical"
+    android:layout_marginVertical="10dp"
+    android:background="@drawable/card_background"
+    android:elevation="3dp"
    >
 
     <TextView
@@ -12,8 +15,10 @@
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:text="Tên cửa hàng"
-        android:textSize="17dp"
-        android:textColor="@color/purple_500"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+
         android:textAlignment="center"
         android:layout_width="wrap_content"/>
     <LinearLayout
@@ -34,7 +39,6 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="25dp"
-
                 android:src="@drawable/ic_baseline_attach_money_24" />
 
             <TextView
@@ -42,10 +46,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Giá thành:"
-                android:textStyle="bold"
-
-
-                />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/price_food_res"
@@ -53,9 +54,9 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:gravity="center"
-                android:text="25.000đ"
-
-                android:textColor="@color/f_hot" />
+                android:text="25000 VND"
+                android:textStyle="bold"
+                android:textColor="@color/teal_200" />
 
         </LinearLayout>
 
@@ -86,30 +87,24 @@
         <ImageView
             android:id="@+id/marker_res"
             android:layout_marginLeft="-10dp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_location_on_24"/>
+            android:layout_height="25dp"
+            android:src="@drawable/map"/>
 
 
     </LinearLayout>
     <TextView
         android:id="@+id/detailBtn"
-        android:layout_marginLeft="5dp"
-        android:text="@string/detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textColor="@color/themeColor"
-        android:textSize="15dp"
-        android:layout_marginBottom="7dp"
+        android:background="@drawable/orange_button_background"
+        android:paddingStart="10dp"
+        android:paddingTop="3dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="3dp"
+        android:text="Xem chi tiết"
+        android:textColor="#ffffff"
         android:textStyle="bold" />
-    <View
-        android:layout_width="350dp"
-        android:layout_height="2dp"
-        android:layout_gravity="center"
-        android:background="@color/f_white" />
-
-
 
 </LinearLayout>
