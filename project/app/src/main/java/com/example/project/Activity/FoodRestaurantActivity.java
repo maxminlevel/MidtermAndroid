@@ -137,7 +137,7 @@ public class FoodRestaurantActivity extends AppCompatActivity {
 //
 //        Intent intent = new Intent(Intent.ACTION_VIEW);
 //        intent.setData(Uri.parse(location));
-        Intent intent = new Intent(FoodRestaurantActivity.this, OneMarkerMapsActivity.class);
+        Intent intent = new Intent(FoodRestaurantActivity.this, MapsActivity.class);
         intent.putExtra("restaurant",  (Serializable) foodInRestaurant);
         startActivity(intent);
     }
