@@ -5,7 +5,7 @@ import android.widget.EditText;
 
 import java.util.regex.Pattern;
 
-public class Vatidation {
+public class ValidationHelper {
     public static boolean isEmpty(EditText editText) {
         if (editText.getText().toString().isEmpty()) {
             editText.setError("Không được để trống");
