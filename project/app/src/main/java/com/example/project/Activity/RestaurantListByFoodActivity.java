@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -90,13 +89,11 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if(!queryDocumentSnapshots.isEmpty()){
                             for (DocumentSnapshot food_store : queryDocumentSnapshots.getDocuments()){
-                                Log.e("TF",food_store.toString());
                                 FirebaseFirestore.getInstance().collection("store").document(food_store.getString("sID"))
                                     .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                         @Override
                                         public void onSuccess(DocumentSnapshot store) {
                                             if(store.exists()) {
-                                                Log.e("TF", store.toString());
                                                 GeoPoint geoPoint = store.getGeoPoint("location");
                                                 FoodInRestaurantDomain foodInRestaurant = new FoodInRestaurantDomain(
                                                         store.getString("name"),
@@ -107,6 +104,7 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
                                                         geoPoint.getLongitude(),
                                                         store.getString("tel")
                                                 );
+                                                foodInRestaurant.setFoodID(foodDomain.getId());
                                                 foodInRestaurant.setFood(foodDomain);
                                                 foodInResList.add(foodInRestaurant);
                                             }

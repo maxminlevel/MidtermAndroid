@@ -44,6 +44,7 @@ public class FoodInRestaurantDomain implements Serializable, Parcelable {
     }
 
     FoodDomain food;
+    String foodID;
     String resName;
     String address;
     double price;
@@ -72,6 +73,14 @@ public class FoodInRestaurantDomain implements Serializable, Parcelable {
         lat = Lat;
         lng = Lng;
         tel = Tel;
+    }
+
+    public String getFoodID() {
+        return foodID;
+    }
+
+    public void setFoodID(String foodID) {
+        this.foodID = foodID;
     }
 
     public double getLat() {

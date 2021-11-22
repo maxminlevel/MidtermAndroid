@@ -1,7 +1,5 @@
 package com.example.project.Adapter;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project.Activity.FoodRestaurantActivity;
+import com.example.project.Activity.MainActivity;
+import com.example.project.Activity.MapsActivity;
 import com.example.project.Activity.OneMarkerMapsActivity;
 import com.example.project.Domain.FoodInRestaurantDomain;
 import com.example.project.R;
@@ -43,17 +43,12 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
         holder.price.setText(String.valueOf(restaurant.getPrice()));
         holder.rating.setText(String.valueOf(restaurant.getRating()));
 
-        //int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(foodInRestaurant.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
-
-//        Glide.with(holder.itemView.getContext())
-//                .load(drawableResourceId)
-//                .into(holder.pic);
-
         holder.marker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(), OneMarkerMapsActivity.class);
-                intent.putExtra("restaurant",  (Serializable) restaurant);
+                Intent intent = new Intent(holder.itemView.getContext(), MapsActivity.class);
+                intent.putExtra("food_store",  (Serializable) restaurant);
+                intent.putExtra("food",(Serializable) restaurant.getFood());
                 holder.itemView.getContext().startActivity(intent);
                 // Open GG map and marker the postion of Restaurant
             }
@@ -63,8 +58,8 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), FoodRestaurantActivity.class);
-                intent.putExtra("object", (Serializable) restaurant);
-                intent.putExtra("foodObject",(Serializable) restaurant.getFood());
+                intent.putExtra("food_store", (Serializable) restaurant);
+                intent.putExtra("food",(Serializable) restaurant.getFood());
                 holder.itemView.getContext().startActivity(intent);
             }
         });
