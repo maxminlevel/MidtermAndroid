@@ -379,6 +379,22 @@
 
                </LinearLayout>
 
+               <TextView
+                   android:id="@+id/logout"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/orange_button_background"
+                   android:paddingHorizontal="10dp"
+                   android:paddingVertical="5dp"
+                   android:layout_gravity="center"
+                   android:layout_marginTop="20dp"
+                   android:text="Đăng xuất"
+                   android:textColor="#ffffff"
+                   android:textStyle="bold"
+                   android:textSize="18dp"
+                   android:layout_marginBottom="10dp"
+                   />
+
            </LinearLayout>
 
        </LinearLayout>
