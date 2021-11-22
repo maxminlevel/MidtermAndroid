@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.FoodStoreActivity"
+    tools:context=".Activity.FoodRestaurantActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -26,7 +26,7 @@
             android:orientation="vertical"
             android:layout_marginLeft="20dp"
             android:paddingVertical="10dp"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -42,8 +42,31 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/description"
                 android:text="Mô tả các thành phần của món ăn đó"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:textSize="16dp"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giá tiền: "
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="10 000 VND"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/teal_200"/>
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
@@ -159,7 +182,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -176,10 +199,11 @@
             android:layout_marginLeft="10dp">
 
             <TextView
+                android:id="@+id/rating"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18dp"
-                android:text="7.8"/>
+                android:layout_height="match_parent"
+                android:text="7.8"
+                android:textSize="18dp" />
 
             <ImageView
                 android:layout_width="25dp"
@@ -187,17 +211,44 @@
                 app:srcCompat="@drawable/star" />
 
         </LinearLayout>
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/addRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/orange_button_background"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="10dp"
+        android:layout_gravity="center"
+        android:paddingBottom="5dp"
+        android:layout_marginBottom="10dp"
+        android:text="Thêm đánh giá"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nhận xét của người dùng:"
+        android:text="Bình luận của người dùng:"
         android:textStyle="bold"
         android:textSize="18dp"
         android:layout_marginBottom="10dp"
         android:textColor="#000000"
         />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Viết bình luận..."
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
+        android:layout_marginHorizontal="5dp"
+        android:background="@drawable/card_background"
+        android:elevation="5dp"
+        android:layout_marginBottom="10dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

@@ -67,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             String email = editTextEmail.getText().toString();
             String tel = editTextTel.getText().toString();
             String password = editTextPassword.getText().toString();
-            UserDomain user = new UserDomain(email, fullName, password, tel, "", "", "");
+            UserDomain user = new UserDomain("",email, fullName, password, tel, "", "", "");
 //            if(dataHelper.register(user)) {
 //                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
 //            }else{
@@ -79,7 +79,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                Toast.makeText(RegisterActivity.this,"Đăng ký thành công",Toast.LENGTH_LONG).show();
+                                // Gui len
                                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+
                             }else{
                                 Toast.makeText(RegisterActivity.this,"Đăng ký thất bại",Toast.LENGTH_LONG).show();
                             }
