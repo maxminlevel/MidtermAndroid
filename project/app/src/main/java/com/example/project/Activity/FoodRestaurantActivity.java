@@ -18,6 +18,7 @@ import com.example.project.Domain.FoodInRestaurantDomain;
 import com.example.project.Domain.UserCommentDomain;
 import com.example.project.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class FoodRestaurantActivity extends AppCompatActivity {
@@ -108,13 +109,15 @@ public class FoodRestaurantActivity extends AppCompatActivity {
     }
 
     private void showAddressStore() {
-        String latitude = "10.688289";
-        String longitude = "105.376065";
-
-        String location = "geo:" + latitude + "," + longitude;
-
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(location));
+//        String latitude = "10.688289";
+//        String longitude = "105.376065";
+//
+//        String location = "geo:" + latitude + "," + longitude;
+//
+//        Intent intent = new Intent(Intent.ACTION_VIEW);
+//        intent.setData(Uri.parse(location));
+        Intent intent = new Intent(FoodRestaurantActivity.this, OneMarkerMapsActivity.class);
+        intent.putExtra("restaurant",  (Serializable) foodInRestaurant);
         startActivity(intent);
     }
 
