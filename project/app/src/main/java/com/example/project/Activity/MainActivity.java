@@ -24,12 +24,9 @@ import com.example.project.Helper.FirebaseHelper;
 import com.example.project.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.Query;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firestore.v1.StructuredQuery;
 
 import java.util.ArrayList;
 import java.util.List;

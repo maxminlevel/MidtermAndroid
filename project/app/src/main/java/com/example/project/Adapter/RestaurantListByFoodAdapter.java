@@ -12,13 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.project.Activity.FoodRestaurantActivity;
-import com.example.project.Activity.LoginActivity;
-import com.example.project.Activity.MapsActivity;
 import com.example.project.Activity.OneMarkerMapsActivity;
-import com.example.project.Domain.FoodDomain;
-import com.example.project.Activity.FoodRestaurantActivity;
 import com.example.project.Domain.FoodInRestaurantDomain;
 import com.example.project.R;
 

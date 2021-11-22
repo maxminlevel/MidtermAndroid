@@ -29,6 +29,8 @@ public class FoodRestaurantActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
     public RecyclerView.Adapter adapter;
+    FoodInRestaurantDomain foodInRestaurant;
+    FoodDomain food;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +69,8 @@ public class FoodRestaurantActivity extends AppCompatActivity {
 
     private void getBundle() {
         Bundle bundle = getIntent().getExtras();
-        FoodInRestaurantDomain foodInRestaurant = (FoodInRestaurantDomain) getIntent().getSerializableExtra("object");
-        FoodDomain food = (FoodDomain) getIntent().getSerializableExtra("foodObject");
+        foodInRestaurant = (FoodInRestaurantDomain) getIntent().getSerializableExtra("object");
+        food = (FoodDomain) getIntent().getSerializableExtra("foodObject");
         price.setText(foodInRestaurant.getPrice()+ " VND");
         nameStore.setText(foodInRestaurant.getResName());
         phoneStore.setText(foodInRestaurant.getTel());
