@@ -6,15 +6,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.project.Adapter.FoodAdapter;
 import com.example.project.Adapter.RestaurantListByFoodAdapter;
 import com.example.project.Domain.FoodDomain;
 import com.example.project.Domain.FoodInRestaurant;
 import com.example.project.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -29,7 +35,6 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_list_by_food);
-        recyclerViewFoodCat();
         initView();
         getBundle();
 
@@ -42,6 +47,7 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        recyclerViewFoodCat();
     }
 
     private void initView() {
@@ -54,28 +60,64 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
     }
 
     private void getBundle() {
-          String uri = "drawable";
-          foodDomain = (FoodDomain) getIntent().getSerializableExtra("object");
+        String uri = "drawable";
+        foodDomain = (FoodDomain) getIntent().getSerializableExtra("object");
 
-          // set dynamically image
-          img.setImageResource(getResources().getIdentifier(
-                  foodDomain.getPic(), "drawable", this.getPackageName()));
-          fName.setText(foodDomain.getName());
-          des.setText(foodDomain.getDesc());
-          rating.setText(String.valueOf(foodDomain.getAverageRating()));
+        // set dynamically image
+        int resoureID = getResources().getIdentifier(foodDomain.getPic(), "drawable", this.getPackageName());
+        if(resoureID==0){
+            resoureID = getResources().getIdentifier("food", "drawable", this.getPackageName());
+        }
+        img.setImageResource(resoureID);
+        fName.setText(foodDomain.getName());
+        des.setText(foodDomain.getDesc());
+        rating.setText(String.valueOf(foodDomain.getAverageRating()));
     }
 
     private void recyclerViewFoodCat() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView = findViewById(R.id.recyclerViewRes_Food);
         recyclerView.setLayoutManager(linearLayoutManager);
-
-
-        foodInResList.add(new FoodInRestaurant("Bún đậu thị nở",4.6,35000,"Kế bên KTX khu B", 10.887186435398194, 106.78022055111393, "0123456789"));
-        foodInResList.add(new FoodInRestaurant("Bún đậu Lão Hạc",4.3,35000,"khu phố 6 Linh Trung",10.887186435398186, 106.78022055111391, "03564829665"));
-        foodInResList.add(new FoodInRestaurant("Bún đậu Tự nhiên",4.7,35000,"Chợ ẩm thực làng ĐH",10.887186435398188, 106.78022055111398, "0158396839"));
-
         adapter = new RestaurantListByFoodAdapter(foodInResList);
+
         recyclerView.setAdapter(adapter);
+        // Lấy id món ăn duyệt trên bảng food_store lấy id cửa hàng và giá, sao
+        // lấy id cửa hàng duyệt bảng store lấy ten cửa hàng và location
+        FirebaseFirestore.getInstance().collection("food_store")
+                .whereEqualTo("fID", foodDomain.getId())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(!queryDocumentSnapshots.isEmpty()){
+                            for (DocumentSnapshot food_store : queryDocumentSnapshots.getDocuments()){
+                                Log.e("TF",food_store.toString());
+                                FirebaseFirestore.getInstance().collection("store").document(food_store.getString("sID"))
+                                    .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot store) {
+                                            if(store.exists()) {
+                                                Log.e("TF", store.toString());
+                                                GeoPoint geoPoint = store.getGeoPoint("location");
+                                                FoodInRestaurant foodInRestaurant = new FoodInRestaurant(
+                                                        store.getString("name"),
+                                                        food_store.getDouble("rating"),
+                                                        food_store.getDouble("price"),
+                                                        store.getString("addr"),
+                                                        geoPoint.getLatitude(),
+                                                        geoPoint.getLongitude(),
+                                                        store.getString("tel")
+                                                );
+                                                foodInRestaurant.setFood(foodDomain);
+                                                foodInResList.add(foodInRestaurant);
+                                                Log.e("TF", foodInRestaurant.getTel());
+                                            }
+                                            adapter.notifyDataSetChanged();
+                                        }
+                                });
+                            }
+                        }
+                    }
+                });
     }
 }

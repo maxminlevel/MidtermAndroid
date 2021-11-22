@@ -45,12 +45,20 @@ public class FoodInRestaurant implements Serializable, Parcelable {
         return rating;
     }
 
-
+    FoodDomain food;
     String resName;
     String address;
     double price;
     double rating;
     double lat,lng;
+
+    public FoodDomain getFood() {
+        return food;
+    }
+
+    public void setFood(FoodDomain food) {
+        this.food = food;
+    }
 
     public String getTel() {
         return tel;
@@ -60,9 +68,9 @@ public class FoodInRestaurant implements Serializable, Parcelable {
 
     public FoodInRestaurant(String ResName, double Rating, double Price, String Address,double Lat,double Lng,String Tel) {
         resName = ResName;
-        rating=Rating;
-        price=Price;
-        address=Address;
+        rating = Rating;
+        price = Price;
+        address = Address;
         lat = Lat;
         lng = Lng;
         tel = Tel;

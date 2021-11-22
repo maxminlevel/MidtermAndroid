@@ -26,6 +26,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<RestaurantListByFoodAdapter.ViewHolder>{
+
     ArrayList<FoodInRestaurant> foodInRestaurant;
 
     public RestaurantListByFoodAdapter(ArrayList<FoodInRestaurant> FoodInRestaurant) {
@@ -67,6 +68,7 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), FoodRestaurantActivity.class);
+                //intent.putExtra("object", (Serializable) restaurant);
                 intent.putExtra("price", restaurant.getPrice());
                 intent.putExtra("nameStore", restaurant.getResName());
 
