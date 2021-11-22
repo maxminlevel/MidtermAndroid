@@ -102,6 +102,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 addFoodMarkerOnMap(foodInRestaurant.getLat(),foodInRestaurant.getLng(),foodInRestaurant.getResName(),foodInRestaurant);
             }
         }
+        
 
         mMap.setOnMarkerClickListener(this);
         mMap.setOnCircleClickListener(this);
