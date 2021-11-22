@@ -120,7 +120,7 @@ public class FoodRestaurantActivity extends AppCompatActivity {
 
     private void getBundle() {
         foodInRestaurant = (FoodInRestaurantDomain) getIntent().getSerializableExtra("food_store");
-        price.setText(foodInRestaurant.getPrice()+ " VND");
+        price.setText((int)foodInRestaurant.getPrice()+ " VND");
         nameStore.setText(foodInRestaurant.getResName());
         phoneStore.setText(foodInRestaurant.getTel());
         addressStore.setText(foodInRestaurant.getAddress());

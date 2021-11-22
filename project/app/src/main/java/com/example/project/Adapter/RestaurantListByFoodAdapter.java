@@ -38,7 +38,7 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
     public void onBindViewHolder(@NonNull RestaurantListByFoodAdapter.ViewHolder holder, int position) {
         FoodInRestaurantDomain restaurant = foodInRestaurant.get(position);
         holder.res_name.setText(restaurant.getResName());
-        holder.price.setText(String.valueOf(restaurant.getPrice()));
+        holder.price.setText(String.valueOf((int)restaurant.getPrice()));
         holder.rating.setText(String.valueOf(restaurant.getRating()));
 
         holder.marker.setOnClickListener(new View.OnClickListener() {
