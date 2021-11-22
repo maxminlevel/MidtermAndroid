@@ -142,8 +142,8 @@ public class FoodByCategoryActivity extends AppCompatActivity implements SearchV
         recyclerView.setLayoutManager(linearLayoutManager);
 
 
-        ArrayList<FoodDomain> foodList = new ArrayList<>();
         foodList = new ArrayList<>();
+        adapter = new FoodAdapter(foodList);
         recyclerView.setAdapter(adapter);
         // Lấy dữ liệu = query có catID
         FirebaseFirestore.getInstance().collection("food")
