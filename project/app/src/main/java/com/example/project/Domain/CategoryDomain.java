@@ -21,6 +21,20 @@ public class CategoryDomain implements Serializable{
         this.pic = pic;
     }
 
+    public CategoryDomain(String id, String name, String pic) {
+        this.id = id;
+        this.name = name;
+        this.pic = pic;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }

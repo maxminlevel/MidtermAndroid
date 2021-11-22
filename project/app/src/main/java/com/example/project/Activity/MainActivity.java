@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
                             List<DocumentSnapshot> list_food = queryDocumentSnapshots.getDocuments();
                             for (DocumentSnapshot d: list_food){
                                 foodList.add(new FoodDomain(
+                                        d.getId(),
                                         d.getString("name"),
                                         d.getString("pic"),
                                         d.getString("desc"),
@@ -161,7 +162,11 @@ public class MainActivity extends AppCompatActivity {
                             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                             for (DocumentSnapshot d: list){
                                 CategoryDomain c = d.toObject(CategoryDomain.class);
-                                categoryList.add(c);
+                                categoryList.add(new CategoryDomain(
+                                        d.getId(),
+                                        d.getString("name"),
+                                        d.getString("pic")
+                                ));
                             }
                             categoryAdapter.notifyDataSetChanged();
                         }
