@@ -97,9 +97,9 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
 
     private void initView() {
 
-        img = findViewById(R.id.imageFood);
+        img = findViewById(R.id.foodImg);
         fName = findViewById(R.id.foodName);
-        des = findViewById(R.id.foodDescription);
+        des = findViewById(R.id.foodDesc);
         rating = findViewById(R.id.rating_food_res_avg);
     }
 
