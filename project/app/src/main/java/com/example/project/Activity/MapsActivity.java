@@ -101,7 +101,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        addFoodMarkerOnMap(10.7568282,106.6796836,"a",null);
 //        addFoodMarkerOnMap(10.7661902,106.6835089,"b",null);
         addFoodMarkerOnMap(10.7568282 ,106.6796836,"a",null);
-        ArrayList<FoodInRestaurant> markersArray = new ArrayList<>();
+        ArrayList<FoodInRestaurantDomain> markersArray = new ArrayList<>();
         markersArray = foodInResList;
         for(int i = 0 ; i < markersArray.size() ; i++) {
 
@@ -118,7 +118,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 //Log.d("TAG", "onMapReady: "+ foodInRestaurant.getResName());
                 //addCircleOnMap(foodInRestaurant.getLat(),foodInRestaurant.getLng(),500,foodInRestaurant.getResName());
-        }}
+
         mMap.setOnMarkerClickListener(this);
         mMap.setOnCircleClickListener(this);
         mMap.setOnMapClickListener(this);
@@ -129,6 +129,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style);
         mMap.setMapStyle(style);
     }
+
     protected Marker createMarker(double latitude, double longitude, String title) {
 
         return mMap.addMarker(new MarkerOptions()
@@ -178,7 +179,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return circle;
     }
 
-    private Marker addFoodMarkerOnMap(double lat, double lng, String name, FoodInRestaurant foodInRestaurant) {
+    private Marker addFoodMarkerOnMap(double lat, double lng, String name, FoodInRestaurantDomain foodInRestaurant) {
         LatLng position = new LatLng(lat, lng);
 
 //        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
@@ -222,7 +223,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        intent.putExtra("idFood",)
 
 
-        FoodInRestaurant restaurant = (FoodInRestaurant) marker.getTag();
+        FoodInRestaurantDomain restaurant = (FoodInRestaurantDomain) marker.getTag();
 
         intent.putExtra("nameStore",restaurant.getResName());
         intent.putExtra("phoneStore",restaurant.getTel());
