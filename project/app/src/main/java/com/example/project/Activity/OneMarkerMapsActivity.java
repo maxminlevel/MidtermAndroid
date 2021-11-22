@@ -49,7 +49,6 @@ public class OneMarkerMapsActivity extends FragmentActivity implements OnMapRead
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
     private FoodInRestaurant restaurant = null;
-    ArrayList<FoodInRestaurant> foodInResList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +82,7 @@ public class OneMarkerMapsActivity extends FragmentActivity implements OnMapRead
         // Add a marker
         // Toạ độ KTX khu B
         LatLng self = new LatLng(10.888249399024446, 106.78917099714462);
+
 //        CameraPosition point = new CameraPosition.Builder()
 //                .target(self)
 //                .zoom(16)
@@ -108,9 +108,10 @@ public class OneMarkerMapsActivity extends FragmentActivity implements OnMapRead
 //            //addFoodMarkerOnMap(restaurant.getLat(),restaurant.getLng(), restaurant.getResName());
 //            //LatLng self = new LatLng(restaurant.getLat(),restaurant.getLng());
 //        }
-        if(restaurant != null) {
-            addFoodMarkerOnMap(restaurant.getLat(), restaurant.getLng(), restaurant.getResName());
-        }
+
+        addFoodMarkerOnMap(restaurant.getLat(), restaurant.getLng(), restaurant.getResName());
+
+        addMarkerYourLocation(self);
 
 
 
@@ -123,6 +124,24 @@ public class OneMarkerMapsActivity extends FragmentActivity implements OnMapRead
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
         MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style);
         mMap.setMapStyle(style);
+    }
+
+    private void addMarkerYourLocation(LatLng self) {
+
+        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+        Bitmap bmp = Bitmap.createBitmap(80, 80, conf);
+        Canvas canvas1 = new Canvas(bmp);
+
+        Paint color = new Paint();
+
+        canvas1.drawBitmap(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),
+                R.drawable.user_loca),80, 80,false), 0,0, color);
+
+        mMap.addMarker(new MarkerOptions()
+                .position(self)
+                .title("Your Location")
+                .icon(BitmapDescriptorFactory.fromBitmap(bmp))
+                .anchor(0.5f, 1));
     }
 
     private Circle addCircleOnMap(double lat, double lng, double radius, String name) {
@@ -171,6 +190,12 @@ public class OneMarkerMapsActivity extends FragmentActivity implements OnMapRead
         // Truyen data la
 //        intent.putExtra("idStore", restaurant.getId());
 //        intent.putExtra("idFood",)
+        intent.putExtra("nameStore",restaurant.getResName());
+        intent.putExtra("phoneStore",restaurant.getTel());
+        intent.putExtra("addressStore",restaurant.getAddress());
+        intent.putExtra("rating",restaurant.getRating());
+
+
         startActivity(intent);
 
 

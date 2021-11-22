@@ -66,7 +66,16 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
         holder.detailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.itemView.getContext().startActivity(new Intent(holder.itemView.getContext(), FoodRestaurantActivity.class));
+                Intent intent = new Intent(holder.itemView.getContext(), FoodRestaurantActivity.class);
+                intent.putExtra("price", restaurant.getPrice());
+                intent.putExtra("nameStore", restaurant.getResName());
+
+                intent.putExtra("phoneStore", restaurant.getTel());
+
+                intent.putExtra("addressStore", restaurant.getAddress());
+                intent.putExtra("rating", restaurant.getRating());
+
+                holder.itemView.getContext().startActivity(intent);
             }
         });
 
