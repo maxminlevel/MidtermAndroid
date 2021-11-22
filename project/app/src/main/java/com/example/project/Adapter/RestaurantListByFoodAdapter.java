@@ -12,23 +12,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.project.Activity.FoodRestaurantActivity;
-import com.example.project.Activity.LoginActivity;
-import com.example.project.Activity.MapsActivity;
 import com.example.project.Activity.OneMarkerMapsActivity;
-import com.example.project.Domain.FoodDomain;
-import com.example.project.Activity.FoodRestaurantActivity;
-import com.example.project.Domain.FoodInRestaurant;
+import com.example.project.Domain.FoodInRestaurantDomain;
 import com.example.project.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<RestaurantListByFoodAdapter.ViewHolder>{
-    ArrayList<FoodInRestaurant> foodInRestaurant;
 
-    public RestaurantListByFoodAdapter(ArrayList<FoodInRestaurant> FoodInRestaurant) {
+    ArrayList<FoodInRestaurantDomain> foodInRestaurant;
+
+    public RestaurantListByFoodAdapter(ArrayList<FoodInRestaurantDomain> FoodInRestaurant) {
         this.foodInRestaurant = FoodInRestaurant;
     }
 
@@ -42,7 +38,7 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantListByFoodAdapter.ViewHolder holder, int position) {
-        FoodInRestaurant restaurant = foodInRestaurant.get(position);
+        FoodInRestaurantDomain restaurant = foodInRestaurant.get(position);
         holder.res_name.setText(restaurant.getResName());
         holder.price.setText(String.valueOf(restaurant.getPrice()));
         holder.rating.setText(String.valueOf(restaurant.getRating()));
@@ -67,13 +63,8 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), FoodRestaurantActivity.class);
-                intent.putExtra("price", restaurant.getPrice());
-                intent.putExtra("nameStore", restaurant.getResName());
-
-                intent.putExtra("phoneStore", restaurant.getTel());
-
-                intent.putExtra("addressStore", restaurant.getAddress());
-                intent.putExtra("rating", restaurant.getRating());
+                intent.putExtra("object", (Serializable) restaurant);
+                intent.putExtra("foodObject",(Serializable) restaurant.getFood());
                 holder.itemView.getContext().startActivity(intent);
             }
         });
@@ -89,8 +80,6 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView res_name, price, rating, detailBtn;
         ImageView marker;
-
-
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

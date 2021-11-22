@@ -9,10 +9,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.example.project.Domain.FoodInRestaurant;
+import com.example.project.Domain.FoodInRestaurantDomain;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -35,7 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
-    ArrayList<FoodInRestaurant> foodInResList = new ArrayList<>();
+    ArrayList<FoodInRestaurantDomain> foodInResList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +63,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+
+
         // Add a marker
         // Toạ độ KTX khu B
         LatLng self = new LatLng(10.888249399024446, 106.78917099714462);
@@ -109,8 +111,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         if(!foodInResList.isEmpty()) {
-            for(FoodInRestaurant foodInRestaurant:foodInResList){
-                addFoodMarkerOnMap(foodInRestaurant.getLat(),foodInRestaurant.getLng(),foodInRestaurant.getResName(),foodInRestaurant);
+            for(FoodInRestaurantDomain foodInRestaurantDomain :foodInResList){
+                addFoodMarkerOnMap(foodInRestaurantDomain.getLat(), foodInRestaurantDomain.getLng(), foodInRestaurantDomain.getResName(), foodInRestaurantDomain);
+            }
+        }
 
                 //Log.d("TAG", "onMapReady: "+ foodInRestaurant.getResName());
                 //addCircleOnMap(foodInRestaurant.getLat(),foodInRestaurant.getLng(),500,foodInRestaurant.getResName());
@@ -197,7 +201,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                .position(position)
 //                .icon(BitmapDescriptorFactory.fromBitmap(bmp))
 //                .anchor(0.5f, 1);
-        //Log.d("TAG", "onMapReady: "+ foodInRestaurant.getResName());
+
         MarkerOptions markerOptions = new MarkerOptions()
                 .position(position)
                 .title(name)
@@ -242,6 +246,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Toast.makeText(MapsActivity.this,"Nhấn vào một món ăn để xem chi tiết",Toast.LENGTH_LONG).show();
     }
+
     @Override
     public void onMapLongClick(LatLng latLng) {
         Toast.makeText(MapsActivity.this,"Tạo view mới thêm món ăn",Toast.LENGTH_LONG).show();
