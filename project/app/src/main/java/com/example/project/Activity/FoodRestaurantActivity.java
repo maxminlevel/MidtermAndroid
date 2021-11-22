@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project.Adapter.MessageAdapter;
 import com.example.project.Adapter.UserCommentAdapter;
 import com.example.project.Domain.UserCommentDomain;
 import com.example.project.R;
@@ -29,7 +30,6 @@ public class FoodRestaurantActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
     public RecyclerView.Adapter adapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

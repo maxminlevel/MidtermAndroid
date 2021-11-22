@@ -42,6 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
         String value = prefs.getString(key, defaultValue);
         txtView.setText(value);
     }
+
     private void handleEventOnClick() {
         changeProfileView.setOnClickListener(new View.OnClickListener() {
             @Override
