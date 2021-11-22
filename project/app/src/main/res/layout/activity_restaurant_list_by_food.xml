@@ -1,121 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:layout_height="match_parent"
-
     tools:context=".Activity.RestaurantListByFoodActivity">
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scrollView7"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="20dp"
-        android:layout_marginVertical="10dp">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageFood"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            app:srcCompat="@drawable/burger"
-            tools:srcCompat="@drawable/burger" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="20dp"
-            android:paddingVertical="10dp"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/foodName"
-                android:text="Tên món ăn"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/f_hot"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/foodDescription"
-                android:text="Mô tả các thành phần của món ăn đó"
-                android:layout_marginTop="10dp"
-                android:textSize="16dp"/>
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Đánh giá: "
-                    android:textStyle="bold"
-                    android:textSize="18dp"
-                    android:textColor="#000000"/>
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp"
+                android:layout_marginVertical="10dp">
+
+                <ImageView
+                    android:id="@+id/imageFood"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    app:srcCompat="@drawable/burger"
+                    tools:srcCompat="@drawable/burger" />
 
                 <LinearLayout
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:layout_marginLeft="10dp">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp"
+                    android:paddingVertical="10dp"
+                    android:layout_marginTop="10dp">
 
                     <TextView
-                        android:id="@+id/rating_food_res_avg"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="7.8"
-                        android:textColor="@color/f_hot"
-                        android:textSize="18dp" />
+                        android:layout_height="wrap_content"
+                        android:id="@+id/foodName"
+                        android:text="Tên món ăn"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/f_hot"/>
 
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        app:srcCompat="@drawable/star" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/foodDescription"
+                        android:text="Mô tả các thành phần của món ăn đó"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16dp"/>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Đánh giá: "
+                            android:textStyle="bold"
+                            android:textSize="18dp"
+                            android:textColor="#000000"/>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:layout_marginLeft="10dp">
+
+                            <TextView
+                                android:id="@+id/rating_food_res_avg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="7.8"
+                                android:textColor="@color/f_hot"
+                                android:textSize="18dp" />
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                app:srcCompat="@drawable/star" />
+
+                        </LinearLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
 
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:paddingLeft="30dp"
+                android:text="Danh sách quán ăn"/>
+
+            <TextView
+                android:id="@+id/viewAllLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/orange_button_background"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:layout_marginVertical="5dp"
+                android:layout_gravity="center"
+                android:text="Xem vị trí tất cả các quán"
+                android:textColor="#ffffff"
+                android:textStyle="bold"  />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewRes_Food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:paddingStart="22dp"
+                android:paddingEnd="22dp"
+                android:paddingBottom="90dp"
+                />
+
         </LinearLayout>
-    </LinearLayout>
 
+    </ScrollView>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:textSize="22dp"
-        android:textStyle="bold"
-        android:paddingLeft="30dp"
-        android:text="Danh sách quán ăn"/>
+    <include
+        android:id="@+id/layoutInclude"
+        layout="@layout/bottom_navigation"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-    <TextView
-        android:id="@+id/viewAllLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/orange_button_background"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="5dp"
-        android:layout_marginVertical="5dp"
-        android:layout_gravity="center"
-        android:text="Xem vị trí tất cả các quán"
-        android:textColor="#ffffff"
-        android:textStyle="bold"  />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewRes_Food"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:clipToPadding="false"
-        android:paddingStart="22dp"
-        android:paddingEnd="22dp"
-
-        />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
