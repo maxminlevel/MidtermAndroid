@@ -9,11 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.project.Domain.UserDomain;
 import com.example.project.Helper.ValidationHelper;
@@ -84,7 +82,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         if (!queryDocumentSnapshots.isEmpty()) {
                                             List<DocumentSnapshot> list_user = queryDocumentSnapshots.getDocuments();
                                             for (DocumentSnapshot d : list_user) {
-                                                Log.i("I", "onSuccessUser: ");
                                                  userDomain = new UserDomain(
                                                         d.getId(),
                                                         d.getString("email"),

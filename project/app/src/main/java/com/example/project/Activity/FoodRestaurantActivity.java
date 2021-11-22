@@ -7,14 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.FileObserver;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.project.Adapter.MessageAdapter;
 import com.example.project.Adapter.UserCommentAdapter;
 import com.example.project.Domain.FoodDomain;
 import com.example.project.Domain.FoodInRestaurantDomain;
@@ -177,15 +175,9 @@ public class FoodRestaurantActivity extends AppCompatActivity {
     }
 
     private void showAddressStore() {
-//        String latitude = "10.688289";
-//        String longitude = "105.376065";
-//
-//        String location = "geo:" + latitude + "," + longitude;
-//
-//        Intent intent = new Intent(Intent.ACTION_VIEW);
-//        intent.setData(Uri.parse(location));
         Intent intent = new Intent(FoodRestaurantActivity.this, MapsActivity.class);
-        intent.putExtra("food_store",  (Serializable) foodInRestaurant);
+        intent.putExtra("food_store", (Serializable) foodInRestaurant);
+        intent.putExtra("food",(Serializable) food);
         startActivity(intent);
     }
 

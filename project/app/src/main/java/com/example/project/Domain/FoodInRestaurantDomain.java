@@ -6,26 +6,19 @@ import android.os.Parcelable;
 import java.io.Serializable;
 
 public class FoodInRestaurantDomain implements Serializable, Parcelable {
-    protected FoodInRestaurantDomain(Parcel in) {
-        resName = in.readString();
-        address = in.readString();
-        price = in.readDouble();
-        rating = in.readDouble();
-        lat = in.readDouble();
-        lng = in.readDouble();
+    FoodDomain food;
+    String foodID, resName, address, tel;
+    double price, rating, lat,lng;
+
+    public FoodInRestaurantDomain(String resName, double rating, double price, String address, double lat, double lng, String tel) {
+        this.resName = resName;
+        this.rating = rating;
+        this.price = price;
+        this.address = address;
+        this.lat = lat;
+        this.lng = lng;
+        this.tel = tel;
     }
-
-    public static final Creator<FoodInRestaurantDomain> CREATOR = new Creator<FoodInRestaurantDomain>() {
-        @Override
-        public FoodInRestaurantDomain createFromParcel(Parcel in) {
-            return new FoodInRestaurantDomain(in);
-        }
-
-        @Override
-        public FoodInRestaurantDomain[] newArray(int size) {
-            return new FoodInRestaurantDomain[size];
-        }
-    };
 
     public String getResName() {
         return resName;
@@ -43,14 +36,6 @@ public class FoodInRestaurantDomain implements Serializable, Parcelable {
         return rating;
     }
 
-    FoodDomain food;
-    String foodID;
-    String resName;
-    String address;
-    double price;
-    double rating;
-    double lat,lng;
-
     public FoodDomain getFood() {
         return food;
     }
@@ -63,16 +48,8 @@ public class FoodInRestaurantDomain implements Serializable, Parcelable {
         return tel;
     }
 
-    String tel;
-
-    public FoodInRestaurantDomain(String ResName, double Rating, double Price, String Address, double Lat, double Lng, String Tel) {
-        resName = ResName;
-        rating = Rating;
-        price = Price;
-        address = Address;
-        lat = Lat;
-        lng = Lng;
-        tel = Tel;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
     public String getFoodID() {
@@ -96,13 +73,34 @@ public class FoodInRestaurantDomain implements Serializable, Parcelable {
         return 0;
     }
 
+    protected FoodInRestaurantDomain(Parcel in) {
+        resName = in.readString();
+        address = in.readString();
+        tel = in.readString();
+        price = in.readDouble();
+        rating = in.readDouble();
+        lat = in.readDouble();
+        lng = in.readDouble();
+    }
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(resName);
         dest.writeString(address);
+        dest.writeString(tel);
         dest.writeDouble(price);
         dest.writeDouble(rating);
         dest.writeDouble(lat);
         dest.writeDouble(lng);
     }
+    public static final Creator<FoodInRestaurantDomain> CREATOR = new Creator<FoodInRestaurantDomain>() {
+        @Override
+        public FoodInRestaurantDomain createFromParcel(Parcel in) {
+            return new FoodInRestaurantDomain(in);
+        }
+
+        @Override
+        public FoodInRestaurantDomain[] newArray(int size) {
+            return new FoodInRestaurantDomain[size];
+        }
+    };
 }
