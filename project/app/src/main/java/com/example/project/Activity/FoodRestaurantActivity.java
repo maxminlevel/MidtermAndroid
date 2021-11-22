@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project.Adapter.MessageAdapter;
 import com.example.project.Adapter.UserCommentAdapter;
 import com.example.project.Domain.FoodDomain;
 import com.example.project.Domain.FoodInRestaurantDomain;

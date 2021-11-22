@@ -31,10 +31,12 @@
 
                <LinearLayout
                    android:layout_width="match_parent"
-                   android:layout_height="wrap_content">
+                   android:layout_height="wrap_content"
+                   android:layout_marginHorizontal="10dp">
 
                    <LinearLayout
-                       android:layout_width="wrap_content"
+                       android:layout_width="0dp"
+                       android:layout_weight="1"
                        android:layout_height="wrap_content"
                        android:orientation="vertical">
 
@@ -53,16 +55,17 @@
                            android:textStyle="bold"
                            android:layout_marginTop="10dp"
                            android:textSize="20dp"
-                           android:layout_gravity="center"
                            android:text="Username"/>
 
                    </LinearLayout>
 
                    <LinearLayout
-                       android:layout_width="match_parent"
+                       android:layout_gravity="center"
+                       android:gravity="center"
+                       android:layout_width="0dp"
+                       android:layout_weight="1"
                        android:layout_height="match_parent"
-                       android:orientation="vertical"
-                       android:layout_marginLeft="40dp">
+                       android:orientation="vertical">
 
                        <TextView
                            android:layout_width="wrap_content"
@@ -70,7 +73,6 @@
                            android:text="HOẠT ĐỘNG"
                            android:textSize="25dp"
                            android:textStyle="bold"
-                           android:layout_gravity="center"
                            android:textColor="#000000"
                            android:layout_margin="5dp"/>
 
@@ -79,7 +81,6 @@
                            android:layout_height="wrap_content"
                            android:text="10 đánh giá"
                            android:textSize="18dp"
-                           android:layout_gravity="center"
                            android:layout_margin="5dp"/>
 
                        <TextView
@@ -87,7 +88,6 @@
                            android:layout_height="wrap_content"
                            android:textSize="18dp"
                            android:text="25 bình luận"
-                           android:layout_gravity="center"
                            android:layout_margin="5dp"/>
 
                    </LinearLayout>
@@ -278,7 +278,7 @@
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
                        android:orientation="horizontal"
-                       android:layout_marginVertical="5dp">
+                       android:layout_marginVertical="10dp">
                        <ImageView
                            android:layout_width="30dp"
                            android:layout_height="25dp"
@@ -291,6 +291,7 @@
                            android:layout_height="wrap_content"
                            android:text="Nâng cấp lên tài khoản VIP "
                            android:textSize="18dp"
+
                            android:textColor="#000000"
                            android:layout_weight="1"/>
 
@@ -302,7 +303,7 @@
                            android:background="@drawable/orange_button_background"
                            android:gravity="right"
                            android:paddingHorizontal="10dp"
-                           android:text=">>"
+                           android:text=">"
                            android:textColor="#ffffff"
                            android:textSize="18dp"
                            android:textStyle="bold" />
@@ -337,7 +338,7 @@
                            android:background="@drawable/orange_button_background"
                            android:gravity="right"
                            android:paddingHorizontal="10dp"
-                           android:text=">>"
+                           android:text=">"
                            android:textColor="#ffffff"
                            android:textSize="18dp"
                            android:textStyle="bold" />
@@ -371,7 +372,7 @@
                            android:background="@drawable/orange_button_background"
                            android:gravity="right"
                            android:paddingHorizontal="10dp"
-                           android:text=">>"
+                           android:text=">"
                            android:textColor="#ffffff"
                            android:textSize="18dp"
                            android:textStyle="bold" />
