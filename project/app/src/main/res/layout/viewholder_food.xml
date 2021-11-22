@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
     android:background="@drawable/card_background"
     android:elevation="3dp">
 
@@ -19,6 +20,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/card_background_restaurant"
         app:srcCompat="@drawable/pizza1" />
 
     <TextView
@@ -37,7 +39,7 @@
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="170dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Giới thiệu về món ăn cùng các thành phần"
