@@ -9,8 +9,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.example.project.Domain.FoodDomain;
 import com.example.project.Domain.FoodInRestaurantDomain;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -34,12 +36,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
-    ArrayList<FoodInRestaurantDomain> foodInResList = new ArrayList<>();
-
+    FoodInRestaurantDomain restaurant;
+    FoodDomain food;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -48,25 +49,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(this);
-
-        getBundle();
-
     }
+
     private void getBundle() {
-
-//       listRestaurant = (ArrayList <FoodInRestaurant>)intent.getSerializableExtra("restaurant");
-        foodInResList =  getIntent().getParcelableArrayListExtra("list_food");
-        // set dynamically image
-
-
+        restaurant = (FoodInRestaurantDomain) getIntent().getSerializableExtra("food_store");
+        food = (FoodDomain) getIntent().getSerializableExtra("food");
     }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        getBundle();
         mMap = googleMap;
-
-
-
         // Add a marker
+        // Nên lấy tọa độ hiện tại
         // Toạ độ KTX khu B
         LatLng self = new LatLng(10.888249399024446, 106.78917099714462);
 //        CameraPosition point = new CameraPosition.Builder()
@@ -77,37 +72,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                .build()
 //                ;
         mMap.moveCamera(CameraUpdateFactory.newLatLng(self));
+//        cái này là hiện vòng tròn xung quanh bản thân
+//        addCircleOnMap(self.latitude, self.longitude, 1000, "Đồ ăn xung quanh HCMUS");
 
-        //addCircleOnMap(self.latitude, self.longitude, 1000, "Đồ ăn xung quanh HCMUS");
-
-        // Cần viết thêm class store domain để lưu tọa độ cửa hàng
-        // Tham số muốn truyền: id cửa hàng và id món ăn
-        // hàm bên trong sẽ check đẻ hiện lên
-        // Nếu ID món ăn trống khi dó sẽ load icon cửa hàng và marker link tới view cửa hàng
-        // Nếu ID cửa hàng trống khi đó sẽ load icon món ăn và marker link tới view 1 món nhiều cửa hàng
-        // Nếu đầy đủ 2 tham số thì marker link tới view 1 món/ 1 cửa hàng
-        // marker sử dụng canvas
-      // addFoodMarkerOnMap(10.88718643539816, 106.78022055111391, "Hành của HCMUS");
+//         Cần viết thêm class store domain để lưu tọa độ cửa hàng
+//         Tham số muốn truyền: id cửa hàng và id món ăn
+//         hàm bên trong sẽ check đẻ hiện lên
+//         Nếu ID món ăn trống khi dó sẽ load icon cửa hàng và marker link tới view cửa hàng
+//         Nếu ID cửa hàng trống khi đó sẽ load icon món ăn và marker link tới view 1 món nhiều cửa hàng
+//         Nếu đầy đủ 2 tham số thì marker link tới view 1 món/ 1 cửa hàng
+//         marker sử dụng canvas
+//       addFoodMarkerOnMap(10.88718643539816, 106.78022055111391, "Hành của HCMUS");
 //        addFoodMarkerOnMap(10.7568282,106.6796836, "Burger");
 //        addFoodMarkerOnMap(10.7661902,106.6835089, "Chơi đồ án");
 //        if(restaurant!=null){
 //            //addFoodMarkerOnMap(restaurant.getLat(),restaurant.getLng(), restaurant.getResName());
 //            //LatLng self = new LatLng(restaurant.getLat(),restaurant.getLng());
 //        }
-//        addFoodMarkerOnMap(foodInResList.get(0).getLat(),foodInResList.get(0).getLng(),foodInResList.get(0).getResName());
-//        addFoodMarkerOnMap(foodInResList.get(1).getLat(),foodInResList.get(1).getLng(),foodInResList.get(1).getResName());
         addMarkerYourLocation(self);
-        if(!foodInResList.isEmpty()) {
-            for(FoodInRestaurantDomain foodInRestaurantDomain :foodInResList){
-                addFoodMarkerOnMap(foodInRestaurantDomain.getLat(), foodInRestaurantDomain.getLng(), foodInRestaurantDomain.getResName(), foodInRestaurantDomain);
-            }
-        }
+        addFoodMarkerOnMap(restaurant.getLat(), restaurant.getLng(), food.getName()+" - "+restaurant.getResName(), restaurant);
 
         mMap.setOnMarkerClickListener(this);
         mMap.setOnCircleClickListener(this);
         mMap.setOnMapClickListener(this);
         mMap.setOnMapLongClickListener(this);
-
 
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
         MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style);
@@ -146,32 +134,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker addFoodMarkerOnMap(double lat, double lng, String name, FoodInRestaurantDomain foodInRestaurantDomain) {
         LatLng position = new LatLng(lat, lng);
 
-//        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
-//        int width = 350;
-//        int heigh = 100;
-//        Bitmap bmp = Bitmap.createBitmap(width, heigh, conf);
-//        Canvas canvas1 = new Canvas(bmp);
-//        canvas1.drawColor(Color.GREEN);
-//
-//        // paint defines the text color, stroke width and size
-//        Paint color = new Paint();
-//        color.setTextSize(35);
-//        color.setColor(Color.BLACK);
-//
-//        // modify canvas
-//        canvas1.drawBitmap(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),
-//                R.drawable.bun_cha_cat),100, 100,false), 0,0, color);
-//        canvas1.drawText(name, 100, 40, color);
-//        MarkerOptions markerOptions = new MarkerOptions()
-//                .position(position)
-//                .icon(BitmapDescriptorFactory.fromBitmap(bmp))
-//                .anchor(0.5f, 1);
+        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
+        int width = 350;
+        int heigh = 100;
+        Bitmap bmp = Bitmap.createBitmap(width, heigh, conf);
+        Canvas canvas1 = new Canvas(bmp);
+        canvas1.drawColor(Color.GREEN);
 
+        // paint defines the text color, stroke width and size
+        Paint color = new Paint();
+        color.setTextSize(35);
+        color.setColor(Color.BLACK);
+
+        // modify canvas
+        canvas1.drawBitmap(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),
+                R.drawable.bun_cha_cat),100, 100,false), 0,0, color);
+        canvas1.drawText(name, 100, 40, color);
         MarkerOptions markerOptions = new MarkerOptions()
                 .position(position)
-                .title(name)
-                .draggable(true)
-                .visible(true);
+                //.icon(BitmapDescriptorFactory.fromBitmap(bmp))
+                .anchor(0.5f, 1);
         Marker marker = mMap.addMarker(markerOptions);
 
 
@@ -182,12 +164,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public boolean onMarkerClick(Marker marker) {
 
-//        Toast.makeText(MapsActivity.this,"Nhấn vào một món ăn để xem chi tiết",Toast.LENGTH_LONG).show();
         Intent intent = new Intent(MapsActivity.this, FoodRestaurantActivity.class);
-        // Truyen data la
-//        intent.putExtra("idStore", restaurant.getId());
-//        intent.putExtra("idFood",)
-
 
         FoodInRestaurantDomain restaurant = (FoodInRestaurantDomain) marker.getTag();
 
@@ -196,8 +173,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         intent.putExtra("addressStore",restaurant.getAddress());
         intent.putExtra("rating",restaurant.getRating());
         startActivity(intent);
-
-
 
         return false;
     }

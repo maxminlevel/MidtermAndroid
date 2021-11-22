@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.FileObserver;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +18,9 @@ import com.example.project.Domain.FoodDomain;
 import com.example.project.Domain.FoodInRestaurantDomain;
 import com.example.project.Domain.UserCommentDomain;
 import com.example.project.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -68,14 +72,30 @@ public class FoodRestaurantActivity extends AppCompatActivity {
     }
 
     private void getBundle() {
-        Bundle bundle = getIntent().getExtras();
-        foodInRestaurant = (FoodInRestaurantDomain) getIntent().getSerializableExtra("object");
-        food = (FoodDomain) getIntent().getSerializableExtra("foodObject");
+        foodInRestaurant = (FoodInRestaurantDomain) getIntent().getSerializableExtra("food_store");
         price.setText(foodInRestaurant.getPrice()+ " VND");
         nameStore.setText(foodInRestaurant.getResName());
         phoneStore.setText(foodInRestaurant.getTel());
         addressStore.setText(foodInRestaurant.getAddress());
         rating.setText(foodInRestaurant.getRating()+"");
+
+        food = (FoodDomain) getIntent().getSerializableExtra("food");
+        if (food == null) {
+            FirebaseFirestore.getInstance().collection("food").document(foodInRestaurant.getFoodID())
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot d) {
+                            food = new FoodDomain(
+                                    d.getId(),
+                                    d.getString("name"),
+                                    d.getString("category"),
+                                    d.getString("desc"),
+                                    d.getString("averageRating")
+                            );
+                        }
+                    });
+        }
         foodName.setText(food.getName());
         foodDesc.setText(food.getDesc());
         int resoureID = getResources().getIdentifier(food.getPic(), "drawable", this.getPackageName());
