@@ -97,12 +97,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        addFoodMarkerOnMap(foodInResList.get(0).getLat(),foodInResList.get(0).getLng(),foodInResList.get(0).getResName());
 //        addFoodMarkerOnMap(foodInResList.get(1).getLat(),foodInResList.get(1).getLng(),foodInResList.get(1).getResName());
         addMarkerYourLocation(self);
+
+//        addFoodMarkerOnMap(10.7568282,106.6796836,"a",null);
+//        addFoodMarkerOnMap(10.7661902,106.6835089,"b",null);
+        addFoodMarkerOnMap(10.7568282 ,106.6796836,"a",null);
+        ArrayList<FoodInRestaurant> markersArray = new ArrayList<>();
+        markersArray = foodInResList;
+        for(int i = 0 ; i < markersArray.size() ; i++) {
+
+            createMarker(markersArray.get(i).getLat(), markersArray.get(i).getLng(), markersArray.get(i).getResName());
+        }
+
+
+
         if(!foodInResList.isEmpty()) {
             for(FoodInRestaurantDomain foodInRestaurantDomain :foodInResList){
                 addFoodMarkerOnMap(foodInRestaurantDomain.getLat(), foodInRestaurantDomain.getLng(), foodInRestaurantDomain.getResName(), foodInRestaurantDomain);
             }
         }
 
+                //Log.d("TAG", "onMapReady: "+ foodInRestaurant.getResName());
+                //addCircleOnMap(foodInRestaurant.getLat(),foodInRestaurant.getLng(),500,foodInRestaurant.getResName());
+        }}
         mMap.setOnMarkerClickListener(this);
         mMap.setOnCircleClickListener(this);
         mMap.setOnMapClickListener(this);
@@ -112,6 +128,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
         MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style);
         mMap.setMapStyle(style);
+    }
+    protected Marker createMarker(double latitude, double longitude, String title) {
+
+        return mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(latitude, longitude))
+                .anchor(0.5f, 0.5f)
+                .title(title)
+               );
+    }
+    public static void setTimeout(Runnable runnable, int delay){
+        new Thread(() -> {
+            try {
+                Thread.sleep(delay);
+                runnable.run();
+            }
+            catch (Exception e){
+                System.err.println(e);
+            }
+        }).start();
     }
     private void addMarkerYourLocation(LatLng self) {
 
@@ -143,7 +178,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return circle;
     }
 
-    private Marker addFoodMarkerOnMap(double lat, double lng, String name, FoodInRestaurantDomain foodInRestaurantDomain) {
+    private Marker addFoodMarkerOnMap(double lat, double lng, String name, FoodInRestaurant foodInRestaurant) {
         LatLng position = new LatLng(lat, lng);
 
 //        Bitmap.Config conf = Bitmap.Config.ARGB_8888;
@@ -173,9 +208,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .draggable(true)
                 .visible(true);
         Marker marker = mMap.addMarker(markerOptions);
-
-
-        marker.setTag(foodInRestaurantDomain);
+        marker.setTag(foodInRestaurant);
         return marker;
     }
 
@@ -189,7 +222,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        intent.putExtra("idFood",)
 
 
-        FoodInRestaurantDomain restaurant = (FoodInRestaurantDomain) marker.getTag();
+        FoodInRestaurant restaurant = (FoodInRestaurant) marker.getTag();
 
         intent.putExtra("nameStore",restaurant.getResName());
         intent.putExtra("phoneStore",restaurant.getTel());
@@ -210,6 +243,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private int NextAvailableID = 1;
     @Override
     public void onMapClick(LatLng latLng) {
+
         Toast.makeText(MapsActivity.this,"Nhấn vào một món ăn để xem chi tiết",Toast.LENGTH_LONG).show();
     }
 
