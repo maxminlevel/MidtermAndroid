@@ -2,6 +2,7 @@ package com.example.project.Activity;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,25 +32,40 @@ import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseHelper dataHelper;
     private EditText editTextFullname, editTextEmail, editTextTel, editTextPassword, editTextRetypePassword;
+    static AlertDialog.Builder builder;
+    ImageView backLoginBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        builder = new AlertDialog.Builder(this);
+        dataHelper = FirebaseHelper.getInstance();
+
         CircularProgressButton btnRegister = findViewById(R.id.cirRegisterButton);
-        btnRegister.setOnClickListener(this);
         TextView loginClickBtn = (TextView) findViewById(R.id.loginButton);
+        editTextFullname = findViewById(R.id.editTextName);
+        editTextEmail =  findViewById(R.id.editTextEmail);
+        editTextPassword =  findViewById(R.id.editTextPassword);
+        editTextRetypePassword =  findViewById(R.id.editTextRetypePassword);
+        editTextTel = findViewById(R.id.editTextMobile);
+        backLoginBtn = findViewById(R.id.backLogin);
+
+
+        btnRegister.setOnClickListener(this);
+        backLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            }
+        });
         loginClickBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             }
         });
-        editTextFullname = findViewById(R.id.editTextName);
-        editTextEmail =  findViewById(R.id.editTextEmail);
-        editTextPassword =  findViewById(R.id.editTextPassword);
-        editTextRetypePassword =  findViewById(R.id.editTextRetypePassword);
-        editTextTel = findViewById(R.id.editTextMobile);
-        dataHelper = FirebaseHelper.getInstance();
+
+
     }
 
     @Override
@@ -68,26 +85,26 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             String tel = editTextTel.getText().toString();
             String password = editTextPassword.getText().toString();
             UserDomain user = new UserDomain("",email, fullName, password, tel, "", "", "");
-//            if(dataHelper.register(user)) {
-//                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-//            }else{
-//                Log.e("WTF", "Hơư to lỗi ở đây");
-//                Toast.makeText(RegisterActivity.this,"Đăng ký thất bại",Toast.LENGTH_LONG).show();
-//            }
+
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(RegisterActivity.this,"Đăng ký thành công",Toast.LENGTH_LONG).show();
-                                // Gui len
+                                showDialog("Đăng ký thành công!","Thật tuyệt vời. Đăng nhập ngay nào!");
                                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
 
                             }else{
-                                Toast.makeText(RegisterActivity.this,"Đăng ký thất bại",Toast.LENGTH_LONG).show();
+                                showDialog("Đăng ký thất bại","Không sao. Thử lại nhé!");
                             }
                         }
                     });
         }
+    }
+
+    public static void showDialog(String title, String mess) {
+        builder.setMessage(mess) .setTitle(title);
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

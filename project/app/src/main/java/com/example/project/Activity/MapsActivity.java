@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.project.Domain.FoodInRestaurant;
@@ -63,9 +64,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-
-
         // Add a marker
         // Toạ độ KTX khu B
         LatLng self = new LatLng(10.888249399024446, 106.78917099714462);
@@ -97,13 +95,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        addFoodMarkerOnMap(foodInResList.get(0).getLat(),foodInResList.get(0).getLng(),foodInResList.get(0).getResName());
 //        addFoodMarkerOnMap(foodInResList.get(1).getLat(),foodInResList.get(1).getLng(),foodInResList.get(1).getResName());
         addMarkerYourLocation(self);
+
+//        addFoodMarkerOnMap(10.7568282,106.6796836,"a",null);
+//        addFoodMarkerOnMap(10.7661902,106.6835089,"b",null);
+        addFoodMarkerOnMap(10.7568282 ,106.6796836,"a",null);
+        ArrayList<FoodInRestaurant> markersArray = new ArrayList<>();
+        markersArray = foodInResList;
+        for(int i = 0 ; i < markersArray.size() ; i++) {
+
+            createMarker(markersArray.get(i).getLat(), markersArray.get(i).getLng(), markersArray.get(i).getResName());
+        }
+
+
+
         if(!foodInResList.isEmpty()) {
             for(FoodInRestaurant foodInRestaurant:foodInResList){
                 addFoodMarkerOnMap(foodInRestaurant.getLat(),foodInRestaurant.getLng(),foodInRestaurant.getResName(),foodInRestaurant);
-            }
-        }
-        
 
+                //Log.d("TAG", "onMapReady: "+ foodInRestaurant.getResName());
+                //addCircleOnMap(foodInRestaurant.getLat(),foodInRestaurant.getLng(),500,foodInRestaurant.getResName());
+        }}
         mMap.setOnMarkerClickListener(this);
         mMap.setOnCircleClickListener(this);
         mMap.setOnMapClickListener(this);
@@ -113,6 +124,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
         MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style);
         mMap.setMapStyle(style);
+    }
+    protected Marker createMarker(double latitude, double longitude, String title) {
+
+        return mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(latitude, longitude))
+                .anchor(0.5f, 0.5f)
+                .title(title)
+               );
+    }
+    public static void setTimeout(Runnable runnable, int delay){
+        new Thread(() -> {
+            try {
+                Thread.sleep(delay);
+                runnable.run();
+            }
+            catch (Exception e){
+                System.err.println(e);
+            }
+        }).start();
     }
     private void addMarkerYourLocation(LatLng self) {
 
@@ -167,15 +197,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                .position(position)
 //                .icon(BitmapDescriptorFactory.fromBitmap(bmp))
 //                .anchor(0.5f, 1);
-
+        //Log.d("TAG", "onMapReady: "+ foodInRestaurant.getResName());
         MarkerOptions markerOptions = new MarkerOptions()
                 .position(position)
                 .title(name)
                 .draggable(true)
                 .visible(true);
         Marker marker = mMap.addMarker(markerOptions);
-
-
         marker.setTag(foodInRestaurant);
         return marker;
     }
@@ -211,9 +239,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private int NextAvailableID = 1;
     @Override
     public void onMapClick(LatLng latLng) {
+
         Toast.makeText(MapsActivity.this,"Nhấn vào một món ăn để xem chi tiết",Toast.LENGTH_LONG).show();
     }
-
     @Override
     public void onMapLongClick(LatLng latLng) {
         Toast.makeText(MapsActivity.this,"Tạo view mới thêm món ăn",Toast.LENGTH_LONG).show();

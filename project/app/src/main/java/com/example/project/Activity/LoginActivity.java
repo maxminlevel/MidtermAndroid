@@ -1,6 +1,9 @@
 package com.example.project.Activity;
 
+import static com.example.project.Activity.RegisterActivity.builder;
+
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -65,7 +68,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
     }
-
+    public static void showDialog(String title, String mess) {
+        builder.setMessage(mess) .setTitle(title);
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
     @Override
     public void onClick(View view) {
         String email = editTextEmail.getText().toString().trim();
@@ -110,12 +117,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         editor.putString("gender", userDomain.getGender());
                                         editor.putString("birthday", userDomain.getBirthday());
                                         editor.apply();
+                                        showDialog("Đăng nhập thành công!","Khám phá các món ngon nào!");
                                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                        Toast.makeText(LoginActivity .this,"Đăng nhập thành công!",Toast.LENGTH_LONG).show();
                                 }});
                             }
                             else {
-                                Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_LONG).show();
+                                showDialog("Đăng nhập thất bại!","Thử lại nhé!");
                             }
                         }
                     });
