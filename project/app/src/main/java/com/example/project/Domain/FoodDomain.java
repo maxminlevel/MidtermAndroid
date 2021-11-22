@@ -18,7 +18,8 @@ public class FoodDomain implements Serializable {
 
     }
 
-    public FoodDomain(String name, String pic, String desc, DocumentReference category, String averageRating) {
+    public FoodDomain(String id, String name, String pic, String desc, DocumentReference category, String averageRating) {
+        this.id = id;
         this.name = name;
         this.pic = pic;
         this.desc = desc;
@@ -26,11 +27,20 @@ public class FoodDomain implements Serializable {
         this.averageRating = averageRating;
     }
 
-    public FoodDomain(String name, String pic, String description, String averageRating) {
+    public FoodDomain(String id, String name, String pic, String description, String averageRating) {
+        this.id = id;
         this.name = name;
         this.pic = pic;
         this.desc = description;
         this.averageRating = averageRating;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
