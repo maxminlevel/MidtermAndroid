@@ -1,5 +1,6 @@
 package com.example.project.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,15 +20,26 @@ import android.widget.Toast;
 import com.example.project.Adapter.FoodAdapter;
 import com.example.project.Domain.FoodDomain;
 import com.example.project.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FoodByCategoryActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     public RecyclerView recyclerView;
     public FoodAdapter adapter;
     private String catTitle;
+    private String catID;
     private TextView catName;
     private androidx.appcompat.widget.SearchView searchView;
     private ImageView voiceRecognition;
@@ -37,11 +50,9 @@ public class FoodByCategoryActivity extends AppCompatActivity implements SearchV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_by_category);
-
-        recyclerViewFoodCat();
-
         initView();
         getBundle();
+        recyclerViewFoodCat();
         bottomNavigation();
     }
 
@@ -77,7 +88,7 @@ public class FoodByCategoryActivity extends AppCompatActivity implements SearchV
 
     private void getBundle() {
         catTitle = (String) getIntent().getStringExtra("category");
-
+        catID = (String) getIntent().getStringExtra("categoryID");
         catName.setText(catTitle);
     }
 
@@ -130,17 +141,33 @@ public class FoodByCategoryActivity extends AppCompatActivity implements SearchV
         recyclerView = findViewById(R.id.recyclerViewFoodCat);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        foodList = new ArrayList<>();
-        foodList.add(new FoodDomain("Cơm sườn trứng", "com_suon_1", "Sườn non, Sườn nướng, Trứng chiên, Trứng cuộn",  "9.0"));
-        foodList.add(new FoodDomain("Cơm gà sốt thái", "com_ga_sot_thai", "Cơm chiên, Gà chiên mắm, Nước sốt me",  "8.9"));
-        foodList.add(new FoodDomain("Cơm gà xối mỡ", "com_ga_xoi_mo", "Cơm chiên, Gà hấp xối mỡ, Canh gà", "6.8"));
-        foodList.add(new FoodDomain("Cơm dương châu", "com_duong_chau", "Cơm chiên, Xá xíu, Lạp xưởng, Đậu Hà Lan",  "9.0"));
-        foodList.add(new FoodDomain("Cơm cuộn sushi", "com_cuon_sushi", "Cơm nắm, Rong biển, Trứng cuộn", "9.4"));
-        foodList.add(new FoodDomain("Cơm gà xé", "com_ga_xe_1", "Cơm chiên, Gà luộc xé, Canh gà trứng",  "7.1"));
-        foodList.add(new FoodDomain("Cơm chiên cá mặn", "com_chien_ca_man", "Cơm chiên, Trứng gà, Ức gà, Cá mặn", "8.6"));
 
-        adapter = new FoodAdapter(foodList);
+        ArrayList<FoodDomain> foodList = new ArrayList<>();
+        foodList = new ArrayList<>();
         recyclerView.setAdapter(adapter);
+        // Lấy dữ liệu = query có catID
+        FirebaseFirestore.getInstance().collection("food")
+                .whereEqualTo("category",catID)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(!queryDocumentSnapshots.isEmpty()){
+                            List<DocumentSnapshot> list_food = queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d: list_food){
+                                foodList.add(new FoodDomain(
+                                        d.getId(),
+                                        d.getString("name"),
+                                        d.getString("pic"),
+                                        d.getString("desc"),
+                                        d.getString("averageRating")
+                                ));
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                });
+
     }
 
     private ArrayList<FoodDomain> filter(String text) {
