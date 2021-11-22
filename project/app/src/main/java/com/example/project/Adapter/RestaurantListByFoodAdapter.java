@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project.Activity.FoodRestaurantActivity;
+import com.example.project.Activity.MainActivity;
+import com.example.project.Activity.MapsActivity;
 import com.example.project.Activity.OneMarkerMapsActivity;
 import com.example.project.Domain.FoodInRestaurantDomain;
 import com.example.project.R;
@@ -19,10 +21,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<RestaurantListByFoodAdapter.ViewHolder>{
-    ArrayList<FoodInRestaurantDomain> foodInRestaurantDomain;
 
-    public RestaurantListByFoodAdapter(ArrayList<FoodInRestaurantDomain> FoodInRestaurantDomain) {
-        this.foodInRestaurantDomain = FoodInRestaurantDomain;
+    ArrayList<FoodInRestaurantDomain> foodInRestaurant;
+
+    public RestaurantListByFoodAdapter(ArrayList<FoodInRestaurantDomain> FoodInRestaurant) {
+        this.foodInRestaurant = FoodInRestaurant;
     }
 
     @NonNull
@@ -35,22 +38,17 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantListByFoodAdapter.ViewHolder holder, int position) {
-        FoodInRestaurantDomain restaurant = foodInRestaurantDomain.get(position);
+        FoodInRestaurantDomain restaurant = foodInRestaurant.get(position);
         holder.res_name.setText(restaurant.getResName());
         holder.price.setText(String.valueOf(restaurant.getPrice()));
         holder.rating.setText(String.valueOf(restaurant.getRating()));
 
-        //int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(foodInRestaurant.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
-
-//        Glide.with(holder.itemView.getContext())
-//                .load(drawableResourceId)
-//                .into(holder.pic);
-
         holder.marker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(), OneMarkerMapsActivity.class);
-                intent.putExtra("restaurant",  (Serializable) restaurant);
+                Intent intent = new Intent(holder.itemView.getContext(), MapsActivity.class);
+                intent.putExtra("food_store",  (Serializable) restaurant);
+                intent.putExtra("food",(Serializable) restaurant.getFood());
                 holder.itemView.getContext().startActivity(intent);
                 // Open GG map and marker the postion of Restaurant
             }
@@ -60,13 +58,8 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), FoodRestaurantActivity.class);
-                intent.putExtra("price", restaurant.getPrice());
-                intent.putExtra("nameStore", restaurant.getResName());
-
-                intent.putExtra("phoneStore", restaurant.getTel());
-
-                intent.putExtra("addressStore", restaurant.getAddress());
-                intent.putExtra("rating", restaurant.getRating());
+                intent.putExtra("food_store", (Serializable) restaurant);
+                intent.putExtra("food",(Serializable) restaurant.getFood());
                 holder.itemView.getContext().startActivity(intent);
             }
         });
@@ -76,14 +69,12 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
 
     @Override
     public int getItemCount() {
-        return foodInRestaurantDomain.size();
+        return foodInRestaurant.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView res_name, price, rating, detailBtn;
         ImageView marker;
-
-
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

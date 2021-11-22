@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,7 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private TextView changeProfileView, linkView, shareView, vipView, username,email, tel, dob, gender;
+    private TextView changeProfileView, linkView, shareView, vipView, username,email, tel, dob, gender, logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +35,16 @@ public class ProfileActivity extends AppCompatActivity {
         renderUserInfor(prefs,"tel", "Unknown",tel);
         renderUserInfor(prefs,"birthday", "Unknown",dob);
         renderUserInfor(prefs,"gender", "Unknown",gender);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                editor.clear();
+                editor.commit();
+                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+            }
+        });
     }
 
     private void renderUserInfor(SharedPreferences prefs, String key  , String defaultValue, TextView txtView) {
@@ -84,7 +93,7 @@ public class ProfileActivity extends AppCompatActivity {
         tel = findViewById(R.id.tel);
         dob = findViewById(R.id.dob);
         gender = findViewById(R.id.gender);
-
+        logout = findViewById(R.id.logout);
     }
 
     private void bottomNavigation() {

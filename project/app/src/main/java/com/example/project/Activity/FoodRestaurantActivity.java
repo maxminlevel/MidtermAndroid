@@ -7,17 +7,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.FileObserver;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project.Adapter.MessageAdapter;
 import com.example.project.Adapter.UserCommentAdapter;
+import com.example.project.Domain.FoodDomain;
+import com.example.project.Domain.FoodInRestaurantDomain;
 import com.example.project.Domain.UserCommentDomain;
 import com.example.project.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -25,11 +29,13 @@ public class FoodRestaurantActivity extends AppCompatActivity {
 
     private static final int REQUEST_CALL = 1;
 
-    private ImageView mapIntent, phoneIntent;
-    private TextView addressStore, phoneStore, price, rating, nameStore, addRating;
+    private ImageView mapIntent, phoneIntent, foodImg;
+    private TextView addressStore, phoneStore, price, rating, nameStore, addRating, foodName, foodDesc;
 
     public RecyclerView recyclerView;
     public RecyclerView.Adapter adapter;
+    FoodInRestaurantDomain foodInRestaurant;
+    FoodDomain food;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +44,9 @@ public class FoodRestaurantActivity extends AppCompatActivity {
 
         initView();
         handleEventClick();
-;
-        bottomNavigation();
+        getBundle();
 
         recyclerViewUserComment();
-        getBundle();
 
         phoneIntent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,50 +63,6 @@ public class FoodRestaurantActivity extends AppCompatActivity {
         });
     }
 
-    private void bottomNavigation() {
-        FloatingActionButton floatingActionButton = findViewById(R.id.card_btn);
-        LinearLayout homeBtn = findViewById(R.id.homeBtn);
-        LinearLayout profileBtn = findViewById(R.id.profileBtn);
-        LinearLayout friendBtn = findViewById(R.id.friendBtn);
-        LinearLayout settingBtn = findViewById(R.id.settingBtn);
-
-        homeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(FoodRestaurantActivity.this, MainActivity.class));
-            }
-        });
-
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(FoodRestaurantActivity.this,SearchActivity.class));
-            }
-        });
-
-        profileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(FoodRestaurantActivity.this, ProfileActivity.class));
-            }
-        });
-
-        friendBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(FoodRestaurantActivity.this, FriendActivity.class));
-            }
-        });
-
-        settingBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(FoodRestaurantActivity.this, SettingActivity.class));
-            }
-        });
-    }
-
-
     private void handleEventClick() {
         addRating.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,13 +73,37 @@ public class FoodRestaurantActivity extends AppCompatActivity {
     }
 
     private void getBundle() {
-        Bundle bundle = getIntent().getExtras();
+        foodInRestaurant = (FoodInRestaurantDomain) getIntent().getSerializableExtra("food_store");
+        price.setText(foodInRestaurant.getPrice()+ " VND");
+        nameStore.setText(foodInRestaurant.getResName());
+        phoneStore.setText(foodInRestaurant.getTel());
+        addressStore.setText(foodInRestaurant.getAddress());
+        rating.setText(foodInRestaurant.getRating()+"");
 
-        price.setText(String.valueOf(bundle.getDouble("price", 10000)) + " VND");
-        nameStore.setText(bundle.getString("nameStore", "Tên mẫu"));
-        phoneStore.setText(bundle.getString("phoneStore", "SĐT mẫu"));
-        addressStore.setText(bundle.getString("addressStore","Địa chỉ mẫu"));
-        rating.setText(String.valueOf(bundle.getDouble("rating", 10.0)));
+        food = (FoodDomain) getIntent().getSerializableExtra("food");
+        if (food == null) {
+            FirebaseFirestore.getInstance().collection("food").document(foodInRestaurant.getFoodID())
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot d) {
+                            food = new FoodDomain(
+                                    d.getId(),
+                                    d.getString("name"),
+                                    d.getString("category"),
+                                    d.getString("desc"),
+                                    d.getString("averageRating")
+                            );
+                        }
+                    });
+        }
+        foodName.setText(food.getName());
+        foodDesc.setText(food.getDesc());
+        int resoureID = getResources().getIdentifier(food.getPic(), "drawable", this.getPackageName());
+        if(resoureID==0){
+            resoureID = getResources().getIdentifier("food", "drawable", this.getPackageName());
+        }
+        foodImg.setImageResource(resoureID);
     }
 
     private void initView() {
@@ -131,6 +115,9 @@ public class FoodRestaurantActivity extends AppCompatActivity {
         price = findViewById(R.id.price);
         rating = findViewById(R.id.rating);
         addRating = findViewById(R.id.addRating);
+        foodName = findViewById(R.id.foodName);
+        foodImg = findViewById(R.id.foodImg);
+        foodDesc = findViewById(R.id.foodDesc);
     }
 
     private void makePhoneCall() {
