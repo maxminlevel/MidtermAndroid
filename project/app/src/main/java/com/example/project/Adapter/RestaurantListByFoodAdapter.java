@@ -74,7 +74,6 @@ public class RestaurantListByFoodAdapter extends RecyclerView.Adapter<Restaurant
 
                 intent.putExtra("addressStore", restaurant.getAddress());
                 intent.putExtra("rating", restaurant.getRating());
-
                 holder.itemView.getContext().startActivity(intent);
             }
         });
