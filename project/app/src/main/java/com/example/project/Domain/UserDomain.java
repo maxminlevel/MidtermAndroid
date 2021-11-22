@@ -5,7 +5,7 @@ public class UserDomain {
     String email, name, password, tel;
     String birthday = "", gender = "", avatar = "";
 
-    public UserDomain(String email, String name, String password, String tel, String birthday, String gender, String avatar) {
+    public UserDomain(String id,String email, String name, String password, String tel, String birthday, String gender, String avatar) {
         this.email = email;
         this.name = name;
         this.password = password;

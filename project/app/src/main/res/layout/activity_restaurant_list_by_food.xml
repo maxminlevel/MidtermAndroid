@@ -68,7 +68,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="11dp"
+                android:textSize="14dp"
                 android:lineHeight="12dp"
                 android:text="Nước dùng mùi bò hoà quyện cùng rau thơm tạo nên hương vị khó cưỡng. Thịt bò tái mềm dẻo chấm với tương, hoà tan ngay khi cho vào miệng" />
             <LinearLayout
@@ -128,8 +128,18 @@
         android:clipToPadding="false"
         android:paddingStart="22dp"
         android:paddingEnd="22dp"
-        android:paddingBottom="80dp"
+
         />
+
+    <TextView
+        android:id="@+id/viewAllLocation"
+        style="@style/parent"
+        android:layout_marginTop="@dimen/loginViewsMargin"
+        android:text="@string/view_all_lo"
+        android:textAlignment="center"
+        android:textColor="@color/themeColor"
+        android:textSize="17sp"
+        android:textStyle="bold" />
 
 
 

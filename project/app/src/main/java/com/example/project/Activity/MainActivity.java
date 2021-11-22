@@ -1,14 +1,20 @@
 package com.example.project.Activity;
 
+import static com.example.project.Activity.LoginActivity.MY_PREFS_NAME;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.project.Adapter.CategoryAdapter;
 import com.example.project.Adapter.PopularAdapter;
@@ -40,7 +46,21 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewCategory();
         recyclerViewPopular();
         bottomNavigation();
-        ImageView accountBtn= findViewById(R.id.viewAccount);
+        Button accountBtn= findViewById(R.id.viewAccountBtn);
+        ImageView avatarImg = findViewById(R.id.Avatar);
+        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+
+        if(!prefs.getString("fullName","").isEmpty()){
+            accountBtn.setVisibility(View.GONE);
+            avatarImg.setVisibility(View.VISIBLE);
+            TextView accountName = findViewById(R.id.usernameInMain);
+            renderUserInfor(prefs,accountName);
+        }
+        else{
+            accountBtn.setVisibility(View.VISIBLE);
+            avatarImg.setVisibility(View.GONE);
+        }
+
         accountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         firebaseHelper = FirebaseHelper.getInstance();
+    }
+
+    private void renderUserInfor(SharedPreferences prefs, TextView accountName) {
+        String name = prefs.getString("fullName", "Xin chào");
+        Log.d("TAG", "renderUserInfor: "+name);
+        accountName.setText("Xin chào " + name);
     }
 
     private void bottomNavigation() {

@@ -67,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             String email = editTextEmail.getText().toString();
             String tel = editTextTel.getText().toString();
             String password = editTextPassword.getText().toString();
-            UserDomain user = new UserDomain(email, fullName, password, tel, "", "", "");
+            UserDomain user = new UserDomain("",email, fullName, password, tel, "", "", "");
 //            if(dataHelper.register(user)) {
 //                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
 //            }else{

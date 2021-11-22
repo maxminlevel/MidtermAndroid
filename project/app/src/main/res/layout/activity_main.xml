@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="32dp"
-                    android:text="Xin chào User"
+                    android:text="Xin chào"
                     android:textColor="#ff3d00"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -78,8 +78,20 @@
                     app:layout_constraintStart_toStartOf="@+id/usernameInMain"
                     app:layout_constraintTop_toBottomOf="@+id/usernameInMain" />
 
+                <Button
+                    android:id="@+id/viewAccountBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:src="@drawable/user"
+                    android:textSize="11dp"
+                    android:text="Đăng nhập"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/usernameInMain"
+                    app:srcCompat="@drawable/user" />
                 <ImageView
-                    android:id="@+id/viewAccount"
+                    android:id="@+id/Avatar"
                     android:layout_width="78dp"
                     android:layout_height="58dp"
                     android:layout_marginEnd="32dp"
@@ -87,6 +99,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/textView5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/usernameInMain"
+                    android:visibility="gone"
                     app:srcCompat="@drawable/user" />
 
                 <ImageView
