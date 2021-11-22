@@ -19,49 +19,31 @@ public class UserDomain {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setEmail(String email) { this.email = email; }
 
     public String getFullName() {
         return name;
     }
 
-    public void setFullName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setFullName(String name) { this.name = name; }
 
     public String getTel() {
         return tel;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
+    public void setTel(String tel) { this.tel = tel; }
 
     public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
+    public void setBirthday(String birthday) { this.birthday = birthday; }
 
     public String getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    public void setGender(String gender) { this.gender = gender; }
 
     public String getAvatar() {
         return avatar;

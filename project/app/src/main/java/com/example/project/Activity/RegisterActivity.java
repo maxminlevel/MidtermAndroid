@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,7 +15,6 @@ import android.widget.Toast;
 
 
 import com.example.project.Domain.UserDomain;
-import com.example.project.Helper.FirebaseHelper;
 import com.example.project.Helper.ValidationHelper;
 import com.example.project.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,14 +22,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
-    private FirebaseHelper dataHelper;
     private EditText editTextFullname, editTextEmail, editTextTel, editTextPassword, editTextRetypePassword;
     static AlertDialog.Builder builder;
     ImageView backLoginBtn;
@@ -41,7 +36,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         builder = new AlertDialog.Builder(this);
-        dataHelper = FirebaseHelper.getInstance();
 
         CircularProgressButton btnRegister = findViewById(R.id.cirRegisterButton);
         btnRegister.setOnClickListener(this);

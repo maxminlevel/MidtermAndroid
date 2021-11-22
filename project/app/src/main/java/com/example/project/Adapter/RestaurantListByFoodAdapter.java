@@ -11,9 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project.Activity.FoodRestaurantActivity;
-import com.example.project.Activity.MainActivity;
 import com.example.project.Activity.MapsActivity;
-import com.example.project.Activity.OneMarkerMapsActivity;
 import com.example.project.Domain.FoodInRestaurantDomain;
 import com.example.project.R;
 

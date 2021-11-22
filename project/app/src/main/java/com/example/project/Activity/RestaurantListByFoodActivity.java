@@ -37,18 +37,7 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant_list_by_food);
         initView();
         getBundle();
-
         bottomNavigation();
-
-        TextView viewAllLo = findViewById(R.id.viewAllLocation);
-        viewAllLo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RestaurantListByFoodActivity.this,MapsActivity.class);
-                intent.putParcelableArrayListExtra("list_food", foodInResList);
-                startActivity(intent);
-            }
-        });
         recyclerViewFoodCat();
     }
 
@@ -101,6 +90,16 @@ public class RestaurantListByFoodActivity extends AppCompatActivity {
         fName = findViewById(R.id.foodName);
         des = findViewById(R.id.foodDesc);
         rating = findViewById(R.id.rating_food_res_avg);
+        TextView viewAllLo = findViewById(R.id.viewAllLocation);
+        viewAllLo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RestaurantListByFoodActivity.this,MapsActivity.class);
+                intent.putParcelableArrayListExtra("list_food", foodInResList);
+                intent.putExtra("food",foodDomain);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getBundle() {
