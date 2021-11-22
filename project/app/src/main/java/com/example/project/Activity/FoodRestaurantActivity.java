@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.FileObserver;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.example.project.Domain.FoodInRestaurantDomain;
 import com.example.project.Domain.UserCommentDomain;
 import com.example.project.R;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -48,6 +50,8 @@ public class FoodRestaurantActivity extends AppCompatActivity {
 
         recyclerViewUserComment();
 
+        bottomNavigation();
+
         phoneIntent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,6 +63,49 @@ public class FoodRestaurantActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showAddressStore();
+            }
+        });
+    }
+
+    private void bottomNavigation() {
+        FloatingActionButton floatingActionButton = findViewById(R.id.card_btn);
+        LinearLayout homeBtn = findViewById(R.id.homeBtn);
+        LinearLayout profileBtn = findViewById(R.id.profileBtn);
+        LinearLayout friendBtn = findViewById(R.id.friendBtn);
+        LinearLayout settingBtn = findViewById(R.id.settingBtn);
+
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FoodRestaurantActivity.this, MainActivity.class));
+            }
+        });
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FoodRestaurantActivity.this,SearchActivity.class));
+            }
+        });
+
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FoodRestaurantActivity.this, ProfileActivity.class));
+            }
+        });
+
+        friendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FoodRestaurantActivity.this,FriendActivity.class));
+            }
+        });
+
+        settingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FoodRestaurantActivity.this,SettingActivity.class));
             }
         });
     }
