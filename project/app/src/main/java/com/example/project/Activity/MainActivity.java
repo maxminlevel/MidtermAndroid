@@ -32,7 +32,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter categoryAdapter, popularAdapter;
     private RecyclerView recyclerViewCategoryList, recyclerViewPopularList;
-    private FirebaseHelper firebaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
-        firebaseHelper = FirebaseHelper.getInstance();
     }
 
     private void renderUserInfor(SharedPreferences prefs, TextView accountName) {
