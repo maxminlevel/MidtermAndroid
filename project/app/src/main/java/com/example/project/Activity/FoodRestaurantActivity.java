@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.project.Adapter.UserCommentAdapter;
 import com.example.project.Domain.UserCommentDomain;
@@ -22,7 +23,7 @@ public class FoodRestaurantActivity extends AppCompatActivity {
     private static final int REQUEST_CALL = 1;
 
     private ImageView mapIntent, phoneIntent;
-    private TextView addressStore, phoneStore, price, rating, nameStore;
+    private TextView addressStore, phoneStore, price, rating, nameStore, addRating;
 
     public RecyclerView recyclerView;
     public RecyclerView.Adapter adapter;
@@ -33,6 +34,7 @@ public class FoodRestaurantActivity extends AppCompatActivity {
         setContentView(R.layout.activity_food_restaurant);
 
         initView();
+        handleEventClick();
 
         recyclerViewUserComment();
         getBundle();
@@ -48,6 +50,15 @@ public class FoodRestaurantActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showAddressStore();
+            }
+        });
+    }
+
+    private void handleEventClick() {
+        addRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(FoodRestaurantActivity.this,"Tính năng đang phát triển", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -70,6 +81,7 @@ public class FoodRestaurantActivity extends AppCompatActivity {
         nameStore = findViewById(R.id.nameStore);
         price = findViewById(R.id.price);
         rating = findViewById(R.id.rating);
+        addRating = findViewById(R.id.addRating);
     }
 
     private void makePhoneCall() {
