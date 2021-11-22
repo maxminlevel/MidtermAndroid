@@ -22,17 +22,18 @@ public class IntroActivity extends AppCompatActivity {
         boolean firstTime = prefs.getBoolean("firstTime", true);
         if(!firstTime){
             startActivity(new Intent(IntroActivity.this, MainActivity.class));
+        }else {
+            setContentView(R.layout.activity_intro);
+            SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+            editor.putBoolean("firstTime", false);
+            editor.apply();
+            startBtn = findViewById(R.id.startbtn);
+            startBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(IntroActivity.this, MainActivity.class));
+                }
+            });
         }
-        setContentView(R.layout.activity_intro);
-        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-        editor.putBoolean("firstTime", false);
-        editor.apply();
-        startBtn=findViewById(R.id.startbtn);
-        startBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(IntroActivity.this, MainActivity.class));
-            }
-        });
     }
 }
