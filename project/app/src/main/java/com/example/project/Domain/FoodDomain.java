@@ -92,10 +92,4 @@ public class FoodDomain implements Serializable {
     public void setAverageRating(String averageRating) {
         this.averageRating = averageRating;
     }
-
-    public String getId() {
-        return id;
-    }
-
-
 }
