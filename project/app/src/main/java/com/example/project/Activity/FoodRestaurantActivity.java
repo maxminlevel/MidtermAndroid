@@ -9,12 +9,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project.Adapter.UserCommentAdapter;
 import com.example.project.Domain.UserCommentDomain;
 import com.example.project.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -36,6 +38,8 @@ public class FoodRestaurantActivity extends AppCompatActivity {
         initView();
         handleEventClick();
 
+        bottomNavigation();
+
         recyclerViewUserComment();
         getBundle();
 
@@ -53,6 +57,50 @@ public class FoodRestaurantActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void bottomNavigation() {
+        FloatingActionButton floatingActionButton = findViewById(R.id.card_btn);
+        LinearLayout homeBtn = findViewById(R.id.homeBtn);
+        LinearLayout profileBtn = findViewById(R.id.profileBtn);
+        LinearLayout friendBtn = findViewById(R.id.friendBtn);
+        LinearLayout settingBtn = findViewById(R.id.settingBtn);
+
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FoodRestaurantActivity.this, MainActivity.class));
+            }
+        });
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FoodRestaurantActivity.this,SearchActivity.class));
+            }
+        });
+
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FoodRestaurantActivity.this, ProfileActivity.class));
+            }
+        });
+
+        friendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FoodRestaurantActivity.this, FriendActivity.class));
+            }
+        });
+
+        settingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FoodRestaurantActivity.this, SettingActivity.class));
+            }
+        });
+    }
+
 
     private void handleEventClick() {
         addRating.setOnClickListener(new View.OnClickListener() {
