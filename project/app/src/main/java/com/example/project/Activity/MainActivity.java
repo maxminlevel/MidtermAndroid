@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,7 +19,6 @@ import com.example.project.Adapter.CategoryAdapter;
 import com.example.project.Adapter.PopularAdapter;
 import com.example.project.Domain.CategoryDomain;
 import com.example.project.Domain.FoodDomain;
-import com.example.project.Helper.FirebaseHelper;
 import com.example.project.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -34,7 +32,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter categoryAdapter, popularAdapter;
     private RecyclerView recyclerViewCategoryList, recyclerViewPopularList;
-    private FirebaseHelper firebaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
-        firebaseHelper = FirebaseHelper.getInstance();
     }
 
     private void renderUserInfor(SharedPreferences prefs, TextView accountName) {

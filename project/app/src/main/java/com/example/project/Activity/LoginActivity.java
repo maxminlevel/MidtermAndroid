@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -60,11 +59,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
     }
-    public static void showDialog(String title, String mess) {
-        builder.setMessage(mess) .setTitle(title);
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
     @Override
     public void onClick(View view) {
         String email = editTextEmail.getText().toString().trim();
@@ -84,7 +78,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         if (!queryDocumentSnapshots.isEmpty()) {
                                             List<DocumentSnapshot> list_user = queryDocumentSnapshots.getDocuments();
                                             for (DocumentSnapshot d : list_user) {
-                                                Log.i("I", "onSuccessUser: ");
                                                  userDomain = new UserDomain(
                                                         d.getId(),
                                                         d.getString("email"),
@@ -95,10 +88,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                                         d.getString("gender"),
                                                         d.getString("avatar")
                                                 );
-
-
                                             }
-
                                         }
 
                                         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
@@ -109,15 +99,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         editor.putString("gender", userDomain.getGender());
                                         editor.putString("birthday", userDomain.getBirthday());
                                         editor.apply();
-                                        showDialog("Đăng nhập thành công!","Khám phá các món ngon nào!");
+                                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công! Khám phá các món ngon nào!",Toast.LENGTH_LONG).show();
+
                                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 }});
                             }
                             else {
-                                showDialog("Đăng nhập thất bại!","Thử lại nhé!");
+                                Toast.makeText(LoginActivity.this, "Đăng nhập thất bại! Thử lại nhé!",Toast.LENGTH_LONG).show();
                             }
                         }
                     });
+
         }
     }
 }

@@ -7,14 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.FileObserver;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.project.Adapter.MessageAdapter;
 import com.example.project.Adapter.UserCommentAdapter;
 import com.example.project.Domain.FoodDomain;
 import com.example.project.Domain.FoodInRestaurantDomain;
@@ -120,7 +118,7 @@ public class FoodRestaurantActivity extends AppCompatActivity {
 
     private void getBundle() {
         foodInRestaurant = (FoodInRestaurantDomain) getIntent().getSerializableExtra("food_store");
-        price.setText(foodInRestaurant.getPrice()+ " VND");
+        price.setText((int)foodInRestaurant.getPrice()+ " VND");
         nameStore.setText(foodInRestaurant.getResName());
         phoneStore.setText(foodInRestaurant.getTel());
         addressStore.setText(foodInRestaurant.getAddress());
@@ -176,7 +174,8 @@ public class FoodRestaurantActivity extends AppCompatActivity {
 
     private void showAddressStore() {
         Intent intent = new Intent(FoodRestaurantActivity.this, MapsActivity.class);
-        intent.putExtra("food_store",  (Serializable) foodInRestaurant);
+        intent.putExtra("food_store", (Serializable) foodInRestaurant);
+        intent.putExtra("food",(Serializable) food);
         startActivity(intent);
     }
 

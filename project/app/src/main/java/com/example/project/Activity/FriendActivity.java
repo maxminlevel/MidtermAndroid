@@ -13,10 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.project.Adapter.MessageAdapter;
-import com.example.project.Adapter.UserCommentAdapter;
-import com.example.project.Domain.FoodDomain;
 import com.example.project.Domain.MessageDomain;
-import com.example.project.Domain.UserCommentDomain;
 import com.example.project.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

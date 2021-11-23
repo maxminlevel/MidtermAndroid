@@ -9,7 +9,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.example.project.Domain.FoodDomain;
@@ -64,35 +63,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         getBundle();
         mMap = googleMap;
-        // Add a marker
-        // Nên lấy tọa độ hiện tại
-        // Toạ độ KTX khu B
         LatLng self = new LatLng(10.888249399024446, 106.78917099714462);
-//        CameraPosition point = new CameraPosition.Builder()
-//                .target(self)
-//                .zoom(16)
-//                .bearing(90)
-//                .tilt(30)
-//                .build()
-//                ;
         mMap.moveCamera(CameraUpdateFactory.newLatLng(self));
-//        cái này là hiện vòng tròn xung quanh bản thân
-//        addCircleOnMap(self.latitude, self.longitude, 1000, "Đồ ăn xung quanh HCMUS");
-
-//         Cần viết thêm class store domain để lưu tọa độ cửa hàng
-//         Tham số muốn truyền: id cửa hàng và id món ăn
-//         hàm bên trong sẽ check đẻ hiện lên
-//         Nếu ID món ăn trống khi dó sẽ load icon cửa hàng và marker link tới view cửa hàng
-//         Nếu ID cửa hàng trống khi đó sẽ load icon món ăn và marker link tới view 1 món nhiều cửa hàng
-//         Nếu đầy đủ 2 tham số thì marker link tới view 1 món/ 1 cửa hàng
-//         marker sử dụng canvas
-//       addFoodMarkerOnMap(10.88718643539816, 106.78022055111391, "Hành của HCMUS");
-//        addFoodMarkerOnMap(10.7568282,106.6796836, "Burger");
-//        addFoodMarkerOnMap(10.7661902,106.6835089, "Chơi đồ án");
-//        if(restaurant!=null){
-//            //addFoodMarkerOnMap(restaurant.getLat(),restaurant.getLng(), restaurant.getResName());
-//            //LatLng self = new LatLng(restaurant.getLat(),restaurant.getLng());
-//        }
         addMarkerYourLocation(self);
         if (restaurant != null) {
             addFoodMarkerOnMap(restaurant.getLat(), restaurant.getLng(), food.getName() + " - " + restaurant.getResName(), restaurant);
@@ -130,7 +102,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .position(self)
                 .title("Your Location")
                 .icon(BitmapDescriptorFactory.fromBitmap(bmp))
-                .anchor(0.5f, 1));
+                .anchor(0.5f, 1)).setTag("self");
     }
 
     private Circle addCircleOnMap(double lat, double lng, double radius, String name) {
@@ -179,11 +151,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-
-        Intent intent = new Intent(MapsActivity.this, FoodRestaurantActivity.class);
-        intent.putExtra("food_store", (Serializable) marker.getTag());
-        intent.putExtra("food",(Serializable) food);
-        startActivity(intent);
+        if (marker.getTag().toString() != "self") {
+            Intent intent = new Intent(MapsActivity.this, FoodRestaurantActivity.class);
+            intent.putExtra("food_store", (Serializable) marker.getTag());
+            intent.putExtra("food", (Serializable) food);
+            startActivity(intent);
+        }
         return false;
     }
 
