@@ -171,7 +171,6 @@ public class FoodByCategoryActivity extends AppCompatActivity implements SearchV
                 filteredList.add(item);
             }
         }
-
         return filteredList;
     }
 

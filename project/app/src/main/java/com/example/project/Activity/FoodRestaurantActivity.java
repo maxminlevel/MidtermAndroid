@@ -27,9 +27,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class FoodRestaurantActivity extends AppCompatActivity {
-
     private static final int REQUEST_CALL = 1;
-
     private ImageView mapIntent, phoneIntent, foodImg;
     private TextView addressStore, phoneStore, price, rating, nameStore, addRating, foodName, foodDesc;
 
