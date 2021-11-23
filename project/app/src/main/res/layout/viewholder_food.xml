@@ -20,7 +20,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/card_background_restaurant"
         app:srcCompat="@drawable/pizza1" />
 
     <TextView
