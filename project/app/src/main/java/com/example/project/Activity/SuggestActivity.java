@@ -100,10 +100,14 @@ public class SuggestActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//              need some bundle here
+                // need some bundle here
+                // Toàn m xử lý dữ liệu res này để cho decision tree rồi qua
+                // trang SearchActivity lấy xuống cho biến foodListSuggestId tao đã code (dòng 165)
                 String res = parseData();
                 Toast.makeText(SuggestActivity.this, res, Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(SuggestActivity.this, SearchActivity.class));
+                Intent intent = new Intent(SuggestActivity.this, SearchActivity.class);
+                intent.putExtra("isSuggested", 1);
+                startActivity(intent);
             }
         });
 
