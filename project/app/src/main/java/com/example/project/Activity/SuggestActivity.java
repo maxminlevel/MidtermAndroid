@@ -20,7 +20,6 @@ public class SuggestActivity extends AppCompatActivity {
     CheckBox q3_sour, q3_salty, q3_sweet, q3_medium;
     CheckBox q4_alone, q4_group;
     CheckBox q5_high, q5_medium, q5_low;
-    Button suggestBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,6 @@ public class SuggestActivity extends AppCompatActivity {
         q1_dried = findViewById(R.id.Q1_dried);
         q1_water = findViewById(R.id.Q1_water);
         q1_both = findViewById(R.id.Q1_both);
-        attachListenerQ1();
 
         q2_fast = findViewById(R.id.Q2_fast);
         q2_medium = findViewById(R.id.Q2_medium);
@@ -52,17 +50,6 @@ public class SuggestActivity extends AppCompatActivity {
         q5_high = findViewById(R.id.Q5_high);
         q5_medium = findViewById(R.id.Q5_medium);
         q5_low = findViewById(R.id.Q5_low);
-
-        suggestBtn = findViewById(R.id.suggest_btn);
-        suggestBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                 need some bundle here
-                String res = parseData();
-                Toast.makeText(SuggestActivity.this, res, Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(SuggestActivity.this, SearchActivity.class));
-            }
-        });
     }
 
     private String parseData()
@@ -96,43 +83,6 @@ public class SuggestActivity extends AppCompatActivity {
         return res;
     }
 
-    private void attachListenerQ1()
-    {
-        q1_dried.setOnCheckedChangeListener(m_listener);
-        q1_water.setOnCheckedChangeListener(m_listener);
-        q1_both.setOnCheckedChangeListener(m_listener);
-    }
-
-    private void detachListenerQ1()
-    {
-        q1_dried.setOnCheckedChangeListener(null);
-        q1_water.setOnCheckedChangeListener(null);
-        q1_both.setOnCheckedChangeListener(null);
-    }
-
-    //Listener nhận sự kiện khi các Checkbox thay đổi trạng thái
-    CompoundButton.OnCheckedChangeListener m_listener
-            = new CompoundButton.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-            // Chon tat ca phuong an Q1
-            if (compoundButton == q1_both)
-            {
-                if(b) {
-                    q1_dried.setChecked(false);
-                    q1_water.setChecked(false);
-
-                    q1_dried.setEnabled(false);
-                    q1_water.setEnabled(false);
-                } else {
-                    q1_dried.setEnabled(true);
-                    q1_water.setEnabled(true);
-                }
-            }
-
-        }
-    };
-
     private void bottomNavigation() {
         FloatingActionButton floatingActionButton = findViewById(R.id.card_btn);
         LinearLayout homeBtn = findViewById(R.id.homeBtn);
@@ -150,7 +100,10 @@ public class SuggestActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SuggestActivity.this,SearchActivity.class));
+//              need some bundle here
+                String res = parseData();
+                Toast.makeText(SuggestActivity.this, res, Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(SuggestActivity.this, SearchActivity.class));
             }
         });
 
