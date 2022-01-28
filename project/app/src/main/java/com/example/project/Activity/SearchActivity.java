@@ -10,8 +10,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project.Adapter.FoodAdapter;
@@ -31,6 +33,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     public FoodAdapter adapter;
     private androidx.appcompat.widget.SearchView searchView;
     private ImageView voiceRecognition;
+    private TextView suggestBtn;
 
     public ArrayList<FoodDomain> foodList;
 
@@ -55,6 +58,14 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 startActivityForResult(intent, 200);
+            }
+        });
+
+        suggestBtn = findViewById(R.id.suggestBtn);
+        suggestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SearchActivity.this, SuggestActivity.class));
             }
         });
     }
