@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.project.Adapter.CategoryAdapter;
 import com.example.project.Adapter.PopularAdapter;
 import com.example.project.Domain.CategoryDomain;
@@ -51,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
             avatarImg.setVisibility(View.VISIBLE);
             TextView accountName = findViewById(R.id.usernameInMain);
             renderUserInfor(prefs,accountName);
+            if(!prefs.getString("avatar","").isEmpty()) {
+                int imageResource = getResources().getIdentifier(prefs.getString("avatar",""), "drawable", getPackageName());
+                Glide.with(this).load(imageResource).into(avatarImg);
+            }
         }
         else{
             accountBtn.setVisibility(View.VISIBLE);

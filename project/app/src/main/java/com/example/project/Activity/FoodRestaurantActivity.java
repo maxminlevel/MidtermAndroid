@@ -29,7 +29,7 @@ import java.util.ArrayList;
 public class FoodRestaurantActivity extends AppCompatActivity {
     private static final int REQUEST_CALL = 1;
     private ImageView mapIntent, phoneIntent, foodImg;
-    private TextView addressStore, phoneStore, price, rating, nameStore, addRating, foodName, foodDesc;
+    private TextView addressStore, phoneStore, price, rating, nameStore, addRating, foodName, foodDesc,giveDirection;
 
     public RecyclerView recyclerView;
     public RecyclerView.Adapter adapter;
@@ -114,6 +114,17 @@ public class FoodRestaurantActivity extends AppCompatActivity {
                 Toast.makeText(FoodRestaurantActivity.this,"Tính năng đang phát triển", Toast.LENGTH_SHORT).show();
             }
         });
+        giveDirection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?saddr=10.888249399024446,106.78917099714462&daddr="+ String.valueOf(foodInRestaurant.getLat()) +","+ String.valueOf(foodInRestaurant.getLng())));
+                intent.setPackage("com.google.android.apps.maps");
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     private void getBundle() {
@@ -158,6 +169,7 @@ public class FoodRestaurantActivity extends AppCompatActivity {
         nameStore = findViewById(R.id.nameStore);
         price = findViewById(R.id.price);
         rating = findViewById(R.id.rating);
+        giveDirection = findViewById(R.id.giveDirection);
         addRating = findViewById(R.id.addRating);
         foodName = findViewById(R.id.foodName);
         foodImg = findViewById(R.id.foodImg);

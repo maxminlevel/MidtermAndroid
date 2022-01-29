@@ -68,6 +68,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         addMarkerYourLocation(self);
         if (restaurant != null) {
             addFoodMarkerOnMap(restaurant.getLat(), restaurant.getLng(), food.getName() + " - " + restaurant.getResName(), restaurant);
+            LatLng des = new LatLng(restaurant.getLat(), restaurant.getLng());
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(des,16));
         }
         if (foodInResList != null && !foodInResList.isEmpty()) {
             if (!foodInResList.isEmpty()) {
@@ -82,7 +84,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMapClickListener(this);
         mMap.setOnMapLongClickListener(this);
 
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
         MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style);
         mMap.setMapStyle(style);
     }
@@ -101,8 +103,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions()
                 .position(self)
                 .title("Your Location")
+                .snippet("Guess how long this could contain?")
                 .icon(BitmapDescriptorFactory.fromBitmap(bmp))
                 .anchor(0.5f, 1)).setTag("self");
+
     }
 
     private Circle addCircleOnMap(double lat, double lng, double radius, String name) {

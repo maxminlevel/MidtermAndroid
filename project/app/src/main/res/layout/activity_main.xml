@@ -100,6 +100,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/usernameInMain"
                     android:visibility="gone"
+                    
                     app:srcCompat="@drawable/user" />
 
                 <ImageView

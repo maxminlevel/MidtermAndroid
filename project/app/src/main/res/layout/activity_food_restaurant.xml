@@ -231,20 +231,42 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/addRating"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/orange_button_background"
-                    android:paddingStart="10dp"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="10dp"
-                    android:layout_gravity="center"
-                    android:paddingBottom="5dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Thêm đánh giá"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold" />
+
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:id="@+id/giveDirection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/blue_btn"
+                        android:paddingStart="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="10dp"
+                        android:layout_gravity="center"
+                        android:paddingBottom="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Chỉ đường tôi"
+                        android:textColor="#ffffff"
+                        android:layout_marginRight="10dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/addRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/orange_button_background"
+                        android:paddingStart="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="10dp"
+                        android:layout_gravity="center"
+                        android:paddingBottom="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Thêm đánh giá"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
