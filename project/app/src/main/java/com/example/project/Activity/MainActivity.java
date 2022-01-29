@@ -27,6 +27,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -121,8 +123,10 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if(!queryDocumentSnapshots.isEmpty()){
                             List<DocumentSnapshot> list_food = queryDocumentSnapshots.getDocuments();
+                            ArrayList<FoodDomain> arrayTmp = new ArrayList<>();
+
                             for (DocumentSnapshot d: list_food){
-                                foodList.add(new FoodDomain(
+                                arrayTmp.add(new FoodDomain(
                                         d.getId(),
                                         d.getString("name"),
                                         d.getString("pic"),
@@ -130,6 +134,18 @@ public class MainActivity extends AppCompatActivity {
                                         d.getString("averageRating")
                                 ));
                             }
+
+                            for(int i = 0; i < arrayTmp.size() - 1; i++) {
+                                for(int j = i; j < arrayTmp.size(); j++) {
+                                    if(Double.parseDouble(arrayTmp.get(i).getAverageRating()) < Double.parseDouble(arrayTmp.get(j).getAverageRating()))
+                                        Collections.swap(arrayTmp, i, j);
+                                }
+                            }
+
+                            for(int i=0; i<5; i++) {
+                                foodList.add(arrayTmp.get(i));
+                            }
+
                             popularAdapter.notifyDataSetChanged();
                         }
                     }

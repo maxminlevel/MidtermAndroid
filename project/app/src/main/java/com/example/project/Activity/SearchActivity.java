@@ -9,9 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project.Adapter.FoodAdapter;
@@ -31,6 +34,8 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     public FoodAdapter adapter;
     private androidx.appcompat.widget.SearchView searchView;
     private ImageView voiceRecognition;
+    private TextView suggestBtn;
+    private boolean isSuggested = false;    // nếu đi từ layout Suggest qua
 
     public ArrayList<FoodDomain> foodList;
 
@@ -57,6 +62,20 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                 startActivityForResult(intent, 200);
             }
         });
+
+        suggestBtn = findViewById(R.id.suggestBtn);
+        suggestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SearchActivity.this, SuggestActivity.class));
+            }
+        });
+
+        Intent intent = getIntent();
+        if(intent.hasExtra("isSuggested")) {
+            isSuggested = true;
+        }
+
     }
 
     @Override
@@ -115,19 +134,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         foodList = new ArrayList<>();
 
-//        đưa mấy cái này vào database đi
-//        foodList.add(new FoodDomain("0","Cơm sườn", "com_suon_1", "Sườn nướng, Trứng chiên, Bì, Chả", "9.0"));
-//        foodList.add(new FoodDomain("0","Cơm gà sốt thái", "com_ga_sot_thai", "Cơm chiên, Gà chiên mắm, Nước sốt me",  "8.9"));
-//        foodList.add(new FoodDomain("0","Cơm gà xối mỡ", "com_ga_xoi_mo", "Cơm chiên, Gà hấp xối mỡ, Canh gà", "6.8"));
-//        foodList.add(new FoodDomain("0","Cơm dương châu", "com_duong_chau", "Cơm chiên, Xá xíu, Lạp xưởng, Đậu Hà Lan",  "9.0"));
-//        foodList.add(new FoodDomain("0","Cơm cuộn sushi", "com_cuon_sushi", "Cơm nắm, Rong biển, Trứng cuộn", "9.4"));
-//        foodList.add(new FoodDomain("0","Cơm gà xé", "com_ga_xe_1", "Cơm chiên, Gà luộc xé, Canh gà trứng",  "7.1"));
-//        foodList.add(new FoodDomain("0","Cơm chiên cá mặn", "com_chien_ca_man", "Cơm chiên, Trứng gà, Ức gà, Cá mặn",  "8.6"));
-//        foodList.add(new FoodDomain("0","Pizza", "pizza", "Bột mỳ, Sốt cà chua, Phô mai, Topping",  "8.7"));
-//        foodList.add(new FoodDomain("0","Hamburger", "burger", "Bánh mì, Sa lát, Thịt hun khói, Thịt bò", "9.4"));
-//        foodList.add(new FoodDomain("0","Lẩu Thái", "lau_thai", "Lẩu thái chua cay ",  "7.5"));
-//        foodList.add(new FoodDomain("0","Lẩu thập cẩm", "lau_thap_cam", "Lẩu thập cẩm hải sản, bò viên",  "8.9"));
-
         adapter = new FoodAdapter(foodList);
         recyclerView.setAdapter(adapter);
 
@@ -137,8 +143,10 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if(!queryDocumentSnapshots.isEmpty()){
                             List<DocumentSnapshot> list_food = queryDocumentSnapshots.getDocuments();
+                            ArrayList<FoodDomain> arrayGetDB = new ArrayList<>();
+
                             for (DocumentSnapshot d: list_food){
-                                foodList.add(new FoodDomain(
+                                arrayGetDB.add(new FoodDomain(
                                         d.getId(),
                                         d.getString("name"),
                                         d.getString("pic"),
@@ -146,6 +154,34 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                                         d.getString("averageRating")
                                 ));
                             }
+
+                            if(!isSuggested) {
+                                // di tu cac trang khac qua
+                                for(int i=0; i<arrayGetDB.size();i++) {
+                                    foodList.add(arrayGetDB.get(i));
+                                }
+
+                            } else {
+                                String[] foodListSuggestId = {"1", "3", "4", "6", "7"}; // code cứng dữ liệu foodList được gợi ý
+                                // Toàn m gọi xử lý dữ liệu xuống cho mảng foodListSuggestId là được
+
+                                // di tu Suggest Activity qua
+                                for(int i=0; i<foodListSuggestId.length; i++) {
+                                    int position = -1;
+
+                                    for(int j=0;j<arrayGetDB.size();j++) {
+                                        if(arrayGetDB.get(j).getId().equals(foodListSuggestId[i])) {
+                                            position = j;
+                                            break;
+                                        }
+                                    }
+
+                                    if(position != -1) {
+                                        foodList.add(arrayGetDB.get(position));
+                                    }
+                                }
+                            }
+
                             adapter.notifyDataSetChanged();
                         }
                     }
