@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.project.Adapter.FoodAdapter;
 import com.example.project.Domain.FoodDomain;
 import com.example.project.R;
@@ -25,6 +32,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +44,9 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     private ImageView voiceRecognition;
     private TextView suggestBtn;
     private boolean isSuggested = false;    // nếu đi từ layout Suggest qua
-
+    private String url = new String();
     public ArrayList<FoodDomain> foodList;
+    String[] foodListSuggestId; // code cứng dữ liệu foodList được gợi ý
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +61,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     private void initView() {
         searchView = findViewById(R.id.sv_title);
         searchView.setOnQueryTextListener(this);
-
         voiceRecognition = findViewById(R.id.voice_recognition);
         voiceRecognition.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,24 +170,36 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                                 }
 
                             } else {
-                                String[] foodListSuggestId = {"1", "3", "4", "6", "7"}; // code cứng dữ liệu foodList được gợi ý
-                                // Toàn m gọi xử lý dữ liệu xuống cho mảng foodListSuggestId là được
+                                foodListSuggestId = new String[]{"1", "3", "4", "6", "7"}; // code cứng dữ liệu foodList được gợi ý
+                                url = getIntent().getStringExtra("api");
 
-                                // di tu Suggest Activity qua
-                                for(int i=0; i<foodListSuggestId.length; i++) {
-                                    int position = -1;
-
-                                    for(int j=0;j<arrayGetDB.size();j++) {
-                                        if(arrayGetDB.get(j).getId().equals(foodListSuggestId[i])) {
-                                            position = j;
-                                            break;
-                                        }
+                                RequestQueue queue = Volley.newRequestQueue(SearchActivity.this);
+                                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                                        new Response.Listener<String>() {
+                                            @Override
+                                            public void onResponse(String response) {
+                                                // Display the first 500 characters of the response string.
+                                                // parse response to predict id list
+                                                foodListSuggestId = response.split(",");
+                                                // di tu Suggest Activity qua
+                                                for(int i=0; i<foodListSuggestId.length; i++) {
+                                                    for(int j=0;j<arrayGetDB.size();j++) {
+                                                        if(arrayGetDB.get(j).getId().equals(foodListSuggestId[i])) {
+                                                            Log.d("MML1",arrayGetDB.get(j).getId().toString());
+                                                            foodList.add(arrayGetDB.get(j));
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                                adapter.notifyDataSetChanged();
+                                            }
+                                        }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(SearchActivity.this, "Lỗi kết nối đến server",Toast.LENGTH_SHORT).show();
                                     }
-
-                                    if(position != -1) {
-                                        foodList.add(arrayGetDB.get(position));
-                                    }
-                                }
+                                });
+                                queue.add(stringRequest);
                             }
 
                             adapter.notifyDataSetChanged();
@@ -187,6 +207,21 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                     }
                 });
     }
+//    final OkHttpClient client = new OkHttpClient();
+//
+//    String run(String url) throws IOException {
+//        Request request = new Request.Builder()
+//            .url(url)
+//            .build();
+//        try {
+//            Response response = client.newCall(request).execute();
+//            return response.body().string();
+//        }
+//        catch (IOException e){
+//            e.printStackTrace();
+//        };
+//        return null;
+//    }
 
     private ArrayList<FoodDomain> filter(String text) {
         ArrayList<FoodDomain> filteredList = new ArrayList<>();

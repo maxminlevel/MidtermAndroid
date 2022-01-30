@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.project.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -56,29 +53,29 @@ public class SuggestActivity extends AppCompatActivity {
     {
         String res = "";
         // Q1
-        res += q1_dried.isChecked() ? "1 ": "0 ";
-        res += q1_water.isChecked() ? "1 ": "0 ";
-        res += q1_both.isChecked() ? "1 ": "0 ";
+        res += q1_dried.isChecked() ? "1,": "0,";
+        res += q1_water.isChecked() ? "1,": "0,";
+        res += q1_both.isChecked() ? "1,": "0,";
 
         // Q2
-        res += q2_fast.isChecked() ? "1 ": "0 ";
-        res += q2_medium.isChecked() ? "1 ": "0 ";
-        res += q2_long.isChecked() ? "1 ": "0 ";
+        res += q2_fast.isChecked() ? "1,": "0,";
+        res += q2_medium.isChecked() ? "1,": "0,";
+        res += q2_long.isChecked() ? "1,": "0,";
 
         // Q3
-        res += q3_sour.isChecked() ? "1 ": "0 ";
-        res += q3_salty.isChecked() ? "1 ": "0 ";
-        res += q3_sweet.isChecked() ? "1 ": "0 ";
-        res += q3_medium.isChecked() ? "1 ": "0 ";
+        res += q3_sour.isChecked() ? "1,": "0,";
+        res += q3_salty.isChecked() ? "1,": "0,";
+        res += q3_sweet.isChecked() ? "1,": "0,";
+        res += q3_medium.isChecked() ? "1,": "0,";
 
         // Q4
-        res += q4_alone.isChecked() ? "1 ": "0 ";
-        res += q4_group.isChecked() ? "1 ": "0 ";
+        res += q4_alone.isChecked() ? "1,": "0,";
+        res += q4_group.isChecked() ? "1,": "0,";
 
         // Q5
-        res += q5_high.isChecked() ? "1 ": "0 ";
-        res += q5_medium.isChecked() ? "1 ": "0 ";
-        res += q5_low.isChecked() ? "1 ": "0 ";
+        res += q5_high.isChecked() ? "1,": "0,";
+        res += q5_medium.isChecked() ? "1,": "0,";
+        res += q5_low.isChecked() ? "1": "0";
 
         return res;
     }
@@ -101,11 +98,15 @@ public class SuggestActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // need some bundle here
-                // Toàn m xử lý dữ liệu res này để cho decision tree rồi qua
                 // trang SearchActivity lấy xuống cho biến foodListSuggestId tao đã code (dòng 165)
                 String res = parseData();
-                Toast.makeText(SuggestActivity.this, res, Toast.LENGTH_SHORT).show();
+                // request server here
+                String url = "https://foodappapiandroid.herokuapp.com/";
+                String api = "guess?input=";
+
+//                Toast.makeText(SuggestActivity.this, url+api+res, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SuggestActivity.this, SearchActivity.class);
+                intent.putExtra("api",url+api+res);
                 intent.putExtra("isSuggested", 1);
                 startActivity(intent);
             }
